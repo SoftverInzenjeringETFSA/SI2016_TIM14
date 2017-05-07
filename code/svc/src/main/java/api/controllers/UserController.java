@@ -3,9 +3,9 @@ package api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import bll.user.IUserService;
@@ -23,12 +23,12 @@ public class UserController {
 		_userService = userService;
 	}
 	
-    @RequestMapping(method = RequestMethod.GET, path = "")
+    @GetMapping("")
     public List<User> getAll() {
         return _userService.getAll();
     }
     
-    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @GetMapping(path = "/{id}")
     public User getById(@PathVariable Integer id) throws Exception {
     	User user = _userService.getById(id);
     	
