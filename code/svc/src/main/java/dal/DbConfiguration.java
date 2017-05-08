@@ -5,7 +5,7 @@ public class DbConfiguration {
 	static final String MAX_POOL = "250";
 	
 	// change these fields per your environment
-	static final String DATABASE_URL = "jdbc:mysql://localhost:3308/onlineupoznavanjedb";
-    static final String USERNAME = "root";
-    static final String PASSWORD = "mirza";
+	static final String DATABASE_URL = "jdbc:mysql://localhost:3308/tim14";
+    static final String USERNAME = "EtfSI2016";
+    static final String PASSWORD = "2016SIEtf";
 }
