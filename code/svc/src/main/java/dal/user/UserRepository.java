@@ -63,7 +63,7 @@ public class UserRepository implements IUserRepository {
 		return user;
 	}
 
-	public Integer checkLoginData(String username, String password) {
+	public User checkLoginData(String username, String password) {
 		try {
 			String query = "SELECT * FROM user WHERE username = ? AND password = ?";
 			PreparedStatement statement = _db.connect().prepareStatement(query);
@@ -74,7 +74,7 @@ public class UserRepository implements IUserRepository {
 			ResultSet rs = statement.executeQuery();
 			
 			while (rs.next()) {
-				return rs.getInt("Id");
+				return new User(rs);
 			}
 		}
 		catch (Exception e) {
@@ -84,7 +84,30 @@ public class UserRepository implements IUserRepository {
 			_db.disconnect();
 		}
 		
-		return -1;
+		return null;
 	}
 
+	public Integer register(String username, String email, String password) {
+		try {
+			String query = "INSERT INTO user (`Username`, `Email`, `Password`) VALUES (?, ?, ?)";
+					
+			PreparedStatement statement = _db.connect().prepareStatement(query);
+			
+			statement.setString(1, username);
+			statement.setString(2, email);
+			statement.setString(3, password);
+			
+			Integer i = statement.executeUpdate();
+
+			return i;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			_db.disconnect();
+		}
+		
+		return null;
+	}
 }

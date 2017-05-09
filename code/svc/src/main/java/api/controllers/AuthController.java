@@ -10,6 +10,7 @@ import bll.auth.IAuthService;
 import common.exception.EntityNotFoundException;
 import models.dto.AccountCredentials;
 import models.dto.LoginResponse;
+import models.dto.UserRegisterRequest;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -31,5 +32,14 @@ public class AuthController {
         }
         
         return data;
+    }
+    
+    @PostMapping("/register")
+    public Integer register(@RequestBody UserRegisterRequest request) throws Exception {
+        if (_authService.register(request) <= 0) { 
+        	throw new Exception();
+        }
+        
+        else return 1;
     }
 }

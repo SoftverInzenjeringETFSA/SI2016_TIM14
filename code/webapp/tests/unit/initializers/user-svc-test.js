@@ -1,9 +1,9 @@
 import Ember from 'ember';
-import { initialize } from 'onlineupoznavanje-web/initializers/user';
+import { initialize } from 'onlineupoznavanje-web/initializers/user-svc';
 import { module, test } from 'qunit';
 import destroyApp from '../../helpers/destroy-app';
 
-module('Unit | Initializer | user', {
+module('Unit | Initializer | user svc', {
   beforeEach() {
     Ember.run(() => {
       this.application = Ember.Application.create();

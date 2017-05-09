@@ -10,5 +10,6 @@ import models.User;
 public interface IUserRepository {
 	public List<User> getAll();
 	public User getById(Integer id);
-	public Integer checkLoginData(String username, String password);
+	public User checkLoginData(String username, String password);
+	public Integer register(String username, String email, String password);
 }

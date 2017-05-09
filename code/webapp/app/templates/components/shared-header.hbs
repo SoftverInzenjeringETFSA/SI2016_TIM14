@@ -1,7 +1,22 @@
 <div class="shared-header">
-    <img src="assets/images/Logo-white.png" />
-    
-    <h5>{{ session.data.authenticated.user.token }} </h5>
+    <div class="logo-wrapper">
+        <img src="assets/images/Logo-white.png" />
+    </div>
 
-    <button {{action "tempLogin"}}>login</button>
+    <div class="shared-header-inner">
+        {{#if session.isAuthenticated}}
+            Logged in as  @{{ session.data.authenticated.user.username }}
+        {{else}}
+            <div class="shared-header-inner-login">
+                <div class="login-data-wrapper">
+                    {{input placeholder="username" value=model.username}}
+                    {{input type="password" placeholder="password" value=model.password}}
+                </div>
+                <div class="login-button-wrapper">
+                    <button {{action "login"}}>LOG IN</button>
+                    <div>Forgot password?</div>
+                </div>
+            </div>
+        {{/if}}
+    </div>
 </div>

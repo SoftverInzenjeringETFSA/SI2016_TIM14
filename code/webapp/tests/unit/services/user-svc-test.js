@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:user', 'Unit | Service | user', {
+moduleFor('service:user-svc', 'Unit | Service | user svc', {
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });

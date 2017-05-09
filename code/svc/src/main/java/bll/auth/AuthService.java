@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dal.user.IUserRepository;
+import models.User;
 import models.dto.AccountCredentials;
 import models.dto.LoginResponse;
+import models.dto.UserRegisterRequest;
 
 @Service
 public class AuthService implements IAuthService {
@@ -18,15 +20,17 @@ public class AuthService implements IAuthService {
 	}
 	
 	public LoginResponse login(AccountCredentials request) {
-		Integer id = _userRepository.checkLoginData(request.getUsername(), request.getPassword());
+		User user = _userRepository.checkLoginData(request.getUsername(), request.getPassword());
 		
-		if (id != -1) {
-			Boolean isAdmin = _userRepository.getById(id).getIsAdmin();
-			
-			return new LoginResponse(id, isAdmin, JwtService.issueToken(isAdmin));
+		if (user != null) {
+			return new LoginResponse(user, JwtService.issueToken(user.getIsAdmin()));
 		}
 		
 		return null;
+	}
+
+	public Integer register(UserRegisterRequest request) {
+		return _userRepository.register(request.getUsername(), request.getEmail(), request.getPassword());
 	}
 
 }
