@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2017 at 03:32 PM
+-- Generation Time: May 10, 2017 at 03:14 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -104,7 +104,7 @@ CREATE TABLE `user` (
   `dateOfBirth` date DEFAULT NULL,
   `Location` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `about` varchar(512) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `isAdmin` bit(1) NOT NULL
+  `isAdmin` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 -- --------------------------------------------------------
@@ -144,8 +144,8 @@ CREATE TABLE `userreview` (
 ALTER TABLE `adminbanrequest`
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `requestedId` (`requestedId`,`targetId`,`chatGroupId`),
-  ADD KEY `targetId` (`targetId`),
-  ADD KEY `chatGroupId` (`chatGroupId`);
+  ADD KEY `adminbanrequest_ibfk_2` (`targetId`),
+  ADD KEY `adminbanrequest_ibfk_3` (`chatGroupId`);
 
 --
 -- Indexes for table `blockeduser`
@@ -154,7 +154,7 @@ ALTER TABLE `blockeduser`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `sourceId` (`sourceId`,`targetId`),
-  ADD KEY `targetId` (`targetId`);
+  ADD KEY `blockeduser_ibfk_2` (`targetId`);
 
 --
 -- Indexes for table `chatgroup`
@@ -170,7 +170,7 @@ ALTER TABLE `privatechat`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `sourceId` (`sourceId`,`targetId`),
-  ADD KEY `targetId` (`targetId`);
+  ADD KEY `privatechat_ibfk_2` (`targetId`);
 
 --
 -- Indexes for table `privatechatarchive`
@@ -179,7 +179,7 @@ ALTER TABLE `privatechatarchive`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `privateChatId` (`privateChatId`,`sourceId`),
-  ADD KEY `sourceId` (`sourceId`);
+  ADD KEY `privatechatarchive_ibfk_2` (`sourceId`);
 
 --
 -- Indexes for table `user`
@@ -195,7 +195,7 @@ ALTER TABLE `user`
 ALTER TABLE `userchatgroup`
   ADD PRIMARY KEY (`id`),
   ADD KEY `userId` (`userId`,`chatGroupId`),
-  ADD KEY `chatGroupId` (`chatGroupId`);
+  ADD KEY `userchatgroup_ibfk_2` (`chatGroupId`);
 
 --
 -- Indexes for table `userreview`
@@ -204,8 +204,52 @@ ALTER TABLE `userreview`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id` (`id`),
   ADD KEY `sourceId` (`sourceId`,`targetId`),
-  ADD KEY `targetId` (`targetId`);
+  ADD KEY `userreview_ibfk_2` (`targetId`);
 
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `adminbanrequest`
+--
+ALTER TABLE `adminbanrequest`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `blockeduser`
+--
+ALTER TABLE `blockeduser`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `chatgroup`
+--
+ALTER TABLE `chatgroup`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `privatechat`
+--
+ALTER TABLE `privatechat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `privatechatarchive`
+--
+ALTER TABLE `privatechatarchive`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `userchatgroup`
+--
+ALTER TABLE `userchatgroup`
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `userreview`
+--
+ALTER TABLE `userreview`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
