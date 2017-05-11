@@ -6,9 +6,13 @@
             <h2>CONNECT WITH PEOPLE, IDEAS AND OPPORTUNITIES.</h2>
         </div>
         <div class="register-fields">
-            {{input placeholder="username" value=model.username}}
-            {{input placeholder="email address" value=model.email}}
-            {{input type="password" placeholder="password" value=model.password}}
+			{{errorUsername}}
+            {{input placeholder="username" value=model.username}} 
+			{{errorEmail}}
+            {{input placeholder="email address" value=model.email}} 
+			{{errorPassword}}
+            {{input type="password" placeholder="password" value=model.password}} 
+			{{errorConfirmedPassword}}
             {{input type="password" placeholder="confirm password" value=model.confirmedPassword}}
             
             <div class="terms-of-conditions">
@@ -19,7 +23,7 @@
             </div>
         </div>
         <div class="register-button">
-            <button disabled={{ isToSAccepted }} {{ action 'register' }}>SIGN UP</button>
+            <button disabled={{ isToSAccepted }} {{ action 'check' }}>SIGN UP</button>
         </div>
     </div>
 </div>
