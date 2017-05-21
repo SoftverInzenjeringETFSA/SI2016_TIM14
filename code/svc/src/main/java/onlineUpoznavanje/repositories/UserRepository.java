@@ -1,11 +1,13 @@
 package onlineUpoznavanje.repositories;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import onlineUpoznavanje.models.User;
 
-public interface UserRepository extends CrudRepository<User, Long> {
-
+public interface UserRepository extends PagingAndSortingRepository<User, Integer> {
+	public User findByUsername(String username);
+	public User findByIdKorisnika(Integer id);
+	
+	public List<User> findAll();
 }
- 

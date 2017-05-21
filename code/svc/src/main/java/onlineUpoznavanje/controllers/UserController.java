@@ -1,26 +1,50 @@
 package onlineUpoznavanje.controllers;
 
+//import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+import onlineUpoznavanje.services.UserService;
+import onlineUpoznavanje.services.izuzetak.ServiceException;
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.repositories.UserRepository;
 
 
-@Controller //Ovo znaèi da je ova klasa kontroler (Controller)
-@RequestMapping(path="/demo")  // This means URL's start with /demo (after Application path)
+@RestController //Ovo znaèi da je ova klasa kontroler (Controller)
+@CrossOrigin
+@RequestMapping(path="/korisnici")  // This means URL's start with /demo (after Application path)
 public class UserController {
 	
-	@Autowired 
+	@Autowired
+    private UserService korisnikService;
 	
 	
-    private UserRepository userRepository;
+	//registracija korisnika
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity register(@RequestBody User korisnik)
+    {
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(korisnikService.addUsers(korisnik));
+        }
+        catch (ServiceException e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                                .body(e.getLocalizedMessage());
+        }
+
+
+    }
 	
-	@GetMapping(path="/add") // Map ONLY GET Requests
+	/*@GetMapping(path="/add") // Map ONLY GET Requests
 	public @ResponseBody String addNewUser (@RequestParam String username
 			, @RequestParam String email, @RequestParam String password) {
 		
@@ -39,7 +63,7 @@ public class UserController {
 	public @ResponseBody Iterable<User> getAllUsers() {
 		// Ovo vraæa JSON ili XML za sve user-e
 		return userRepository.findAll();
-	}
+	}*/
 
 
 }
