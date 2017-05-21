@@ -6,12 +6,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Online Upoznavanje</name>
 	
+	
 	<dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
 			<version>RELEASE</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
