@@ -22,7 +22,7 @@ public class UserService implements UserDetailsService {
 
 
     @Autowired
-    UserRepository repository;
+    public static UserRepository repository;
 	
     //korisnièki napravljena metoda - vraæanje svih korisnika
     public Iterable<onlineUpoznavanje.models.User> findAllUsers() {

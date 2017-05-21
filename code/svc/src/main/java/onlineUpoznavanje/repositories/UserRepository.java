@@ -11,3 +11,11 @@ public interface UserRepository extends PagingAndSortingRepository<User, Integer
 	
 	public List<User> findAll();
 }
+/*import org.springframework.data.repository.CrudRepository;
+
+import onlineUpoznavanje.models.User;
+public  interface UserRepository extends CrudRepository<User, Long> {
+
+}
+ 
+>>>>>>> Stashed changes*/

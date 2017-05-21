@@ -4,6 +4,8 @@ package onlineUpoznavanje.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,13 +21,13 @@ import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.repositories.UserRepository;
 
 
-@RestController //Ovo znaèi da je ova klasa kontroler (Controller)
+@RestController //Ovo znaï¿½i da je ova klasa kontroler (Controller)
 @CrossOrigin
 @RequestMapping(path="/korisnici")  // This means URL's start with /demo (after Application path)
 public class UserController {
 	
 	@Autowired
-    private UserService korisnikService;
+    private static UserService korisnikService;
 	
 	
 	//registracija korisnika
@@ -61,7 +63,7 @@ public class UserController {
 	
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<User> getAllUsers() {
-		// Ovo vraæa JSON ili XML za sve user-e
+		// Ovo vraï¿½a JSON ili XML za sve user-e
 		return userRepository.findAll();
 	}*/
 
