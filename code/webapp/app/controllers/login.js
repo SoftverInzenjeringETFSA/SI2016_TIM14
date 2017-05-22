@@ -1,13 +1,29 @@
 import Ember from 'ember';
+import user from '../models/user';
+
 export default Ember.Controller.extend({
+		userService: Ember.inject.service(),
     isToSAccepted: Ember.computed.not('isToSCheckboxChecked'),
     model: {},
+    
     actions: {
         register() {
 			check();
             
         }
 		,
+		registerUser() {
+			console.log('Say something')
+			let korisnik = this.getProperties('username', 'password', 'email');
+			console.log()
+			korisnik.username = this.get('model.username');
+			korisnik.password = this.get('model.confirmedPassword');
+			korisnik.email = this.get('model.email');
+        	this.get('userService').store(korisnik);
+        	this.refresh();
+			//check();
+            
+        },
 		check() {
 			
 			var regUsername = /^[a-zA-Z0-9]+$/;
