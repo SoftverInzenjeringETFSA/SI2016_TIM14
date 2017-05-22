@@ -2,6 +2,8 @@ package onlineUpoznavanje.services;
 
 import java.util.Collection;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 //import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -10,10 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-
+import onlineUpoznavanje.db.dbActions;
 import onlineUpoznavanje.repositories.UserRepository;
 import onlineUpoznavanje.services.izuzetak.ServiceException;
 
@@ -41,6 +44,44 @@ public class UserService implements UserDetailsService {
 
         return kreiranKorisnik != null;
 	}
+    
+    public static boolean storeUser(String User){
+    	//System.out.print(User);
+    	//JsonObject obj = new JsonParser().parse(User).getAsJsonObject();
+    	StringBuilder jsonString = new StringBuilder();
+    	jsonString.append(User);
+    	JSONObject jsonObj = null;
+		try {
+			jsonObj = new JSONObject(jsonString.toString());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			System.out.print("Well fuck 2");
+			e.printStackTrace();
+		}
+    	try {
+    		System.out.print("Yaya fuck");
+			String username = jsonObj.getString("username");
+			String password = jsonObj.getString("password");
+			String email = jsonObj.getString("email");
+			dbActions db = new dbActions();
+	        try {
+				db.connectToDB();
+				db.storeUser(username, password, email);
+		        db.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+			 
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			System.out.print("Well fuck");
+			e.printStackTrace();
+		}
+    	
+    	return true;
+    }
     
     //dodati update-ovanje korisnika 
     

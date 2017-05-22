@@ -1,5 +1,9 @@
 package onlineUpoznavanje.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONObject;
 //import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import onlineUpoznavanje.services.UserService;
 import onlineUpoznavanje.services.izuzetak.ServiceException;
+import onlineUpoznavanje.db.dbActions;
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.repositories.UserRepository;
 
@@ -30,22 +35,36 @@ public class UserController {
 	@Autowired
     private static UserService korisnikService;
 	
+	@Autowired
+	private static UserRepository UserRepository;
 	
+	private static List<User> usersToReturn = new ArrayList<User>();
 	//registracija korisnika
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity register(@RequestBody User korisnik)
+	@RequestMapping(value = "/store", method = RequestMethod.POST)
+    public ResponseEntity register(@RequestBody String korisnik)
     {
-        try {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(korisnikService.addUsers(korisnik));
-        }
-        catch (ServiceException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                                .body(e.getLocalizedMessage());
-        }
+		return ResponseEntity.status(HttpStatus.OK).body(UserService.storeUser(korisnik));
+    }
+	
+	@RequestMapping(value = "/all", method = RequestMethod.GET)
+    public @ResponseBody List<User> findAll()
+    {
+		 try {
+		dbActions db = new dbActions();
+        db.connectToDB();
+        usersToReturn = db.readUsers();
+        db.close();
+		 }
+		 catch (Exception e)
+		 {
+			 return UserRepository.findAll();
+		 }
+		 
+        return usersToReturn;
 
 
     }
+	
 	
 	/*@GetMapping(path="/add") // Map ONLY GET Requests
 	public @ResponseBody String addNewUser (@RequestParam String username

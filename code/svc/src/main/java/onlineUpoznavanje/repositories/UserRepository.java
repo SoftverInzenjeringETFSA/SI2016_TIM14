@@ -1,6 +1,8 @@
 package onlineUpoznavanje.repositories;
 
+import java.io.InputStream;
 import java.util.List;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 
@@ -11,6 +13,8 @@ public interface UserRepository extends PagingAndSortingRepository<User, Integer
 	public User findByIdKorisnika(Integer id);
 	
 	public List<User> findAll();
+	
+
 }
 /*import org.springframework.data.repository.CrudRepository;
 

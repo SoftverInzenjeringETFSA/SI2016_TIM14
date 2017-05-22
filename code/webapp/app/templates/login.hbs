@@ -5,7 +5,8 @@
             <h1>CREATE A NEW ACCOUNT</h1>
             <h2>CONNECT WITH PEOPLE, IDEAS AND OPPORTUNITIES.</h2>
         </div>
-        <div class="register-fields">
+        <form {{action "registerUser" this on="submit"}}>
+            <div class="register-fields">
 			{{errorUsername}}
             {{input placeholder="username" value=model.username}} 
 			{{errorEmail}}
@@ -21,9 +22,10 @@
                     By signing up, you are accepting Networking terms and conditions
                 </span>
             </div>
-        </div>
-        <div class="register-button">
-            <button disabled={{ isToSAccepted }} {{ action 'check' }}>SIGN UP</button>
-        </div>
+            </div>
+            <div class="register-button">
+                <button disabled={{ isToSAccepted }} {{ action 'registerUser' }}>SIGN UP</button>
+            </div>
+        </form>
     </div>
 </div>

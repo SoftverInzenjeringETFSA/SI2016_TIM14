@@ -14,14 +14,30 @@ module.exports = function(environment) {
       EXTEND_PROTOTYPES: {
         // Prevent Ember Data from overriding Date.parse.
         Date: false
-      }
+      },
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      api: 'http://localhost:8080/api'
+      //api: 'http://localhost:8080/api'
     }
+  };
+
+   ENV['g-map'] = {
+    key: 'AIzaSyC5xfl4ytPUyDUy_yulTluJpZoBZKECEyE'
+  };
+
+  ENV['ember-simple-auth'] = {
+    authorizer: 'authorizer:token',
+    baseURL: ''
+  };
+
+  ENV['ember-simple-auth-token'] = {
+    refreshAccessTokens: false,
+    authorizer: 'authorizer:token',
+    identificationField: 'username',
+    serverTokenEndpoint: ''
   };
 
   if (environment === 'development') {
@@ -30,6 +46,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS = true;
     ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.apiHost = 'http://localhost:8080';
   }
 
   if (environment === 'test') {
@@ -44,8 +61,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.apiHost = "http://localhost:8080";
+    ENV.apiVersion = "1";
 
   }
-
+  ENV['ember-simple-auth'].baseURL = ENV.apiHost;
+  ENV['ember-simple-auth-token'].serverTokenEndpoint = `${ENV.apiHost}/login`;
   return ENV;
 };

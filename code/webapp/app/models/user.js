@@ -1,7 +1,10 @@
 import DS from 'ember-data';
 
+var _modelProperties = ['idKorisnika', 'username', 'password', 'email', 'firstName', 'lastName'];
+
 export default DS.Model.extend({
-     id: DS.attr(),
+     modelProperties: _modelProperties,
+     /*id: DS.attr(),
      firstName: DS.attr(),
      lastName: DS.attr(),
      username: DS.attr(),
@@ -10,5 +13,5 @@ export default DS.Model.extend({
      dateOfBirth: DS.attr(),
      location: DS.attr(),
      about: DS.attr(),
-     isAdmin: DS.attr()
+     isAdmin: DS.attr()*/
 });
