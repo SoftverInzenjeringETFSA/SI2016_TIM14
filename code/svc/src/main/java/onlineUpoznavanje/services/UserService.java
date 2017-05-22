@@ -83,6 +83,22 @@ public class UserService implements UserDetailsService {
     	return true;
     }
     
+    public static boolean inviteUser(String email){
+		dbActions db = new dbActions();
+	        try {
+				db.connectToDB();
+				db.inviteUser(email);
+		        db.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+			 
+		
+    	return true;
+    }
+    
     //dodati update-ovanje korisnika 
     
     //dodati brisanje korisnika

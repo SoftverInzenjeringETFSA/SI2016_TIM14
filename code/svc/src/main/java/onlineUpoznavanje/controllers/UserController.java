@@ -46,6 +46,12 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(UserService.storeUser(korisnik));
     }
 	
+	@RequestMapping(value = "/inviteUser", method = RequestMethod.POST)
+    public ResponseEntity inviteUser(@RequestBody String email)
+    {
+		return ResponseEntity.status(HttpStatus.OK).body(UserService.inviteUser(email));
+    }
+	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
     public @ResponseBody List<User> findAll()
     {

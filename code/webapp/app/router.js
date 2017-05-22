@@ -13,6 +13,7 @@ Router.map(function() {
   this.route('grupe');
   this.route('privatnichat');
   this.route('adminpanel');
+  this.route('inviteuser');
 });
 
 export default Router;

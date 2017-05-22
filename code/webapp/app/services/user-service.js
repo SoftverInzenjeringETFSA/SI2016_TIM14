@@ -1,18 +1,31 @@
 import Ember from 'ember';
 import BaseService from './base-service';
-import user from '../models/user';
+import User from '../models/user';
 
 export default BaseService.extend({
 	all: function() {
         var korisnici = [];
         this.ajax({ url: `korisnici/all`, type: "GET"}).then(function(data) {
+        	console.log(data);
+        	console.log('For reals')
             data.forEach(function(korisnik) {
-                korisnici.addObject(user.create(korisnik));
+            	console.log('Hello nitherfucker')
+                console.log(korisnik);
+                 	const user = User.createRecord({
+					//      id: 1,
+        			username: korisnik.username,
+        			email: korisnik.email
+			    });
+                //const foo = User.create({ username: korisnik.username, email: korisnik.email });
+                //korisnici.addObject(User.create(korisnik));
+                //korisnici.pushObject(foo);
+                
             });
+             console.log(korisnici);
+        return korisnici;
         });
 
-        console.log(korisnici);
-        return korisnici;
+       
     },
 
     store: function(korisnik) {

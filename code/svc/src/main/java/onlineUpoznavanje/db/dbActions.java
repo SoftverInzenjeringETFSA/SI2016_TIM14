@@ -47,14 +47,13 @@ import onlineUpoznavanje.models.User;
                                                 .executeQuery("select * from " + database + ".user");
                                 List<User> users = new ArrayList<User>();
                                 while (resultSet.next()) {
-                                        String firstName = resultSet.getString("firstName");
-                                        String lastName = resultSet.getString("lastName");
+                                        String username = resultSet.getString("username");
+                                        String email = resultSet.getString("email");
                                         User user = new User();
-                                        user.setFirstName(firstName);
-                                        user.setLastName(lastName);
+                                        user.setUsername(username);
+                                        user.setEmail(email);
                                         users.add(user);
-                                        System.out.println(String.format(
-                                                        "firstname: %5s lastname: %5s  ", firstName, lastName));
+                                        
                                 }
                                 return users;
                         } catch (Exception e) {
@@ -68,12 +67,41 @@ import onlineUpoznavanje.models.User;
                             statement = connect.createStatement();
                             /*resultSet = statement
                                             .executeQuery("INSERT INTO" + database + ".user");
+                                            
                              `onlinemeet`.`user` (`username`, `password`, `firstName`, `lastName`, `email`) VALUES ('1123456', 'SISUCK', 'Andrej', 'Milojevic', 'amilojevic@123212.com');*/
                              PreparedStatement statement = connect.prepareStatement("INSERT INTO " + database + ".user (username, password, email) VALUES ( ?, ?, ?)");
                              statement.setString(1, username);
                              statement.setString(2, password);
                              statement.setString(3, email);
                              statement.execute();
+                    } catch (Exception e) {
+                            throw e;
+                    }
+                }
+                
+                public void inviteUser(String email) throws Exception {
+                    try {
+                    		System.out.println(email);
+                            statement = connect.createStatement();
+                            /*resultSet = statement
+                                            .executeQuery("INSERT INTO" + database + ".user");
+                             `onlinemeet`.`user` (`username`, `password`, `firstName`, `lastName`, `email`) VALUES ('1123456', 'SISUCK', 'Andrej', 'Milojevic', 'amilojevic@123212.com');*/
+                            PreparedStatement statement = connect.prepareStatement("SELECT * FROM " + database + ".user WHERE email = ?");
+                            statement.setString(1, email);
+                            resultSet = statement.executeQuery();
+                            String idOfInvitee = null;
+                            String usernameOfInvitee = null;
+                            while (resultSet.next()) {
+                            	idOfInvitee = resultSet.getString("id");
+                            	usernameOfInvitee = resultSet.getString("username");
+                                
+                        }
+                           
+                            
+                            statement = connect.prepareStatement("INSERT INTO " + database + ".invites ( idOfInvitee, usernameOfInvitee) VALUES ( ?, ?)");
+                            statement.setString(1, idOfInvitee);
+                            statement.setString(2, usernameOfInvitee);
+                            statement.execute();
                     } catch (Exception e) {
                             throw e;
                     }
