@@ -20,7 +20,8 @@ import onlineUpoznavanje.services.izuzetak.ServiceException;
 @Service
 public class UserService implements UserDetailsService {
 
-
+ 
+	
     @Autowired
     public static UserRepository repository;
 	

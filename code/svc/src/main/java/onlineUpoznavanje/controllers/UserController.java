@@ -26,6 +26,7 @@ import onlineUpoznavanje.repositories.UserRepository;
 @RequestMapping(path="/korisnici")  // This means URL's start with /demo (after Application path)
 public class UserController {
 	
+	
 	@Autowired
     private static UserService korisnikService;
 	

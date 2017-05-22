@@ -3,6 +3,7 @@ package onlineUpoznavanje.repositories;
 import java.util.List;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+
 import onlineUpoznavanje.models.User;
 
 public interface UserRepository extends PagingAndSortingRepository<User, Integer> {
