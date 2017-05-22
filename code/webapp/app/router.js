@@ -10,6 +10,9 @@ Router.map(function() {
   this.route('login');
   this.route('home');
   this.route('profil');
+  this.route('grupe');
+  this.route('privatnichat');
+  this.route('adminpanel');
 });
 
 export default Router;
