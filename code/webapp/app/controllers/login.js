@@ -20,7 +20,6 @@ export default Ember.Controller.extend({
 			korisnik.password = this.get('model.confirmedPassword');
 			korisnik.email = this.get('model.email');
         	this.get('userService').store(korisnik);
-        	this.refresh();
 			//check();
             
         },
