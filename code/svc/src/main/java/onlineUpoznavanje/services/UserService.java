@@ -1,6 +1,8 @@
 package onlineUpoznavanje.services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,6 +100,7 @@ public class UserService implements UserDetailsService {
 		
     	return true;
     }
+    
     
     //dodati update-ovanje korisnika 
     

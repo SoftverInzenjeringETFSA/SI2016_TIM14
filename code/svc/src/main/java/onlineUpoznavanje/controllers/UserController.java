@@ -52,6 +52,26 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.OK).body(UserService.inviteUser(email));
     }
 	
+	@RequestMapping(value = "/searchUserPerEmail", method = RequestMethod.POST)
+    public @ResponseBody List<User> searchUserPerEmail(@RequestBody String email)
+    {
+		System.out.println("Why hellp there");
+		System.out.println(email);
+		try {
+			dbActions db = new dbActions();
+	        db.connectToDB();
+	        usersToReturn = db.searchUserPerEmail(email);
+	        db.close();
+			 }
+			 catch (Exception e)
+			 {
+				 return UserRepository.findAll();
+			 }
+			 
+	        return usersToReturn;
+
+    }
+	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
     public @ResponseBody List<User> findAll()
     {

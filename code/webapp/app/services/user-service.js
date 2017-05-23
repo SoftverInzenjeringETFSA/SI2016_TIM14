@@ -36,4 +36,12 @@ export default BaseService.extend({
         return true;
     },
 
+    searchUserPerEmail: function(email) {
+    				console.log(email);
+    				var returnData;
+        return this.ajax({ url: `korisnici/searchUserPerEmail`, type: "POST", data: email})
+    },
+
+
+
 });

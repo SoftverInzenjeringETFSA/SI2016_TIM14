@@ -14,6 +14,7 @@ Router.map(function() {
   this.route('privatnichat');
   this.route('adminpanel');
   this.route('inviteuser');
+  this.route('searchuser');
 });
 
 export default Router;

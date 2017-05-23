@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row content">
+{{side-navigation}}
+    <div class="col-sm-9">
+      <h4>Search User</h4>
+       <div class="register-wrapper col-lg-4 col-md-4">
+      <form {{action "searchUser" this on="submit"}}>
+            <div class="register-fields">
+      
+            {{input placeholder="search use email" value=model.searchUserEmail}}
+            
+            </div>
+            <div class="register-button">
+                <button {{ action 'searchUser' }}>Search</button>
+            </div>
+        </form>
+                    </div>
+
+      <table class="table table-striped">
+         <thead>
+            <tr>
+              <th>Korisnicko ime</th>
+              <th>Email</th>
+            </tr>
+         </thead>
+         <tbody>
+            {{#each model as |osoba|}}
+              <tr>
+              <td>{{osoba.username}}</td>
+     			<td >{{osoba.email }}</td>
+              </tr>
+            {{/each}}
+         </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>

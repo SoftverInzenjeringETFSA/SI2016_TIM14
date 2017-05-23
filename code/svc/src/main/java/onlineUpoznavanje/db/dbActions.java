@@ -61,6 +61,41 @@ import onlineUpoznavanje.models.User;
                         }
                 }
                 
+                public List<User> searchUserPerEmail(String emailToSearchFor) throws Exception {
+                    try {
+                    	emailToSearchFor = emailToSearchFor.substring(0, emailToSearchFor.length()-1);
+                        System.out.println(emailToSearchFor);
+
+                    	/*SELECT * FROM onlinemeet.user where email like '%and%';*/
+                            /*statement = connect.createStatement();
+                            resultSet = statement
+                                            .executeQuery("select * from " + database + ".user");*/
+                        statement = connect.createStatement();
+
+                    	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".user WHERE email like ?");
+                    	statement.setString(1, "%" + emailToSearchFor + "%");
+                        resultSet = statement.executeQuery();
+                            List<User> users = new ArrayList<User>();
+                            //System.out.print("Hellp");
+                            while (resultSet.next()) {
+                            	
+                                //System.out.print("Hell2");
+                                    String username = resultSet.getString("username");
+                                    String email = resultSet.getString("email");
+                                    System.out.println(email);
+
+                                    User user = new User();
+                                    user.setUsername(username);
+                                    user.setEmail(email);
+                                    users.add(user);
+                                    
+                            }
+                            return users;
+                    } catch (Exception e) {
+                            throw e;
+                    }
+            }
+                
                 public void storeUser(String username, String password, String email) throws Exception {
                     try {
                     		
@@ -97,7 +132,7 @@ import onlineUpoznavanje.models.User;
                                 
                         }
                            
-                            
+                            /*SELECT * FROM onlinemeet.user where email like '%and%';*/
                             statement = connect.prepareStatement("INSERT INTO " + database + ".invites ( idOfInvitee, usernameOfInvitee) VALUES ( ?, ?)");
                             statement.setString(1, idOfInvitee);
                             statement.setString(2, usernameOfInvitee);
