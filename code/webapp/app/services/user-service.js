@@ -42,6 +42,4 @@ export default BaseService.extend({
         return this.ajax({ url: `korisnici/searchUserPerEmail`, type: "POST", data: email})
     },
 
-
-
 });

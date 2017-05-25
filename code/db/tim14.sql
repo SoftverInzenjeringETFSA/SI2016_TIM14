@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2017 at 03:14 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: May 25, 2017 at 07:05 PM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -95,7 +95,7 @@ CREATE TABLE `privatechatarchive` (
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `username` int(25) NOT NULL,
+  `username` varchar(55) COLLATE utf8_slovenian_ci NOT NULL,
   `password` varchar(25) COLLATE utf8_slovenian_ci NOT NULL,
   `firstName` varchar(40) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `lastName` varchar(40) COLLATE utf8_slovenian_ci DEFAULT NULL,
@@ -106,6 +106,26 @@ CREATE TABLE `user` (
   `about` varchar(512) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `isAdmin` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `firstName`, `lastName`, `email`, `gender`, `dateOfBirth`, `Location`, `about`, `isAdmin`) VALUES
+(1, 'berina', 'ovojesifra1A', NULL, NULL, 'berina@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(2, 'neko', 'password', NULL, NULL, 'neko@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(3, 'korisnik', 'ovojekorisnik', NULL, NULL, 'korisnik@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(4, 'haris', 'sifrica1A', NULL, NULL, 'haris@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(5, 'nekaosoba', 'njenpassword2A', NULL, NULL, 'nekaosoba@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(7, 'nekaosoba1', 'nekaosoba1A', NULL, NULL, 'nekaosoba1@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(8, 'osobica', 'ovojelozinka2A', NULL, NULL, 'email@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(9, 'jasamberina', 'password58A', NULL, NULL, 'mojmail@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(11, 'nekobeze', 'nekobeze22A', NULL, NULL, 'nekobeze@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(12, 'noviuser1A', 'noviuser1A', NULL, NULL, 'noviuser1A@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(13, 'ovojeuser25S', 'ovojeuser25S', NULL, NULL, 'ovojeuser25S@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(14, 'ovojeuser23S', 'ovojeuser25S', NULL, NULL, 'ovojeuser23S@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(15, 'username5', 'username5A', NULL, NULL, 'username5@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(16, 'username88', 'username88A', NULL, NULL, 'username88@gmail.com', NULL, NULL, NULL, NULL, b'0');
 
 -- --------------------------------------------------------
 
@@ -239,7 +259,7 @@ ALTER TABLE `privatechatarchive`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `userchatgroup`
 --

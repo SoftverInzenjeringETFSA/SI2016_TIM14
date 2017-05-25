@@ -1,9 +1,13 @@
 <div class="route-login">
     <div class="col-lg-6 col-md-5"></div>
     <div class="register-wrapper col-lg-4 col-md-4">
+     {{#if session.isAuthenticated}}
+          <h2>CONNECT WITH PEOPLE, IDEAS AND OPPORTUNITIES.</h2>
+     {{else}}
         <div class="register-headers">
             <h1>CREATE A NEW ACCOUNT</h1>
             <h2>CONNECT WITH PEOPLE, IDEAS AND OPPORTUNITIES.</h2>
+             <h2 style="color:red"> {{registracijamsg}} </h2>
         </div>
         <form {{action "registerUser" this on="submit"}}>
             <div class="register-fields">
@@ -24,8 +28,9 @@
             </div>
             </div>
             <div class="register-button">
-                <button disabled={{ isToSAccepted }} {{ action 'registerUser' }}>SIGN UP</button>
+                <button disabled={{ isToSAccepted }} {{ action 'registerUser' }} >SIGN UP</button>
             </div>
         </form>
+        {{/if}}
     </div>
 </div>

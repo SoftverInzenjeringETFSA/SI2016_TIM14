@@ -2,29 +2,35 @@ import Ember from 'ember';
 import user from '../models/user';
 
 export default Ember.Controller.extend({
-		userService: Ember.inject.service(),
+    userService: Ember.inject.service(),
     isToSAccepted: Ember.computed.not('isToSCheckboxChecked'),
+     store: Ember.inject.service(),
+    session: Ember.inject.service(),
     model: {},
+    registracijamsg: '',
+
+    
     
     actions: {
-        register() {
-			check();
-            
-        }
-		,
+
+        login: function() {
+
+            this.get('session').authenticate('authenticator:application', this.model, (data) => {
+                    console.log(data);
+                     //Ember.set(this, 'errorMessage', '');
+                     this.set('model.username', '');
+                     this.set('model.password', '');
+                     this.set('model.confirmedpassword', '');
+                     this.set('model.email', '');
+                     this.transitionToRoute('profil');
+                })
+                .catch(reason => {
+                    Ember.set(this, 'errorMessage', JSON.parse(reason.responseText).errorMessage);
+                    this.set('authenticationError', this.errorMessage || reason);
+                });
+          },
 		registerUser() {
-			console.log('Say something')
-			let korisnik = this.getProperties('username', 'password', 'email');
-			console.log()
-			korisnik.username = this.get('model.username');
-			korisnik.password = this.get('model.confirmedPassword');
-			korisnik.email = this.get('model.email');
-        	this.get('userService').store(korisnik);
-			//check();
-            
-        },
-		check() {
-			
+
 			var regUsername = /^[a-zA-Z0-9]+$/;
 			var wasError=false;
 			if(!this.get('model.username').match(regUsername))
@@ -58,11 +64,24 @@ export default Ember.Controller.extend({
 				
 			if(!wasError)
 			{
-				let _userSvc = this.get('userSvc');
-            _userSvc.register(this.model, (resp) => alert("success"));
-			}
-        }
-		
-		
-    }
+				
+				let korisnik = this.getProperties('username', 'password', 'email');
+				console.log()
+				korisnik.username = this.get('model.username');
+				korisnik.password = this.get('model.confirmedPassword');
+				korisnik.email = this.get('model.email');
+	        	this.get('userService').store(korisnik);
+	        	this.set('model.username', '');
+                this.set('model.password', '');
+                this.set('model.confirmedPassword', '');
+                this.set('model.email', '');
+                Ember.set(this, 'registracijamsg', 'USPJEŠNA REGISTRACIJA. RADI POTVRDE PRIJAVITE SE!');
+                //this.transitionToRoute('profil');
+	        	
+            }
+           }
+
+       }
+	
+    
 });

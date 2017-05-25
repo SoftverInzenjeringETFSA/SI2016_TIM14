@@ -24,7 +24,7 @@ import onlineUpoznavanje.models.User;
                 final private String host = "localhost:3306";
                 final private String user = "EtfSI2016";
                 final private String passwd = "2016SIEtf";
-                final private String database = "onlinemeet";
+                final private String database = "tim14";
 
                 public void connectToDB() throws Exception {
                         try {
@@ -142,7 +142,41 @@ import onlineUpoznavanje.models.User;
                     }
                 }
                 
+                public User searchUserForLogin(String username, String password) throws Exception {
+                    try {
 
+                        statement = connect.createStatement();
+                        //System.out.println(username + " 1.1 " + password);
+                    	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".user WHERE username=? AND password=?");
+                    	statement.setString(1,username);
+                    	statement.setString(2,password);
+                        resultSet = statement.executeQuery();
+    
+                        String _username = null;
+                        String _password = null;
+                        while (resultSet.next()) {
+                         _username = resultSet.getString("username");
+                          _password = resultSet.getString("password");    
+                        }
+                        
+                        //System.out.println(_username + " 1.5 " + _password);
+                        if(_username != null && _password != null){
+                        	
+                        	User user = new User();
+                            user.setUsername(_username);
+                            user.setPassword(_password);
+                            return user;
+                        }
+                        else
+                        	return null;
+
+                    } catch (Exception e) {
+                            throw e;
+                    }
+            }
+                
+                
+      
 
                 // You need to close the resultSet
                 public void close() {

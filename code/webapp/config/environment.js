@@ -18,9 +18,11 @@ module.exports = function(environment) {
     },
 
     APP: {
+    
       // Here you can pass flags/options to your application instance
       // when it is created
       //api: 'http://localhost:8080/api'
+      apiUri: 'http://localhost:8080'
     }
   };
 

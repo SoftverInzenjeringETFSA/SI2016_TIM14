@@ -2,11 +2,12 @@ import Ember from 'ember';
 import ENV from '../config/environment';
 
 const { RSVP: { Promise }, $: { ajax }, run } = Ember;
+const { isEmpty, get, assign, RSVP } = Ember;
 
 export default Ember.Service.extend({
-    _innerCreateMethod(route, data, httpRequest, onSuccess, onFailure) {
+    _innerCreateMethod(route, data, httpRequest, happyPath, unhappyPath) {
         let requestOptions = {
-            url: `${ENV.APP.api}/${route}`,
+            url: `${ENV.APP.apiUri}/${route}`,
             contentType: 'application/json; charset=utf-8',
             type: httpRequest,
             dataType: 'json'
@@ -16,33 +17,33 @@ export default Ember.Service.extend({
             requestOptions.data = JSON.stringify(data);
         }
 
-        return new Promise((resolve, reject) => {
+        return new RSVP.Promise((resolve, reject) => {
             ajax(requestOptions).then((response) => {
                 run(() => {
-                    if (onSuccess) {
-                        resolve(onSuccess(response));
+                    if (happyPath) {
+                        return resolve(happyPath(response));
                     }
                     else {
-                        resolve();
+                        return resolve();
                     }
                 });
                 }, (error) => {
                     run(() => {
-                        if (onFailure) {
-                            onFailure(error);
+                        if (unhappyPath) {
+                            return unhappyPath(error);
                         }
 
-                        reject(error);
+                        return reject(error);
                     });
             });
         });
     },
 
-    get(route, data, onSuccess, onFailure) {
-        return this._innerCreateMethod(route, null, 'GET', onSuccess, onFailure);
+    get(route, data, happyPath, unhappyPath) {
+        return this._innerCreateMethod(route, null, 'GET', happyPath, unhappyPath);
     },
-    
-    post(route, data, onSuccess, onFailure) {
-        return this._innerCreateMethod(route, data, 'POST', onSuccess, onFailure);
+
+    post(route, data, happyPath, unhappyPath) {
+        return this._innerCreateMethod(route, data, 'POST', happyPath, unhappyPath);
     }
 });

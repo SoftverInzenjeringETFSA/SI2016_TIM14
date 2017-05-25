@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    beforeModel() {
-        // redirect to login
-        this.replaceWith('login');
-    }
+   beforeModel() {
+    this.transitionTo('login'); // Implicitly aborts the on-going transition.
+  }
 });
