@@ -2,7 +2,21 @@
   <div class="row content">
 {{side-navigation}}
     <div class="col-sm-9">
-      <h4>ADMIN PANEL treba da sadrži opcije: Kreiraj chat, Pregledaj sve korisnike, Pregledaj sve char groupe, Pregledaj sve zahtjeve za ban</h4>
+      <div class ="group-admin">
+        <p> <small> GROUP ADMINISTRATION </small> </p>
+        <hr>
+        {{#link-to 'add-new-group'}} <button class="dugmic" > Add New Group </button> {{/link-to}}
+        <br>
+        {{#link-to 'view-all-groups'}} <button class="dugmic" > View All Groups </button> {{/link-to}}
+      </div>
+      <div class="user-admin">
+        <p> <small> USER ADMINISTRATION </small> </p>
+        <hr>
+        {{#link-to 'view-all-users'}} <button class="dugmic" > View All Users </button> {{/link-to}}
+        <br>
+        {{#link-to 'view-ban-requests'}} <button class="dugmic" > View Ban Requests </button> {{/link-to}}
+      </div>
     </div>
   </div>
 </div>
+
