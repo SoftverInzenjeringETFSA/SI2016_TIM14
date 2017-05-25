@@ -1,8 +1,49 @@
 <div class="container-fluid">
-  <div class="row content">
-{{side-navigation}}
-    <div class="col-sm-9">
-      <h4>PRIVATNI CHAT treba da sadrži listu svih privatnih chatova (kada se klikne na clan liste otvara se dati chat sa osobom), opciju(dugme) za pregled svih zahtjeva za chat</h4>
+    <div class="row content">
+        {{side-navigation}}
+        <div class="col-sm-9">
+            <div class="zaChat">
+                <div class="row content">
+                    <div class="gornjiButton">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button class="btn">All chat requests </button>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="user-search">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    {{input placeholder = "Search User" value=model.search}}
+                                    <button class="btn">Search </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Username </th>
+                                    <th>Full chat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="redChat">
+                                    <td>Arif </td>
+                                    <td> <button class="btn">Look</button> </td>
+                                </tr>
+                                <tr class="redChat">
+                                    <td>Edita </td>
+                                    <td> <button class="btn">Look</button> </td>
+                                </tr>
+                                <tr class="redChat">
+                                    <td>Andrej </td>
+                                    <td> <button class="btn">Look</button> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
