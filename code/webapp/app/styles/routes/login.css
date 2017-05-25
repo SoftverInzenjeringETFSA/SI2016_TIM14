@@ -9,17 +9,32 @@
 }
 
     .route-login .register-headers h1 {
-        font-size: 35px;
+        padding-top: 10px;
+        font-size: 20px;
+        color: #f5f5f0;
     }
+
+    .route-login .register-headers h2 {
+        color: #f5f5f0;
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
+
 
     .route-login .register-fields {
         display: flex;
         flex-direction: column;
     }
 
-        .route-login .register-fields input {
+    .route-login .register-fields input {
             margin-bottom: 3%;
         }
+
+    .route-login .terms-of-conditions {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: #f5f5f0;
+    }
 
 
     .new {
