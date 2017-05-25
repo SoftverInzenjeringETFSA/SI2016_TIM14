@@ -1,0 +1,55 @@
+{{outlet}}
+{{outlet}}
+<div class="container-fluid">
+    <div class="row content">
+        {{side-navigation}}
+        <div class="col-sm-9">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="image-all-group">
+                            <img class="img-responsive" src="http://queenaration.com/wp-content/uploads/2016/07/QueenAvatar-128x128.jpg" alt="Quenn">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="group-info">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="group-name">Group name:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="1" id="comment"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="creator">Created by:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="1" id="comment"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <label for="key-words">Key words:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" rows="1" id="comment"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "col-sm-10">
+                      <div class="group-description">
+                            <label for="group-description"><SMALL> GROUP DESCRIPTION </SMALL></label>
+                            <textarea class="form-control" rows="5" id="about-me"></textarea>
+                            {{#link-to 'adminpanel'}} <button class="dugmic" > Create </button> {{/link-to}}
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
