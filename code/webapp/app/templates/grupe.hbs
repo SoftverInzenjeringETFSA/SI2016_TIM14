@@ -1,8 +1,50 @@
 <div class="container-fluid">
-  <div class="row content">
-{{side-navigation}}
-    <div class="col-sm-9">
-      <h4>GRUPE (u koje je ukljucen dati korisnik) treba da sadrži: Pregled svih chat grupa i input za pretragu grupa</h4>
+    <div class="row content">
+        {{side-navigation}}
+        <div class="col-sm-9">
+            <div class="zaChat">
+                <div class="row content">
+                    <div class="gornjiButton">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="group-search">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    {{input placeholder = "Search group" value=model.search}}
+                                    <button class="btn">Search </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Group name </th>
+                                    <th>Leave group </th>
+                                    <th>Full chat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="redChat">
+                                    <td> ETF </td>
+                                    <td> <button class="btn">Leave</button> </td>
+                                    <td> <button class="btn">Look</button> </td>
+                                </tr>
+                                <tr class="redChat">
+                                    <td> RI 2</td>
+                                    <td> <button class="btn">Leave</button> </td>
+                                    <td> <button class="btn">Look</button> </td>
+                                </tr>
+                                <tr class="redChat">
+                                    <td>RI 3 </td>
+                                    <td> <button class="btn">Leave</button> </td>
+                                    <td> <button class="btn">Look</button> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
