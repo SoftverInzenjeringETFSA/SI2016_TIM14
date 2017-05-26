@@ -8,15 +8,16 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-   this.route('home');
+  this.route('home');
   this.route('profil');
   this.route('grupe');
   this.route('privatnichat');
   this.route('adminpanel');
-  this.route('inviteuser');
-  this.route('searchuser');
   this.route('edit-profil');
- 
+  this.route('add-new-group');
+  this.route('view-all-groups');
+  this.route('view-all-users');
+  this.route('view-ban-requests');
 });
 
 export default Router;
