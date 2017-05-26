@@ -1,1 +1,30 @@
 {{outlet}}
+<div class="container-fluid">
+  <div class="row content">
+{{side-navigation}}
+    <div class="col-sm-9">
+      <h4><small>VIEW ALL USERS</small></h4>
+      <table class="table table-striped">
+         <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Username</th>
+              <th>Email</th>
+            </tr>
+         </thead>
+         <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
+            {{#each model as |osoba|}}
+              <tr>
+              <td>{{osoba.username}}</td>
+     			<td >{{osoba.email }}</td>
+              <td><button {{ action 'inviteUser' osoba.username }}>View</button></td>
+              </tr>
+            {{/each}}
+         </tbody>-->
+      </table>
+      {{#link-to 'adminpanel'}} <button class="back" > Back </button>  {{/link-to}}
+    </div>
+
+  </div>
+</div>
