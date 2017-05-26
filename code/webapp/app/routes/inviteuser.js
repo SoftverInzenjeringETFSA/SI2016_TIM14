@@ -8,7 +8,6 @@ export default Ember.Route.extend({
     	let id = this.get('session.data.authenticated.korisnik.id');
     	console.log(id);
         let users = this.get('inviteUserService').allExceptMe(id);
-        console.log(users);
         return Ember.RSVP.hash({
             usersToInvite: users,
         });

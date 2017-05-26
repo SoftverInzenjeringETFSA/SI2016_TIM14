@@ -4,27 +4,14 @@ import User from '../models/user';
 
 export default BaseService.extend({
 	all: function() {
-        var korisnici = [];
+        var users = [];
         this.ajax({ url: `korisnici/all`, type: "GET"}).then(function(data) {
-        	console.log(data);
-        	console.log('For reals')
-            data.forEach(function(korisnik) {
-            	console.log('Hello nitherfucker')
-                console.log(korisnik);
-                 	const user = User.createRecord({
-					//      id: 1,
-        			username: korisnik.username,
-        			email: korisnik.email
-			    });
-                //const foo = User.create({ username: korisnik.username, email: korisnik.email });
-                //korisnici.addObject(User.create(korisnik));
-                //korisnici.pushObject(foo);
-
+            data.forEach(function(user) {
+                users.addObject(User.create(user));
             });
-             console.log(korisnici);
-        return korisnici;
-        });
 
+        });
+        return users;
 
     },
 
@@ -36,18 +23,21 @@ export default BaseService.extend({
         return true;
     },
 
-    searchUserPerEmail: function(email) {
-    				console.log(email);
-    				var returnData;
-        return this.ajax({ url: `korisnici/searchUserPerEmail`, type: "POST", data: email})
-    },
+	changePassword: function(password, username){
+		this.ajax({ url: `korisnici/promijenipassword`, type: "POST", data: {username:username, password:password}}).then(function(data) {
+		});
+		return true;
+	},
 
-		changePassword: function(password, username){
-			console.log(password, username);
-			this.ajax({ url: `korisnici/promijenipassword`, type: "POST", data: {username:username, password:password}}).then(function(data) {
-			});
+    searchUsers: function(searchTerm){
+        var users = [];
+        this.ajax({ url: `korisnici/searchUsers?searchTerm=${searchTerm}`, type: "GET"}).then(function(data) {
+            data.forEach(function(user) {
+                users.addObject(User.create(user));
+            });
+        });
+        return users;
+    }
 
-			return true;
-		}
 
 });

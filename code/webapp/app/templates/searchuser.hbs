@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="row content">
+{{side-navigation}}
+    <div class="col-sm-9">
+      <h4>Search User</h4>
+      <div class="col-sm-6">
+      <div class="user-search">
+                    <span class="glyphicon glyphicon-search"></span>
+                  {{input placeholder = "Search User" value=search}}
+              <button class="btn" {{action "searchUser"}}>Search </button>
+          </div>
+    </div>
+      <table class="table table-striped">
+         <thead>
+            <tr>
+              <th>Korisnicko ime</th>
+              <th>Email</th>
+              <th>Invite</th>
+            </tr>
+         </thead>
+         <tbody>
+            {{#each model.searchedUsers as |osoba|}}
+              <tr>
+              <td>{{osoba.username}}</td>
+          <td >{{osoba.email }}</td>
+              <td><button {{ action 'inviteUser' osoba.username }}>invite</button></td>
+              </tr>
+            {{/each}}
+         </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>
+
+
+
+

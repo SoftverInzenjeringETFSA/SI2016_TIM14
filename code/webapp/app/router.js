@@ -21,6 +21,7 @@ Router.map(function() {
   this.route('inviteuser');
   this.route('edit-sifra');
   this.route('invites');
+  this.route('searchuser');
 });
 
 export default Router;

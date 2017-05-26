@@ -70,7 +70,6 @@ import onlineUpoznavanje.models.Invite;
                          resultSet = statement.executeQuery();
                          List<User> users = new ArrayList<User>();
                          while (resultSet.next()) {
-                        	 System.out.println("Fuuuuuuuuuuccccccccccckkkkkkkkkkk");
                              String username = resultSet.getString("username");
                              String email = resultSet.getString("email");
                              User user = new User();
@@ -79,7 +78,6 @@ import onlineUpoznavanje.models.Invite;
                              users.add(user);
                                     
                          }
-                         System.out.println(users);
                          return users;
                     } catch (Exception e) {
                             throw e;
@@ -113,29 +111,21 @@ import onlineUpoznavanje.models.Invite;
                     }
                 	}
                 
-                public List<User> searchUserPerEmail(String emailToSearchFor) throws Exception {
+                public List<User> searchUsers(String searchTerm) throws Exception {
                     try {
-                    	emailToSearchFor = emailToSearchFor.substring(0, emailToSearchFor.length()-1);
-                        System.out.println(emailToSearchFor);
-
-                    	
                         statement = connect.createStatement();
 
-                    	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".user WHERE email like ?");
-                    	statement.setString(1, "%" + emailToSearchFor + "%");
+                    	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".user WHERE username like ?");
+                    	statement.setString(1, "%" + searchTerm + "%");
                         resultSet = statement.executeQuery();
                             List<User> users = new ArrayList<User>();
                             while (resultSet.next()) {
-                            	
                                     String username = resultSet.getString("username");
                                     String email = resultSet.getString("email");
-                                    System.out.println(email);
-
                                     User user = new User();
                                     user.setUsername(username);
                                     user.setEmail(email);
                                     users.add(user);
-                                    
                             }
                             return users;
                     } catch (Exception e) {
@@ -278,13 +268,10 @@ import onlineUpoznavanje.models.Invite;
                     		
                     		String query=data;
                             String queryArray[]=query.split("&");
-                            System.out.println("1    " + data);
                             String id[]=queryArray[0].split("=");
                             String password[]=queryArray[1].split("=");
-                            System.out.println("2    " + data);
                             jsonObject.put(id[0],id[1]);
                             jsonObject.put(password[0],password[1]);
-                            System.out.println("3    " + data);
      
                     	
                     	}
@@ -295,7 +282,6 @@ import onlineUpoznavanje.models.Invite;
                     	
                     	String _username = (String) jsonObject.get("username");
                 		String _password = (String) jsonObject.get("password");
-                		 System.out.println(_username + _password);
                     	statement = connect.createStatement();
                     	PreparedStatement statement = connect.prepareStatement("update " + database + ".user SET password=? WHERE username=?");
                     	statement.setString(1,_password);
