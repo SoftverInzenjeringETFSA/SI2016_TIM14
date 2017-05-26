@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2017 at 07:05 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: May 26, 2017 at 08:24 AM
+-- Server version: 5.7.18-log
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -60,6 +60,27 @@ CREATE TABLE `chatgroup` (
   `description` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
   `isActive` bit(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invites`
+--
+
+CREATE TABLE `invites` (
+  `idOfInvitee` varchar(45) DEFAULT NULL,
+  `usernameOfInvitee` varchar(45) DEFAULT NULL,
+  `idOfInviter` int(11) DEFAULT NULL,
+  `usernameOfInviter` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `invites`
+--
+
+INSERT INTO `invites` (`idOfInvitee`, `usernameOfInvitee`, `idOfInviter`, `usernameOfInviter`) VALUES
+('5', 'nekaosoba', 17, 'Andrej'),
+('4', 'haris', 17, 'Andrej');
 
 -- --------------------------------------------------------
 
@@ -125,7 +146,10 @@ INSERT INTO `user` (`id`, `username`, `password`, `firstName`, `lastName`, `emai
 (13, 'ovojeuser25S', 'ovojeuser25S', NULL, NULL, 'ovojeuser25S@gmail.com', NULL, NULL, NULL, NULL, b'0'),
 (14, 'ovojeuser23S', 'ovojeuser25S', NULL, NULL, 'ovojeuser23S@gmail.com', NULL, NULL, NULL, NULL, b'0'),
 (15, 'username5', 'username5A', NULL, NULL, 'username5@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(16, 'username88', 'username88A', NULL, NULL, 'username88@gmail.com', NULL, NULL, NULL, NULL, b'0');
+(16, 'username88', 'username88A', NULL, NULL, 'username88@gmail.com', NULL, NULL, NULL, NULL, b'0'),
+(17, 'Andrej', '1DvaTri!', NULL, NULL, 'andrej@si.ba', NULL, NULL, NULL, NULL, b'0'),
+(18, 'andrej88', 'Ivona88', NULL, NULL, 'andrejoapsod@jdshfuko.com', NULL, NULL, NULL, NULL, b'0'),
+(19, 'Blavblabljkdba', 'RayBan88', NULL, NULL, 'asnjklsdn@djasnd.com', NULL, NULL, NULL, NULL, b'0');
 
 -- --------------------------------------------------------
 
@@ -259,7 +283,7 @@ ALTER TABLE `privatechatarchive`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `userchatgroup`
 --
