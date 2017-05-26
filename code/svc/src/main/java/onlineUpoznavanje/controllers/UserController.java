@@ -89,30 +89,27 @@ public class UserController {
 		 
         return usersToReturn;
 
+    }
+	
+	@RequestMapping(value = "/promijenipassword", method = RequestMethod.POST)
+    public void changePassword(@RequestBody String podatak)
+    {
+
+	try {
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println(podatak);
+       db.changePasswordDB(podatak);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
 
     }
 	
 	
-	/*@GetMapping(path="/add") // Map ONLY GET Requests
-	public @ResponseBody String addNewUser (@RequestParam String username
-			, @RequestParam String email, @RequestParam String password) {
-		
-		// @ResponseBody means the returned String is the response, not a view name
-	    // @RequestParam means it is a parameter from the GET or POST request
-
-		User n = new User();
-		n.setUsername(username);
-		n.setEmail(email);
-		n.setPassword(password);
-		userRepository.save(n);
-		return "Saved";
-	}
-	
-	@GetMapping(path="/all")
-	public @ResponseBody Iterable<User> getAllUsers() {
-		// Ovo vra�a JSON ili XML za sve user-e
-		return userRepository.findAll();
-	}*/
 
 
 }

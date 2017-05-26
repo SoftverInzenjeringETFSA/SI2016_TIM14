@@ -19,20 +19,20 @@ export default BaseService.extend({
                 //const foo = User.create({ username: korisnik.username, email: korisnik.email });
                 //korisnici.addObject(User.create(korisnik));
                 //korisnici.pushObject(foo);
-                
+
             });
              console.log(korisnici);
         return korisnici;
         });
 
-       
+
     },
 
     store: function(korisnik) {
         var korisnici = [];
         this.ajax({ url: `korisnici/store`, type: "POST", data: JSON.stringify(korisnik)}).then(function(data) {
         });
-    
+
         return true;
     },
 
@@ -41,5 +41,13 @@ export default BaseService.extend({
     				var returnData;
         return this.ajax({ url: `korisnici/searchUserPerEmail`, type: "POST", data: email})
     },
+
+		changePassword: function(password, username){
+			console.log(password, username);
+			this.ajax({ url: `korisnici/promijenipassword`, type: "POST", data: {username:username, password:password}}).then(function(data) {
+			});
+
+			return true;
+		}
 
 });

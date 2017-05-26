@@ -1,5 +1,14 @@
+onlineUpoznavanje\Application.class
 onlineUpoznavanje\controllers\AuthController.class
 onlineUpoznavanje\dto\LoginDataRequest.class
+onlineUpoznavanje\SimpleCORSFilter.class
+onlineUpoznavanje\controllers\UserController.class
+onlineUpoznavanje\models\User.class
+onlineUpoznavanje\services\izuzetak\ServiceException.class
 onlineUpoznavanje\services\AuthService.class
+onlineUpoznavanje\WebSecurityConfig.class
+onlineUpoznavanje\repositories\UserRepository.class
+onlineUpoznavanje\db\dbActions.class
 onlineUpoznavanje\dto\LoginDataResponse.class
 onlineUpoznavanje\services\JwtService.class
+onlineUpoznavanje\services\UserService.class

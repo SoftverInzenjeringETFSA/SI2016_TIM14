@@ -235,6 +235,46 @@ import onlineUpoznavanje.models.User;
                     }
             }
                 
+                public void changePasswordDB(String data) throws Exception {
+                	
+                 	try {
+
+                	 JSONObject jsonObject=new JSONObject();
+                    	try {
+                    		
+                    		String query=data;
+                            String queryArray[]=query.split("&");
+                            System.out.println("1    " + data);
+                            String id[]=queryArray[0].split("=");
+                            String password[]=queryArray[1].split("=");
+                            System.out.println("2    " + data);
+                            jsonObject.put(id[0],id[1]);
+                            jsonObject.put(password[0],password[1]);
+                            System.out.println("3    " + data);
+     
+                    	
+                    	}
+                    	catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    	
+                    	String _username = (String) jsonObject.get("username");
+                		String _password = (String) jsonObject.get("password");
+                		// System.out.println("3    " + _password + "  " + id.toString());
+                		 System.out.println(_username + _password);
+                    	statement = connect.createStatement();
+                        //System.out.println(username + " 1.1 " + password);
+                    	PreparedStatement statement = connect.prepareStatement("update " + database + ".user SET password=? WHERE username=?");
+                    	statement.setString(1,_password);
+                    	statement.setString(2,_username);
+                    	statement.execute();
+                    	
+                      }
+                 	catch (Exception e) {
+                        throw e;
+                     }
+                  }
                 
       
 

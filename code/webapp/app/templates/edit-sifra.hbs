@@ -1,0 +1,20 @@
+<div class="container-fluid">
+  <div class="row content">
+{{side-navigation}}
+    <div class="col-sm-9">
+      <form {{action "promijeniSifru" this on="submit"}}>
+          <div class="register-fields">
+
+    {{errorNewPassword}}
+          {{input type="password" placeholder="new password" value=newpassword}}
+    {{errorConfirmedPassword}}
+          {{input type="password" placeholder="confirm password" value=newconfirmedPassword}}
+
+          </div>
+          <div class="register-button">
+              <button>Potvrdi</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
