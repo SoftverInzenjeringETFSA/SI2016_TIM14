@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2017 at 08:24 AM
--- Server version: 5.7.18-log
+-- Generation Time: May 26, 2017 at 12:42 PM
+-- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -123,33 +123,35 @@ CREATE TABLE `user` (
   `email` varchar(80) COLLATE utf8_slovenian_ci NOT NULL,
   `gender` bit(1) DEFAULT NULL,
   `dateOfBirth` date DEFAULT NULL,
-  `Location` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `about` varchar(512) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `isAdmin` bit(1) NOT NULL DEFAULT b'0'
+  `location` varchar(100) COLLATE utf8_slovenian_ci DEFAULT NULL,
+  `omeni` text COLLATE utf8_slovenian_ci,
+  `isAdmin` bit(1) NOT NULL DEFAULT b'0',
+  `zanimanje` varchar(255) COLLATE utf8_slovenian_ci NOT NULL,
+  `interesovanja` text COLLATE utf8_slovenian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `firstName`, `lastName`, `email`, `gender`, `dateOfBirth`, `Location`, `about`, `isAdmin`) VALUES
-(1, 'berina', 'ovojesifra1A', NULL, NULL, 'berina@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(2, 'neko', 'password', NULL, NULL, 'neko@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(3, 'korisnik', 'ovojekorisnik', NULL, NULL, 'korisnik@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(4, 'haris', 'sifrica1A', NULL, NULL, 'haris@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(5, 'nekaosoba', 'njenpassword2A', NULL, NULL, 'nekaosoba@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(7, 'nekaosoba1', 'nekaosoba1A', NULL, NULL, 'nekaosoba1@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(8, 'osobica', 'ovojelozinka2A', NULL, NULL, 'email@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(9, 'jasamberina', 'password58A', NULL, NULL, 'mojmail@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(11, 'nekobeze', 'nekobeze22A', NULL, NULL, 'nekobeze@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(12, 'noviuser1A', 'noviuser1A', NULL, NULL, 'noviuser1A@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(13, 'ovojeuser25S', 'ovojeuser25S', NULL, NULL, 'ovojeuser25S@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(14, 'ovojeuser23S', 'ovojeuser25S', NULL, NULL, 'ovojeuser23S@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(15, 'username5', 'username5A', NULL, NULL, 'username5@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(16, 'username88', 'username88A', NULL, NULL, 'username88@gmail.com', NULL, NULL, NULL, NULL, b'0'),
-(17, 'Andrej', '1DvaTri!', NULL, NULL, 'andrej@si.ba', NULL, NULL, NULL, NULL, b'0'),
-(18, 'andrej88', 'Ivona88', NULL, NULL, 'andrejoapsod@jdshfuko.com', NULL, NULL, NULL, NULL, b'0'),
-(19, 'Blavblabljkdba', 'RayBan88', NULL, NULL, 'asnjklsdn@djasnd.com', NULL, NULL, NULL, NULL, b'0');
+INSERT INTO `user` (`id`, `username`, `password`, `firstName`, `lastName`, `email`, `gender`, `dateOfBirth`, `location`, `omeni`, `isAdmin`, `zanimanje`, `interesovanja`) VALUES
+(1, 'berina', 'ovojesifra1A', NULL, NULL, 'berina@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(2, 'neko', 'password', 'Neko', 'Nekić', 'neko@gmail.com', NULL, NULL, 'Sarajevo', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta enim non volutpat interdum. Morbi scelerisque ultricies tincidunt. Proin ullamcorper odio ac ullamcorper consequat. Sed quam diam, scelerisque in elit ut, consectetur fermentum dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis fringilla porttitor mi nec tincidunt. Sed aliquam justo et convallis efficitur. Phasellus eget venenatis ipsum, vel iaculis justo. ', b'0', 'Programer', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta enim non volutpat interdum. Morbi scelerisque ultricies tincidunt. Proin ullamcorper odio ac ullamcorper consequat. Sed quam diam, scelerisque in elit ut, consectetur fermentum dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis fringilla porttitor mi nec tincidunt. Sed aliquam justo et convallis efficitur. Phasellus eget venenatis ipsum, vel iaculis justo. Maecenas ante justo, consectetur nec hendrerit sit amet, varius sit amet est. Ut tempor dolor purus, in cursus nulla consequat nec. Duis bibendum mi nec elit '),
+(3, 'korisnik', 'ovojekorisnik', NULL, NULL, 'korisnik@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(4, 'haris', 'sifrica1A', NULL, NULL, 'haris@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(5, 'nekaosoba', 'njenpassword2A', NULL, NULL, 'nekaosoba@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(7, 'nekaosoba1', 'nekaosoba1A', NULL, NULL, 'nekaosoba1@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(8, 'osobica', 'ovojelozinka2A', NULL, NULL, 'email@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(9, 'jasamberina', 'password58A', NULL, NULL, 'mojmail@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(11, 'nekobeze', 'nekobeze22A', NULL, NULL, 'nekobeze@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(12, 'noviuser1A', 'noviuser1A', NULL, NULL, 'noviuser1A@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(13, 'ovojeuser25S', 'ovojeuser25S', NULL, NULL, 'ovojeuser25S@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(14, 'ovojeuser23S', 'ovojeuser25S', NULL, NULL, 'ovojeuser23S@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(15, 'username5', 'username5A', NULL, NULL, 'username5@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(16, 'username88', 'username88A', NULL, NULL, 'username88@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(17, 'Andrej', '1DvaTri!', NULL, NULL, 'andrej@si.ba', NULL, NULL, NULL, NULL, b'0', '', ''),
+(18, 'andrej88', 'Ivona88', NULL, NULL, 'andrejoapsod@jdshfuko.com', NULL, NULL, NULL, NULL, b'0', '', ''),
+(19, 'Blavblabljkdba', 'RayBan88', NULL, NULL, 'asnjklsdn@djasnd.com', NULL, NULL, NULL, NULL, b'0', '', '');
 
 -- --------------------------------------------------------
 
