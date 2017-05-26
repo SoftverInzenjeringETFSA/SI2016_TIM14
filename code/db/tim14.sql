@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2017 at 12:42 PM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Generation Time: May 27, 2017 at 12:15 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -57,9 +57,15 @@ CREATE TABLE `blockeduser` (
 CREATE TABLE `chatgroup` (
   `id` int(11) NOT NULL,
   `name` varchar(100) COLLATE utf8_slovenian_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL,
-  `isActive` bit(1) NOT NULL
+  `description` text COLLATE utf8_slovenian_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `chatgroup`
+--
+
+INSERT INTO `chatgroup` (`id`, `name`, `description`) VALUES
+(6, 'Sport', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C but also the leap into electronic typesetting%2C remaining essentially unchanged. ');
 
 -- --------------------------------------------------------
 
@@ -270,7 +276,7 @@ ALTER TABLE `blockeduser`
 -- AUTO_INCREMENT for table `chatgroup`
 --
 ALTER TABLE `chatgroup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `privatechat`
 --

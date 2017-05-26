@@ -21,8 +21,7 @@ public class GrupaController {
 	try {
 	   dbActionsGrupe db = new dbActionsGrupe();
        db.connectToDB();
-       System.out.println(podatak);
-     //  db.changePasswordDB(podatak);
+       db.kreirajGrupuDB(podatak);
        db.close();
 	   }
 	catch (Exception e)
@@ -31,5 +30,6 @@ public class GrupaController {
 	}
 
     }
+	
 
 }

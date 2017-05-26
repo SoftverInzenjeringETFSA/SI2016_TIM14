@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import org.json.*;
+import org.json.simple.parser.JSONParser;
 
 public class dbActionsGrupe {
 	 private Connection connect = null;
@@ -31,7 +33,41 @@ public class dbActionsGrupe {
              }
      }
      
-     
+     public void kreirajGrupuDB(String data) throws Exception {
+      	
+       	try {
+
+      	 JSONObject jsonObject=new JSONObject();
+
+          	try {
+          		
+          		String query=data;
+                  String queryArray[]=query.split("&");
+                  String name[]=queryArray[0].split("=");
+                  String description[]=queryArray[1].split("=");
+                  jsonObject.put(name[0],name[1]);
+                  jsonObject.put(description[0],description[1]);
+          	
+          	}
+          	catch (JSONException e)
+              {
+                  e.printStackTrace();
+              }
+
+          	String _name = (String) jsonObject.get("name");
+          	String _name_ = _name.replace("%20"," ");
+      		String _description = (String) jsonObject.get("description");
+      		String _description_ = _description.replace("%20"," ");
+          	statement = connect.createStatement();
+          	PreparedStatement statement = connect.prepareStatement("INSERT INTO " + database + ".chatgroup ( name, description ) VALUES ( ?, ? )");
+          	statement.setString(1,_name_);
+          	statement.setString(2,_description_);
+          	statement.execute();
+            }
+       	catch (Exception e) {
+              throw e;
+           }
+        }
      
      
      

@@ -20,7 +20,7 @@
                                         <label for="group-name">Group name:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" rows="1" id="comment" text='name'></textarea>
+                                       {{input type="text" class="form-control" rows="1" id="comment" valueBinding="name"}}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -45,7 +45,8 @@
                     <div class = "col-sm-10">
                       <div class="group-description">
                             <label for="group-description"><SMALL> GROUP DESCRIPTION </SMALL></label>
-                            <textarea class="form-control" rows="5" id="about-me" text = 'description'></textarea>
+
+                            {{textarea value=description class="form-control" rows="5" id="about-me"}}
                             {{#link-to 'adminpanel'}} <button class="dugmic" {{ action 'kreirajGrupu'}}> Create </button> {{/link-to}}
                       </div>
                     </div>
