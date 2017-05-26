@@ -18,6 +18,7 @@ Router.map(function() {
   this.route('view-all-groups');
   this.route('view-all-users');
   this.route('view-ban-requests');
+  this.route('inviteuser');
 });
 
 export default Router;
