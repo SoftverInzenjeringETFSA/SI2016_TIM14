@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-2">
-                                        <label for="datumRodjenja">Rođendan:</label>
+                                        <label for="datumRodjenja">Rođendan: </label>
                                     </div>
                                     <div class="col-sm-10">
                                         <textarea readonly class="form-control" rows="1" id="comment"></textarea>
@@ -44,7 +44,7 @@
                                         <label for="zanimanje">Zanimanje:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <textarea readonly class="form-control" rows="1" id="comment"></textarea>
+                                        <textarea readonly class="form-control" rows="1" id="comment">{{ session.data.authenticated.korisnik.username }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -52,7 +52,7 @@
                                         <label for="grad">Grad:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        <textarea readonly class="form-control" rows="1" id="comment"></textarea>
+                                        <textarea readonly class="form-control" rows="1" id="comment">{{ session.data.authenticated.korisnik.location }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -70,12 +70,13 @@
                     <div class="ovodole">
                         <div class="about-me-form">
                             <label for="about-me"><SMALL> O MENI </SMALL></label>
-                            <textarea readonly class="form-control" rows="5" id="about-me"></textarea>
+                            <textarea readonly class="form-control" rows="5" id="about-me">
+                            {{ session.data.authenticated.korisnik.omeni }}</textarea>
                         </div>
                         <br>
                         <div class="interests-form">
                             <label for="interests"><SMALL> MOJA INTERESOVANJA </SMALL></label>
-                            <textarea readonly class="form-control" rows="5" id="interests"></textarea>
+                            <textarea readonly class="form-control" rows="5" id="interests" >{{ session.data.authenticated.korisnik.interesovanja }}</textarea>
                         </div>
                     </div>
                     {{#link-to 'edit-profil'}} <button class="dugmic" > Izmijeni profil </button> {{/link-to}}  

@@ -15,6 +15,7 @@ Router.map(function() {
   this.route('adminpanel');
   this.route('inviteuser');
   this.route('searchuser');
+  this.route('edit-profil');
  
 });
 

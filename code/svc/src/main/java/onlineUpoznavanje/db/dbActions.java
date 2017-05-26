@@ -175,22 +175,56 @@ import onlineUpoznavanje.models.User;
                     	statement.setString(2,password);
                         resultSet = statement.executeQuery();
     
+                        Integer _id = null;
                         String _username = null;
                         String _password = null;
-                        Integer _id = null;
+                        String _firstName = null;
+                        String _lastName = null;
+                        String _email = null;
+                        String _gender = null;
+                        String _zanimanje = null;
+                        String _omeni = null;
+                        String _interesovanja = null;
+                        String _lokacija = null;
+                       // Date _datumRodjenja = null;
+                        Boolean _isAdmin = null;
+     
                         while (resultSet.next()) {
-                         _username = resultSet.getString("username");
-                          _password = resultSet.getString("password");
-                          _id = resultSet.getInt("id");
+                        	
+                        	_id = resultSet.getInt("id");
+                        	_username = resultSet.getString("username");
+                            _password = resultSet.getString("password");
+                        	_firstName = resultSet.getString("firstName");
+                            _lastName = resultSet.getString("lastName");
+                            _email = resultSet.getString("email");
+                            _gender = resultSet.getString("gender");
+                            _zanimanje = resultSet.getString("zanimanje");
+                            _omeni = resultSet.getString("omeni");
+                            _interesovanja = resultSet.getString("interesovanja");
+                            _lokacija = resultSet.getString("location");
+                            _isAdmin = resultSet.getBoolean("isAdmin");
+                            System.out.println(_email + _zanimanje);
+                           // _datumRodjenja = resultSet.getDate("dateOfBirth");
                         }
-                        
-                        //System.out.println(_username + " 1.5 " + _password);
+
+                       // user.setDateOfBirth(_datumRodjenja);
+                      
                         if(_username != null && _password != null){
                         	
                         	User user = new User();
-                            user.setUsername(_username);
+                        	user.setUsername(_username);
                             user.setPassword(_password);
                             user.setId(_id);
+                            user.setFirstName(_firstName);
+                            user.setLastName(_lastName);
+                            user.setEmail(_email);
+                            user.setGender(_gender);
+                            user.setZanimanje(_zanimanje);
+                            user.setOmeni(_omeni);
+                            user.setInteresovanja(_interesovanja);
+                            user.setLocation(_lokacija);
+                            user.setIsAdmin(_isAdmin);
+                            
                             return user;
                         }
                         else

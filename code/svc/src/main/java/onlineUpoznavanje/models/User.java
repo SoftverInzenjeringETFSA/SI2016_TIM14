@@ -24,11 +24,52 @@ public class User {
 	
 	private String gender;
 	
-	private String about;
 	
 	private Boolean isAdmin;
 	
+     private String zanimanje;
+	
+	private String omeni;
+	
+	private String interesovanja;
+	
+	private String location;
+	
+	
+	
 	//Geteri i seteri
+
+	public String getZanimanje() {
+		return zanimanje;
+	}
+
+	public void setZanimanje(String zanimanje) {
+		this.zanimanje = zanimanje;
+	}
+
+	public String getOmeni() {
+		return omeni;
+	}
+
+	public void setOmeni(String omeni) {
+		this.omeni = omeni;
+	}
+
+	public String getInteresovanja() {
+		return interesovanja;
+	}
+
+	public void setInteresovanja(String interesovanja) {
+		this.interesovanja = interesovanja;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 	public Integer getId() {
 		return id;
@@ -86,13 +127,6 @@ public class User {
 		this.gender = gender;
 	}
 
-	public String getAbout() {
-		return about;
-	}
-
-	public void setAbout(String about) {
-		this.about = about;
-	}
 
 	public Boolean getIsAdmin() {
 		return isAdmin;
