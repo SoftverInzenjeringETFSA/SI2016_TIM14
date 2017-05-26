@@ -2,86 +2,48 @@
     <div class="row content">
         {{side-navigation}}
         <div class="col-sm-9">
-            <div class="container">
-                <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
-                </div>
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="image-all">
-                            <img class="img-responsive" src="http://queenaration.com/wp-content/uploads/2016/07/QueenAvatar-128x128.jpg" alt="Quenn">
-                            <div class="rating">
-                                <p>
-                                    <span class="glyphicon glyphicon-heart"></span>
-                                    <span class="glyphicon glyphicon-heart"></span>
-                                    <span class="glyphicon glyphicon-heart"></span>
-                                    <span class="glyphicon glyphicon-heart"></span>
-                                    <span class="glyphicon glyphicon-heart"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="profileTopForm">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label for="datumRodjenja">NAME: </label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <textarea readonly class="form-control" rows="1" id="comment">{{ session.data.authenticated.korisnik.firstName}}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label for="Spol">SURNAME:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <textarea readonly class="form-control" rows="1" id="comment">{{ session.data.authenticated.korisnik.lastName }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label for="zanimanje">WORK:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <textarea readonly class="form-control" rows="1" id="comment">{{ session.data.authenticated.korisnik.zanimanje }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label for="grad">CITY:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <textarea readonly class="form-control" rows="1" id="comment">{{ session.data.authenticated.korisnik.location }}</textarea>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <label for="jezici">EMAIL:</label>
-                                    </div>
-                                    <div class="col-sm-10">
-                                        <textarea readonly class="form-control" rows="1" id="comment">{{ session.data.authenticated.korisnik.email }}</textarea>
-                                    </div>
+            <div class="zaChat">
+                <div class="row content">
+                    <div class="gornjiButton">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="group-search">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                    {{input placeholder = "Search group" value=model.search}}
+                                    <button class="btn">Search </button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    <div class="ovodole">
-                        <div class="about-me-form">
-                            <label for="about-me"><SMALL> ABOUT ME </SMALL></label>
-                            <textarea readonly class="form-control" rows="5" id="about-me">
-                            {{ session.data.authenticated.korisnik.omeni }}</textarea>
-                        </div>
-                        <br>
-                        <div class="interests-form">
-                            <label for="interests"><SMALL> I'M INTERESTED IN... </SMALL></label>
-                            <textarea readonly class="form-control" rows="5" id="interests" >{{ session.data.authenticated.korisnik.interesovanja }}</textarea>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Group Name </th>
+                                    <th>Leave Group </th>
+                                    <th>All Messages</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="redChat">
+                                    <td> ETF </td>
+                                    <td> <button class="btn">Leave</button> </td>
+                                    <td> <button class="btn">View</button> </td>
+                                </tr>
+                                <tr class="redChat">
+                                    <td> RI 2</td>
+                                    <td> <button class="btn">Leave</button> </td>
+                                    <td> <button class="btn">View</button> </td>
+                                </tr>
+                                <tr class="redChat">
+                                    <td>RI 3 </td>
+                                    <td> <button class="btn">Leave</button> </td>
+                                    <td> <button class="btn">View</button> </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    {{#link-to 'edit-profil'}} <button class="dugmic" > Edit Profile </button> {{/link-to}}
                 </div>
-                {{#link-to 'edit-sifra'}} <button class="dugmic" > Change Password </button> {{/link-to}}
             </div>
         </div>
     </div>
