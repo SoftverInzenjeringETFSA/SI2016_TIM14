@@ -23,5 +23,17 @@ export default BaseService.extend({
         });
         return invites;
     },
+    allExceptMe: function(id){
+        var users = [];
+        console.log(id);
+        this.ajax({ url: `korisnici/allExceptMe?id=${id}`, type: "GET"}).then(function(data) {
+            console.log(data);
+            data.forEach(function(user) {
+                console.log(users);
+                users.addObject(User.create(user));
+            });
+        });
+        return users;
+    }
 
 });

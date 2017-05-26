@@ -1,8 +1,9 @@
 import DS from 'ember-data';
+import BaseModel from './base-model';
 
 var _modelProperties = ['email','firstName','gender','id','isAdmin','lastName','password', 'username', 'omeni', 'interesovanja', 'zanimanje', 'location'];
 
-export default DS.Model.extend({
+export default BaseModel.extend({
      modelProperties: _modelProperties,
      /*id: DS.attr(),
      firstName: DS.attr(),

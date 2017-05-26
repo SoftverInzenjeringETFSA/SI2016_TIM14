@@ -95,8 +95,27 @@ public class UserController {
         return usersToReturn;
 
     }
+	
+	@RequestMapping(value = "/allExceptMe")
+    public @ResponseBody List<User> findAllButMe(@RequestParam("id") int id)
+    {
+		 try {
+		dbActions db = new dbActions();
+        db.connectToDB();
+        usersToReturn = db.readUsersButMe(id);
+        db.close();
+		 }
+		 catch (Exception e)
+		 {
+			 return UserRepository.findAll();
+		 }
+		 
+        return usersToReturn;
+
+    }
+	
 	@RequestMapping(value = "/findInvites")
-    public @ResponseBody List<Invite> findAlll(@RequestParam("id") int id)
+    public @ResponseBody List<Invite> findAllInvites(@RequestParam("id") int id)
     {
 		 try {
 		dbActions db = new dbActions();
