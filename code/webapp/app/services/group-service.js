@@ -5,7 +5,9 @@ import Group from '../models/group';
 export default BaseService.extend({
   createGroup: function(grupa) {
       var grupe = [];
-      this.ajax({ url: `grupe/kreirajgrupu`, type: "POST", data: JSON.stringify(grupa)}).then(function(data) {
+      var ime = grupa.name;
+      var opis = grupa.description;
+      this.ajax({ url: `grupe/kreirajgrupu`, type: "POST", data: {ime:ime, opis:opis}}).then(function(data) {
       });
 
       return true;
