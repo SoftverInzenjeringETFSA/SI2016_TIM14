@@ -3,12 +3,17 @@ onlineUpoznavanje\controllers\AuthController.class
 onlineUpoznavanje\dto\LoginDataRequest.class
 onlineUpoznavanje\SimpleCORSFilter.class
 onlineUpoznavanje\controllers\UserController.class
+onlineUpoznavanje\services\GrupaService.class
 onlineUpoznavanje\models\User.class
 onlineUpoznavanje\services\izuzetak\ServiceException.class
 onlineUpoznavanje\services\AuthService.class
 onlineUpoznavanje\WebSecurityConfig.class
 onlineUpoznavanje\repositories\UserRepository.class
+onlineUpoznavanje\db\dbActionsGrupe.class
 onlineUpoznavanje\db\dbActions.class
 onlineUpoznavanje\dto\LoginDataResponse.class
+onlineUpoznavanje\repositories\GrupaRepository.class
+onlineUpoznavanje\controllers\GrupaController.class
 onlineUpoznavanje\services\JwtService.class
 onlineUpoznavanje\services\UserService.class
+onlineUpoznavanje\models\Grupa.class

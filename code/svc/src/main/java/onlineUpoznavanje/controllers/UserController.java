@@ -27,9 +27,9 @@ import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.repositories.UserRepository;
 
 
-@RestController //Ovo zna�i da je ova klasa kontroler (Controller)
+@RestController 
 @CrossOrigin
-@RequestMapping(path="/korisnici")  // This means URL's start with /demo (after Application path)
+@RequestMapping(path="/korisnici")  
 public class UserController {
 	
 	
