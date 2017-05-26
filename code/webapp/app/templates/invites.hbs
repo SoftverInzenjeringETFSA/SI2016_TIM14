@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row content">
+{{side-navigation}}
+    <div class="col-sm-9">
+      <h4>Invites</h4>
+      <table class="table table-striped">
+         <thead>
+            <tr>
+              <th>Username of inviter</th>
+              <th>Accept</th>
+              <th>Decline</th>
+            </tr>
+         </thead>
+         <tbody>
+            {{#each model.myInvites as |osoba|}}
+              <tr>
+              <td>{{osoba.usernameOfInviter}}</td>
+              <td><button {{ action 'inviteUser' osoba.email }}>Accept</button></td>
+              <td><button {{ action 'inviteUser' osoba.email }}>Decline</button></td>
+              </tr>
+            {{/each}}
+         </tbody>
+      </table>
+    </div>
+    
+  </div>
+</div>

@@ -13,6 +13,7 @@ import org.json.*;
 import org.json.simple.parser.JSONParser;
 
 import onlineUpoznavanje.models.User;
+import onlineUpoznavanje.models.Invite;
 
         public class dbActions {
 
@@ -60,6 +61,50 @@ import onlineUpoznavanje.models.User;
                                 throw e;
                         }
                 }
+                
+                public List<Invite> readInvites(int data) throws Exception {
+                    try {
+                    	/*System.out.println(data);
+                    	 JSONObject jsonObject=new JSONObject();
+
+                     	try
+                         {
+                             String query=data;
+                             String queryArray[]=query.split("&");
+
+                             String id[]=queryArray[0].split("=");
+
+                             jsonObject.put(id[0],id[1]);
+
+
+                         }
+                         catch (JSONException e)
+                         {
+                             e.printStackTrace();
+                         }*/
+                            statement = connect.createStatement();
+                            PreparedStatement statement = connect.prepareStatement("select * from " + database + ".invites WHERE idOfInvitee=?");
+                            statement.setInt(1, data);
+                            resultSet = statement.executeQuery();
+                            List<Invite> invites = new ArrayList<Invite>();
+                            while (resultSet.next()) {
+                            		String usernameOfInvitee = resultSet.getString("usernameOfInvitee");
+                                    Integer idOfInvitee = resultSet.getInt("idOfInvitee");
+                                    String usernameOfInviter = resultSet.getString("usernameOfInviter");
+                                    Integer idOfInviter = resultSet.getInt("idOfInviter");
+                                    Invite invite = new Invite();
+                                    invite.setIdOfInvitee(idOfInvitee);
+                                    invite.setIdOfInviter(idOfInviter);
+                                    invite.setUsernameOfInviter(usernameOfInviter);
+                                    invite.setUsernameOfInvitee(usernameOfInvitee);
+                                    invites.add(invite);
+                                    
+                            }
+                            return invites;
+                    } catch (Exception e) {
+                            throw e;
+                    }
+                	}
                 
                 public List<User> searchUserPerEmail(String emailToSearchFor) throws Exception {
                     try {
@@ -167,14 +212,12 @@ import onlineUpoznavanje.models.User;
                 
                 public User searchUserForLogin(String username, String password) throws Exception {
                     try {
-
                         statement = connect.createStatement();
                         //System.out.println(username + " 1.1 " + password);
                     	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".user WHERE username=? AND password=?");
                     	statement.setString(1,username);
                     	statement.setString(2,password);
                         resultSet = statement.executeQuery();
-    
                         Integer _id = null;
                         String _username = null;
                         String _password = null;
@@ -190,7 +233,6 @@ import onlineUpoznavanje.models.User;
                         Boolean _isAdmin = null;
      
                         while (resultSet.next()) {
-                        	
                         	_id = resultSet.getInt("id");
                         	_username = resultSet.getString("username");
                             _password = resultSet.getString("password");
@@ -203,15 +245,13 @@ import onlineUpoznavanje.models.User;
                             _interesovanja = resultSet.getString("interesovanja");
                             _lokacija = resultSet.getString("location");
                             _isAdmin = resultSet.getBoolean("isAdmin");
-                            System.out.println(_email + _zanimanje);
                            // _datumRodjenja = resultSet.getDate("dateOfBirth");
                         }
-
                        // user.setDateOfBirth(_datumRodjenja);
-                      
+                        User user = new User();
                         if(_username != null && _password != null){
                         	
-                        	User user = new User();
+                        	
                         	user.setUsername(_username);
                             user.setPassword(_password);
                             user.setId(_id);
@@ -225,10 +265,11 @@ import onlineUpoznavanje.models.User;
                             user.setLocation(_lokacija);
                             user.setIsAdmin(_isAdmin);
                             
-                            return user;
+                            
                         }
                         else
                         	return null;
+                        return user;
 
                     } catch (Exception e) {
                             throw e;

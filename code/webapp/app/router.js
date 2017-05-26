@@ -20,6 +20,7 @@ Router.map(function() {
   this.route('view-ban-requests');
   this.route('inviteuser');
   this.route('edit-sifra');
+  this.route('invites');
 });
 
 export default Router;

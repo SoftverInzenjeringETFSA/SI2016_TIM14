@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 import onlineUpoznavanje.services.UserService;
 import onlineUpoznavanje.services.izuzetak.ServiceException;
 import onlineUpoznavanje.db.dbActions;
+import onlineUpoznavanje.dto.LoginDataRequest;
+import onlineUpoznavanje.models.Invite;
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.repositories.UserRepository;
 
@@ -38,6 +40,9 @@ public class UserController {
 	
 	@Autowired
 	private static UserRepository UserRepository;
+	
+	private static List<Invite> invitesToReturn = new ArrayList<Invite>();
+
 	
 	private static List<User> usersToReturn = new ArrayList<User>();
 	//registracija korisnika
@@ -73,7 +78,7 @@ public class UserController {
 
     }
 	
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/all")
     public @ResponseBody List<User> findAll()
     {
 		 try {
@@ -88,6 +93,24 @@ public class UserController {
 		 }
 		 
         return usersToReturn;
+
+    }
+	@RequestMapping(value = "/findInvites")
+    public @ResponseBody List<Invite> findAlll(@RequestParam("id") int id)
+    {
+		 try {
+		dbActions db = new dbActions();
+        db.connectToDB();
+        invitesToReturn = db.readInvites(id);
+        db.close();
+		 }
+		 catch (Exception e)
+		 {
+			 return (List<Invite>) e;
+		 }
+		 
+        return invitesToReturn;
+
 
     }
 	
