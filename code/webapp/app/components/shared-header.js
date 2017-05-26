@@ -27,7 +27,8 @@ export default Ember.Component.extend({
                    Ember.set(this, 'errorMessage', '');
                      this.set('model.username', '');
                      this.set('model.password', '');
-                   // console.log(data.korisnik.id);
+                     this.set('model.id', '');
+                    //console.log(data.korisnik.id);
                     //this.transitionToRoute('home');
                      this.get('router').transitionTo('profil');
                 })

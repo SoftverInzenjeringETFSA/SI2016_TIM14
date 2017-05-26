@@ -1,0 +1,5 @@
+onlineUpoznavanje\controllers\AuthController.class
+onlineUpoznavanje\dto\LoginDataRequest.class
+onlineUpoznavanje\services\AuthService.class
+onlineUpoznavanje\dto\LoginDataResponse.class
+onlineUpoznavanje\services\JwtService.class

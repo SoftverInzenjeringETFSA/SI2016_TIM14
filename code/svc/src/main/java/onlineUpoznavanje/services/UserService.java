@@ -85,11 +85,11 @@ public class UserService implements UserDetailsService {
     	return true;
     }
     
-    public static boolean inviteUser(String email){
+    public static boolean inviteUser(String data){
 		dbActions db = new dbActions();
 	        try {
 				db.connectToDB();
-				db.inviteUser(email);
+				db.inviteUser(data);
 		        db.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

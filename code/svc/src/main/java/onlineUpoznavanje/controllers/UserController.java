@@ -3,6 +3,7 @@ package onlineUpoznavanje.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 //import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,9 +48,9 @@ public class UserController {
     }
 	
 	@RequestMapping(value = "/inviteUser", method = RequestMethod.POST)
-    public ResponseEntity inviteUser(@RequestBody String email)
+    public ResponseEntity inviteUser(@RequestBody String data)
     {
-		return ResponseEntity.status(HttpStatus.OK).body(UserService.inviteUser(email));
+		return ResponseEntity.status(HttpStatus.OK).body(UserService.inviteUser(data));
     }
 	
 	@RequestMapping(value = "/searchUserPerEmail", method = RequestMethod.POST)

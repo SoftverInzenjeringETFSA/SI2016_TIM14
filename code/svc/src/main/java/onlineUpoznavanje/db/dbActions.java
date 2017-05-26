@@ -114,18 +114,39 @@ import onlineUpoznavanje.models.User;
                     }
                 }
                 
-                public void inviteUser(String email) throws Exception {
+                public void inviteUser(String data) throws Exception {
                     try {
-                    		System.out.println(email);
+                        JSONObject jsonObject=new JSONObject();
+
+                    	try
+                        {
+                            String query=data;
+                            String queryArray[]=query.split("&");
+
+                            String id[]=queryArray[0].split("=");
+                            String usernameInviter[]=queryArray[1].split("=");
+                            String usernameInvitee[]=queryArray[2].split("=");
+                            jsonObject.put(id[0],id[1]);
+                            jsonObject.put(usernameInviter[0],usernameInviter[1]);
+                            jsonObject.put(usernameInvitee[0],usernameInvitee[1]);
+
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    		String usernameOfInvitee = (String) jsonObject.get("usernameOfInvitee");
+                    		String usernameOfInviter = (String) jsonObject.get("usernameOfInviter");
+                    		String idOfInviter = (String) jsonObject.get("idOfInviter");
+                    		
                             statement = connect.createStatement();
                             /*resultSet = statement
                                             .executeQuery("INSERT INTO" + database + ".user");
                              `onlinemeet`.`user` (`username`, `password`, `firstName`, `lastName`, `email`) VALUES ('1123456', 'SISUCK', 'Andrej', 'Milojevic', 'amilojevic@123212.com');*/
-                            PreparedStatement statement = connect.prepareStatement("SELECT * FROM " + database + ".user WHERE email = ?");
-                            statement.setString(1, email);
+                            PreparedStatement statement = connect.prepareStatement("SELECT * FROM " + database + ".user WHERE username = ?");
+                            statement.setString(1, usernameOfInvitee);
                             resultSet = statement.executeQuery();
                             String idOfInvitee = null;
-                            String usernameOfInvitee = null;
                             while (resultSet.next()) {
                             	idOfInvitee = resultSet.getString("id");
                             	usernameOfInvitee = resultSet.getString("username");
@@ -133,9 +154,11 @@ import onlineUpoznavanje.models.User;
                         }
                            
                             /*SELECT * FROM onlinemeet.user where email like '%and%';*/
-                            statement = connect.prepareStatement("INSERT INTO " + database + ".invites ( idOfInvitee, usernameOfInvitee) VALUES ( ?, ?)");
+                            statement = connect.prepareStatement("INSERT INTO " + database + ".invites ( idOfInvitee, usernameOfInvitee, idOfInviter, usernameOfInviter) VALUES ( ?, ?, ?, ?)");
                             statement.setString(1, idOfInvitee);
                             statement.setString(2, usernameOfInvitee);
+                            statement.setString(3, idOfInviter);
+                            statement.setString(4, usernameOfInviter);
                             statement.execute();
                     } catch (Exception e) {
                             throw e;
@@ -154,9 +177,11 @@ import onlineUpoznavanje.models.User;
     
                         String _username = null;
                         String _password = null;
+                        Integer _id = null;
                         while (resultSet.next()) {
                          _username = resultSet.getString("username");
-                          _password = resultSet.getString("password");    
+                          _password = resultSet.getString("password");
+                          _id = resultSet.getInt("id");
                         }
                         
                         //System.out.println(_username + " 1.5 " + _password);
@@ -165,6 +190,7 @@ import onlineUpoznavanje.models.User;
                         	User user = new User();
                             user.setUsername(_username);
                             user.setPassword(_password);
+                            user.setId(_id);
                             return user;
                         }
                         else

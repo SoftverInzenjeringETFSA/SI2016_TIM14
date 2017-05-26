@@ -4,9 +4,9 @@ import User from '../models/user';
 
 export default BaseService.extend({
 
-    inviteUser: function(email) {
-        var korisnici = [];
-        this.ajax({ url: `korisnici/inviteUser`, type: "POST", data: email}).then(function(data) {
+    inviteUser: function(usernameOfInvitee, usernameOfInviter, idOfInviter) {
+        var params = [usernameOfInvitee, usernameOfInviter, idOfInviter];
+        this.ajax({ url: `korisnici/inviteUser`, type: "POST", data: {usernameOfInvitee: usernameOfInvitee, usernameOfInviter: usernameOfInviter, idOfInviter: idOfInviter},}).then(function(data) {
         });
     
         return true;
