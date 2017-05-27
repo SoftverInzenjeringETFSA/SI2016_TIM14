@@ -7,12 +7,39 @@
       <table class="table table-striped">
          <thead>
             <tr>
-              <th>Username</th>
-              <th>Initiator</th>
+              <th>From</th>
+              <th>To</th>
               <th>Reason</th>
+              <th>ChatGroup</th>
               <th>Accept/Deny</th>
             </tr>
          </thead>
+         <tr>
+          <td>
+             {{#each model as |ban|}}
+               <tr> <td>{{ban.sourceusername}}</td></tr>
+             {{/each}}
+           </td>
+           <td>
+           {{#each model as |ban|}}
+             <tr> <td>{{ban.targetusername}}</td> </tr>
+           {{/each}}
+           </td>
+           <td>
+           {{#each model as |ban|}}
+             <tr> <td>{{ban.reason}}</td> </tr>
+           {{/each}}
+           </td>
+           <td>
+           {{#each model as |ban|}}
+             <tr> <td>{{ban.groupname}}</td> </tr>
+           {{/each}}
+           </td>
+           <td>
+              <td><button>Accept</button></td>
+               <td><button>Deny</button></td>
+           </td>
+        </tr>
          <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
             {{#each model as |osoba|}}
               <tr>
