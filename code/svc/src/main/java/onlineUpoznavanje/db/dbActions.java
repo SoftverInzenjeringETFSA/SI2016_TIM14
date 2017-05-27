@@ -182,13 +182,22 @@ import onlineUpoznavanje.models.Invite;
                             	usernameOfInvitee = resultSet.getString("username");
                                 
                         }
-                           
+                            statement = connect.prepareStatement("SELECT * FROM " + database + ".invites WHERE idOfInviter=? AND idOfInvitee=?");
+                            statement.setString(1, idOfInviter);
+                            statement.setString(2, idOfInvitee);
+                            resultSet = statement.executeQuery();
+                            String flag = null;
+                            while (resultSet.next()) {
+                            	flag = "Test";
+                            }
+                            if(flag == null) {
                             statement = connect.prepareStatement("INSERT INTO " + database + ".invites ( idOfInvitee, usernameOfInvitee, idOfInviter, usernameOfInviter) VALUES ( ?, ?, ?, ?)");
                             statement.setString(1, idOfInvitee);
                             statement.setString(2, usernameOfInvitee);
                             statement.setString(3, idOfInviter);
                             statement.setString(4, usernameOfInviter);
                             statement.execute();
+                            }
                     } catch (Exception e) {
                             throw e;
                     }
