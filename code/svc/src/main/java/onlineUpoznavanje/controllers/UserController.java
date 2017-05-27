@@ -133,7 +133,7 @@ public class UserController {
 
     }
 	
-	@RequestMapping(value = "/promijenipassword", method = RequestMethod.GET)
+	@RequestMapping(value = "/promijenipassword", method = RequestMethod.POST)
     public void changePassword(@RequestBody String podatak)
     {
 

@@ -320,7 +320,7 @@ import onlineUpoznavanje.models.Invite;
                      }
                   }
                 
-          public void editKorisnikDB(String data) throws Exception {
+public void editKorisnikDB(String data) throws Exception {
                 	
                  	try {
 
@@ -371,7 +371,7 @@ import onlineUpoznavanje.models.Invite;
                 		String _interesovanje_ = _interesovanje.replace("%20"," ");
                 		String _omeni_ = _omeni.replace("%20"," ");
                 		String _username_ = _username.replace("%20"," ");
-                		System.out.println("2 " +_ime_);
+                		System.out.println("2 " +_email_);
                 		
                 		
                 		
