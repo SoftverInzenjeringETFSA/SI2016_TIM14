@@ -7,12 +7,38 @@
       <table class="table table-striped">
          <thead>
             <tr>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Username</th>
-              <th>Email</th>
+              <th>Name </th>
+              <th>Surname </th>
+              <th>Username </th>
+              <th>Email </th>
+              <th>Option </th>
             </tr>
-         </thead>
+           </thead>
+           <tr>
+             <td>
+             {{#each model as |osoba|}}
+               <tr> <td>{{osoba.firstName}}</td></tr>
+             {{/each}}
+           </td>
+           <td>
+           {{#each model as |osoba|}}
+             <tr> <td>{{osoba.lastName}}</td> </tr>
+           {{/each}}
+           </td>
+           <td>
+           {{#each model as |osoba|}}
+             <tr> <td>{{osoba.username}}</td> </tr>
+           {{/each}}
+           </td>
+           <td>
+           {{#each model as |osoba|}}
+             <tr> <td>{{osoba.email}}</td> </tr>
+           {{/each}}
+           </td>
+
+
+    </tr>
+
          <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
             {{#each model as |osoba|}}
               <tr>

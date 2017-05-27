@@ -42,25 +42,42 @@ import onlineUpoznavanje.models.Invite;
                 }
 
                 public List<User> readUsers() throws Exception {
-                        try {
-                                statement = connect.createStatement();
-                                resultSet = statement
-                                                .executeQuery("select * from " + database + ".user");
-                                List<User> users = new ArrayList<User>();
-                                while (resultSet.next()) {
-                                        String username = resultSet.getString("username");
-                                        String email = resultSet.getString("email");
-                                        User user = new User();
-                                        user.setUsername(username);
-                                        user.setEmail(email);
-                                        users.add(user);
-                                        
-                                }
-                                return users;
-                        } catch (Exception e) {
-                                throw e;
-                        }
-                }
+                    try {
+                            statement = connect.createStatement();
+                            resultSet = statement
+                                            .executeQuery("select * from " + database + ".user");
+                            List<User> users = new ArrayList<User>();
+                            while (resultSet.next()) {
+                                    String username = resultSet.getString("username");
+                                    String email = resultSet.getString("email");
+                                    String firstName=resultSet.getString("firstName");
+                                    String lastName=resultSet.getString("lastName");
+                                    User user = new User();
+                                    user.setUsername(username);
+                                    user.setEmail(email);
+                                   if(firstName==null) 
+                                   {  
+                                    user.setFirstName("  /");
+                                    }
+                                   else
+                                   {
+                                	user.setFirstName(firstName);}
+                                   
+                                   if(lastName==null) 
+                                   {   
+                                    user.setLastName("  /");
+                                    }
+                                   else
+                                   {user.setLastName(lastName); }
+                                    
+                             users.add(user);
+                                    
+                            }
+                            return users;
+                    } catch (Exception e) {
+                            throw e;
+                    }
+            }
                 
                 public List<User> readUsersButMe(int data) throws Exception {
                     try {

@@ -7,11 +7,40 @@
       <table class="table table-striped">
          <thead>
             <tr>
-              <th>Group Name</th>
-              <th>Description</th>
-              <th>View</th>
-            </tr>
-         </thead>
+              <th>Group Name </th>
+              <th>Description  </th>
+              <th>View </th>
+
+</tr>
+</thead>
+<td>
+<tr>
+  <td>
+{{#each model as |grupa|}}
+  <tr>
+  <td>{{grupa.name}}</td>
+  </tr>
+    {{/each}}
+  </td>
+</tr>
+</td>
+
+  <td>
+{{#each model as |grupa|}}
+      <tr>
+      <td>{{grupa.description}}</td>
+
+    </tr>
+    {{/each}}
+  </td>
+  <td>
+  {{#each model as |grupa|}}
+      <tr>
+      <button> Uredi </button>
+
+    </tr>
+    {{/each}}
+  </td>
          <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
             {{#each model as |osoba|}}
               <tr>

@@ -5,8 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.*;
 import org.json.simple.parser.JSONParser;
+
+import onlineUpoznavanje.models.Grupa;
 
 public class dbActionsGrupe {
 	 private Connection connect = null;
@@ -68,6 +73,26 @@ public class dbActionsGrupe {
            }
         }
      
+     public List<Grupa> readGroup() throws Exception {
+         try {
+                 statement = connect.createStatement();
+                 resultSet = statement
+                                 .executeQuery("select * from " + database + ".chatgroup");
+                 List<Grupa> grupe = new ArrayList<Grupa>();
+                 while (resultSet.next()) {
+                         String name = resultSet.getString("name");
+                         String description = resultSet.getString("description");
+                         Grupa grupa = new Grupa();
+                         grupa.setName(name);
+                         grupa.setDescription(description);
+                         grupe.add(grupa);
+                         
+                 }
+                 return grupe;
+         } catch (Exception e) {
+                 throw e;
+         }
+ }
      
      
      
