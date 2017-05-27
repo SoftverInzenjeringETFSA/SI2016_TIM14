@@ -45,6 +45,7 @@ public class UserController {
 
 	
 	private static List<User> usersToReturn = new ArrayList<User>();
+	private static User _user = new User();
 	//registracija korisnika
 	@RequestMapping(value = "/store", method = RequestMethod.POST)
     public ResponseEntity register(@RequestBody String korisnik)
@@ -132,7 +133,7 @@ public class UserController {
 
     }
 	
-	@RequestMapping(value = "/promijenipassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/promijenipassword", method = RequestMethod.GET)
     public void changePassword(@RequestBody String podatak)
     {
 
@@ -150,6 +151,23 @@ public class UserController {
 
     }
 	
+	@RequestMapping(value = "/editkorisnik", method = RequestMethod.POST)
+    public void editUser(@RequestBody String podatak)
+    {
+
+	try {
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println(podatak);
+       db.editKorisnikDB(podatak);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
+
+    }
 	
 
 

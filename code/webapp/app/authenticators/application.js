@@ -26,6 +26,7 @@ export default Base.extend({
         });
     },
 
+
     invalidate(data) {
         return Promise.resolve(data);
     }

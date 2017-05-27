@@ -294,7 +294,77 @@ import onlineUpoznavanje.models.Invite;
                      }
                   }
                 
-      
+          public void editKorisnikDB(String data) throws Exception {
+                	
+                 	try {
+
+                	 JSONObject jsonObject=new JSONObject();
+                    	try {
+                    		
+                    		String query=data;
+                            String queryArray[]=query.split("&");
+                            String ime[]=queryArray[0].split("=");
+                            String prezime[]=queryArray[1].split("=");
+                            String zanimanje[]=queryArray[2].split("=");
+                            String grad[]=queryArray[3].split("=");
+                            String email[]=queryArray[4].split("=");
+                            String interesovanje[]=queryArray[5].split("=");
+                            String omeni[]=queryArray[6].split("=");
+                            String username[]=queryArray[7].split("=");
+
+                            jsonObject.put(ime[0],ime[1]);
+                            jsonObject.put(prezime[0],prezime[1]);
+                            jsonObject.put(zanimanje[0],zanimanje[1]);
+                            jsonObject.put(grad[0],grad[1]);
+                            jsonObject.put(email[0],email[1]);
+                            jsonObject.put(interesovanje[0], interesovanje[1]);
+                            jsonObject.put(omeni[0], omeni[1]);
+                            jsonObject.put(username[0], username[1]); 
+
+
+                    	}
+                    	catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    	
+                    	String _ime = (String) jsonObject.get("ime");
+                		String _prezime = (String) jsonObject.get("prezime");
+                		String _zanimanje = (String) jsonObject.get("zanimanje");
+                		String _grad = (String) jsonObject.get("grad");
+                		String _email = (String) jsonObject.get("email");
+                		String _interesovanje = (String) jsonObject.get("interesovanje");
+                		String _omeni = (String) jsonObject.get("omeni");
+                		String _username = (String) jsonObject.get("username");
+                		System.out.println("1 " + _ime);
+                		String _ime_ = _ime.replace("%20"," ");
+                		String _prezime_ = _prezime.replace("%20"," ");
+                		String _zanimanje_ = _zanimanje.replace("%20"," ");
+                		String _grad_ = _grad.replace("%20"," ");
+                		String _email_ = _email.replace("%40","@");
+                		String _interesovanje_ = _interesovanje.replace("%20"," ");
+                		String _omeni_ = _omeni.replace("%20"," ");
+                		String _username_ = _username.replace("%20"," ");
+                		System.out.println("2 " +_ime_);
+                		
+                		
+                		
+                		statement = connect.createStatement();
+                    	PreparedStatement statement = connect.prepareStatement("update " + database + ".user SET firstName=?, lastName=?, email=?, location=?, omeni=?, zanimanje=?, interesovanja=? WHERE username=?");
+                    	statement.setString(1,_ime_);
+                    	statement.setString(2,_prezime_);
+                    	statement.setString(3,_email_);
+                    	statement.setString(4,_grad_);
+                    	statement.setString(5,_omeni_);
+                    	statement.setString(6,_zanimanje_);
+                    	statement.setString(7,_interesovanje_);
+                    	statement.setString(8,_username_);
+                    	statement.execute();
+                      }
+                 	catch (Exception e) {
+                        throw e;
+                     }
+                  }
 
                 // You need to close the resultSet
                 public void close() {

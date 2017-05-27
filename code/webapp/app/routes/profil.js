@@ -5,6 +5,17 @@ export default Ember.Route.extend({
 	session: Ember.inject.service(),
 
     model() {
+    	 let korisnik = this.getProperties('username','password');
+         korisnik.username = this.get('session.data.authenticated.korisnik.username');
+         korisnik.password = this.get('session.data.authenticated.korisnik.password');
+         
+                this.get('session').authenticate('authenticator:application', korisnik, (data) => {
+                    console.log(data);
+                })
+                .catch(reason => {
+                    //Ember.set(this, 'errorMessage', JSON.parse(reason.responseText).errorMessage);
+                    this.set('authenticationError', this.errorMessage || reason);
+                });
 
     	// return this.ajax({ url: `korisnici/getprofile`, type: "POST", data: this.get('session.data.authenticated.korisnik.username');})
     	//console.log(this.get('session.data.authenticated.korisnik.username'));

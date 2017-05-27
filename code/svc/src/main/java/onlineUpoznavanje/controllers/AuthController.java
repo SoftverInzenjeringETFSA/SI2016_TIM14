@@ -61,4 +61,35 @@ public class AuthController {
 	                    .body(new LoginDataResponse("Incorrect username or password."));
 	    	}
 	    }
+		
+
+		@RequestMapping(path="/data", method = RequestMethod.GET)
+	    public @ResponseBody ResponseEntity<LoginDataResponse> login2(@RequestBody LoginDataRequest request) {
+	 
+				try {
+	    		 
+	        	User user = _authService.checkLoginData(request.getUsername(), request.getPassword());
+	        	
+	        	if (user != null) {
+
+	        		    String token=null;
+	        			token = JwtService.issueToken(false,false);	        		
+		                 return ResponseEntity
+		            		      .status(HttpStatus.OK)
+		                           .body(new LoginDataResponse(user, token));
+	        	}
+	        	else {
+	        		throw new ServiceException("");
+	        	}
+	           
+	    	}
+	    	catch (ServiceException e) {
+	    		return ResponseEntity
+	    				.status(HttpStatus.BAD_REQUEST)
+	                    .body(new LoginDataResponse("Incorrect username or password."));
+	    	}
+	    }
+		
+		
+		
 }
