@@ -62,6 +62,7 @@ public class dbActionsGrupe {
           	String _name_ = _name.replace("%20"," ");
       		String _description = (String) jsonObject.get("opis");
       		String _description_ = _description.replace("%20"," ");
+      		_description_ = _description.replace("%2C",",");
           	statement = connect.createStatement();
           	PreparedStatement statement = connect.prepareStatement("INSERT INTO " + database + ".chatgroup ( name, description ) VALUES ( ?, ? )");
           	statement.setString(1,_name_);

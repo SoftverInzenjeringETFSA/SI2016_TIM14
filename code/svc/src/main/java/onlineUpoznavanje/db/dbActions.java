@@ -418,21 +418,18 @@ public void editKorisnikDB(String data) throws Exception {
                     try {
                         statement = connect.createStatement();
 
-                    	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".chatgroup");
-                    	//statement.setString(1, "%" + searchTerm + "%");
+                    	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".chatgroup WHERE name like ?");
+                    	statement.setString(1, "%" + searchTerm + "%");
                         resultSet = statement.executeQuery();
                             List<Grupa> groups = new ArrayList<Grupa>();
                             while (resultSet.next()) {
                                     String name = resultSet.getString("name");
                                     String desc = resultSet.getString("description");
-                                    /*System.out.println(name);
-                                    System.out.println(desc);*/
                                     Grupa grupa = new Grupa();
                                     grupa.setName(name);
                                     grupa.setDescription(desc);
                                     groups.add(grupa);
                             }
-                            System.out.println(groups);
                             return groups;
                     } catch (Exception e) {
                             throw e;

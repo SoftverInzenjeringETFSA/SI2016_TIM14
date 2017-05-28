@@ -25,21 +25,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="redChat">
-                                    <td> ETF </td>
-                                    <td> <button class="btn">Leave</button> </td>
-                                    <td> <button class="btn">Look</button> </td>
+                                {{#each model.searchedGroups as |grupa|}}
+                                <tr>
+                                    <td>{{grupa.name}}</td>
+                                    <td> <button class="btn">Leave</button></td>
+                                    <td><button class="btn">Look</button></td>
                                 </tr>
-                                <tr class="redChat">
-                                    <td> RI 2</td>
-                                    <td> <button class="btn">Leave</button> </td>
-                                    <td> <button class="btn">Look</button> </td>
-                                </tr>
-                                <tr class="redChat">
-                                    <td>RI 3 </td>
-                                    <td> <button class="btn">Leave</button> </td>
-                                    <td> <button class="btn">Look</button> </td>
-                                </tr>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>
