@@ -19,6 +19,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import onlineUpoznavanje.db.dbActions;
+import onlineUpoznavanje.db.dbActionsGrupe;
 import onlineUpoznavanje.repositories.UserRepository;
 import onlineUpoznavanje.services.izuzetak.ServiceException;
 
@@ -57,11 +58,9 @@ public class UserService implements UserDetailsService {
 			jsonObj = new JSONObject(jsonString.toString());
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			System.out.print("Well fuck 2");
 			e.printStackTrace();
 		}
     	try {
-    		System.out.print("Yaya fuck");
 			String username = jsonObj.getString("username");
 			String password = jsonObj.getString("password");
 			String email = jsonObj.getString("email");
@@ -78,7 +77,6 @@ public class UserService implements UserDetailsService {
 			 
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
-			System.out.print("Well fuck");
 			e.printStackTrace();
 		}
     	
@@ -90,6 +88,53 @@ public class UserService implements UserDetailsService {
 	        try {
 				db.connectToDB();
 				db.inviteUser(data);
+		        db.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+			 
+		
+    	return true;
+    }
+
+    public static boolean declineInvite(String data){
+		dbActions db = new dbActions();
+	        try {
+				db.connectToDB();
+				db.declineInvite(data);
+		        db.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+			 
+		
+    	return true;
+    }
+    public static boolean joinGroup(String data){
+		dbActionsGrupe db = new dbActionsGrupe();
+	        try {
+				db.connectToDB();
+				db.joinGroup(data);
+		        db.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+			 
+		
+    	return true;
+    }
+    
+    public static boolean leaveGroup(String data){
+		dbActionsGrupe db = new dbActionsGrupe();
+	        try {
+				db.connectToDB();
+				db.leaveGroup(data);
 		        db.close();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

@@ -34,6 +34,12 @@ export default BaseService.extend({
             });
         });
         return users;
-    }
+    },
+    declineInvite: function(idOfInviter, idOfInvitee) {
+        this.ajax({ url: `korisnici/declineInvite`, type: "POST", data: {idOfInviter: idOfInviter, idOfInvitee: idOfInvitee},}).then(function(data) {
+        });
+    
+        return true;
+    },
 
 });

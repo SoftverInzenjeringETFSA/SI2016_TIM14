@@ -132,7 +132,37 @@ import onlineUpoznavanje.models.Grupa;
                             throw e;
                     }
                 	}
-                
+                public void declineInvite(String data) throws Exception {
+                    try {
+                   	 JSONObject jsonObject=new JSONObject();
+
+                    	try
+                        {
+                            String query=data;
+                            String queryArray[]=query.split("&");
+                            String idOfInviter[]=queryArray[0].split("=");
+                            String idOfInvitee[]=queryArray[1].split("=");
+                            jsonObject.put(idOfInviter[0],idOfInviter[1]);
+                            jsonObject.put(idOfInvitee[0],idOfInvitee[1]);
+
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    		String idOfInviter = (String) jsonObject.get("idOfInviter");
+                    		String idOfInvitee = (String) jsonObject.get("idOfInvitee");
+                        statement = connect.createStatement();
+
+                    	PreparedStatement statement = connect.prepareStatement("DELETE FROM " + database + ".invites WHERE idOfInvitee=? AND idOfInviter=?");
+                    	statement.setString(1, idOfInvitee);
+                    	statement.setString(2, idOfInviter);
+                       statement.execute();
+                            
+                    } catch (Exception e) {
+                            throw e;
+                    }
+                }
                 public List<User> searchUsers(String searchTerm) throws Exception {
                     try {
                         statement = connect.createStatement();
@@ -369,9 +399,6 @@ public void editKorisnikDB(String data) throws Exception {
                 		String _interesovanje = (String) jsonObject.get("interesovanje");
                 		String _omeni = (String) jsonObject.get("omeni");
                 		String _username = (String) jsonObject.get("username");
-                		
-                		System.out.println("1 " + _ime);
-                		
                 		String _ime_ = _ime.replace("%20"," ");
                 		String _prezime_ = _prezime.replace("%20"," ");
                 		String _zanimanje_ = _zanimanje.replace("%20"," ");
@@ -384,7 +411,6 @@ public void editKorisnikDB(String data) throws Exception {
                 		String _interesovanje_2 = _interesovanje_.replace("%2C",", ");
                 		
                 		String _username_ = _username.replace("%20"," ");
-                		System.out.println("2 " +_email_);
                 		
                 		
                 		
@@ -477,9 +503,11 @@ public void deleteKorisnikDB(String data) throws Exception{
                             while (resultSet.next()) {
                                     String name = resultSet.getString("name");
                                     String desc = resultSet.getString("description");
+                                    Integer id = resultSet.getInt("id");
                                     Grupa grupa = new Grupa();
                                     grupa.setName(name);
                                     grupa.setDescription(desc);
+                                    grupa.setId(id);
                                     groups.add(grupa);
                             }
                             return groups;

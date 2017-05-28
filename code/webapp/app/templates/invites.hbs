@@ -16,7 +16,7 @@
               <tr>
               <td>{{osoba.usernameOfInviter}}</td>
               <td><button {{ action 'inviteUser' osoba.email }}>Accept</button></td>
-              <td><button {{ action 'inviteUser' osoba.email }}>Decline</button></td>
+              <td><button {{ action 'declineInvite' osoba.idOfInviter }}>Decline</button></td>
               </tr>
             {{/each}}
          </tbody>

@@ -29,5 +29,42 @@ export default BaseService.extend({
     this.ajax({ url: `grupe/obrisigrupu`, type: "POST", data: {idgrupa:idgrupa}}).then(function(data) {
         });
         return true;
-  }
+  },
+
+  myGroups: function(idUser) {
+      var grupe = [];
+      this.ajax({ url: `grupe/myGroups?idUser=${idUser}`, type: "GET"}).then(function(data) {
+          data.forEach(function(group) {
+              grupe.addObject(Group.create(group));
+          });
+
+      });
+      return grupe;
+
+  },
+
+  searchGroups: function(searchTerm){
+      var groups = [];
+      this.ajax({ url: `grupe/searchGroups?searchTerm=${searchTerm}`, type: "GET"}).then(function(data) {
+          data.forEach(function(group) {
+            console.log(group);
+              groups.addObject(Group.create(group));
+          });
+      });
+      return groups;
+  },
+
+   joinGroup: function(idOfGroup, idOfUser) {
+        this.ajax({ url: `grupe/joinGroup`, type: "POST", data: {idOfGroup: idOfGroup, idOfUser: idOfUser},}).then(function(data) {
+        });
+    
+        return true;
+    },
+
+     leaveGroup: function(idOfGroup, idOfUser) {
+        this.ajax({ url: `grupe/leaveGroup`, type: "POST", data: {idOfGroup: idOfGroup, idOfUser: idOfUser},}).then(function(data) {
+        });
+    
+        return true;
+    },
 });

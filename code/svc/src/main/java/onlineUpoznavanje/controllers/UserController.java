@@ -58,11 +58,14 @@ public class UserController {
     {
 		return ResponseEntity.status(HttpStatus.OK).body(UserService.inviteUser(data));
     }
-	
+    @RequestMapping(value = "/declineInvite", method = RequestMethod.POST)
+    public ResponseEntity declineInvite(@RequestBody String data)
+    {
+		return ResponseEntity.status(HttpStatus.OK).body(UserService.declineInvite(data));
+    }
 	@RequestMapping(value = "/searchUsers")
     public @ResponseBody List<User> searchUsers(@RequestParam("searchTerm") String searchTerm)
     {
-		System.out.println(searchTerm);
 		try {
 			dbActions db = new dbActions();
 	        db.connectToDB();
@@ -140,7 +143,6 @@ public class UserController {
 	try {
 	   dbActions db = new dbActions();
        db.connectToDB();
-       System.out.println(podatak);
        db.changePasswordDB(podatak);
        db.close();
 	   }
@@ -158,7 +160,6 @@ public class UserController {
 	try {
 	   dbActions db = new dbActions();
        db.connectToDB();
-       System.out.println(podatak);
        db.editKorisnikDB(podatak);
        db.close();
 	   }

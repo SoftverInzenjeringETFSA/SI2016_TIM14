@@ -5,14 +5,21 @@ export default Ember.Controller.extend({
         groupService: Ember.inject.service(),
         ajax: Ember.inject.service(),
         self : this,
+        session: Ember.inject.service(),
 
 
     model: function() {
     },
     searchGroups: function(params){
         let groups = this.get('groupService').searchGroups(params);
-        console.log(groups);
         this.set("model.searchedGroups", groups);
+    },
+
+    joinGroup: function(params) {
+        var idOfGroup = params;
+        var idOfUser = this.get('session.data.authenticated.korisnik.id');
+
+        this.get('groupService').joinGroup(idOfGroup, idOfUser);
     },
 
     actions: {
@@ -20,5 +27,9 @@ export default Ember.Controller.extend({
             var params = this.get('search');
             this.searchGroups(params);
         },
+        joinGroup(params) {
+            this.joinGroup(params);
+            
+        }
     }
 });

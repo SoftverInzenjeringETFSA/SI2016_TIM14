@@ -28,7 +28,7 @@
                                 {{#each model.searchedGroups as |grupa|}}
                                 <tr>
                                     <td>{{grupa.name}}</td>
-                                    <td> <button class="btn">Leave</button></td>
+                                    <td> <button class="btn" {{ action 'leaveGroup' grupa.id }} > Leave</button></td>
                                     <td><button class="btn">Look</button></td>
                                 </tr>
                                 {{/each}}

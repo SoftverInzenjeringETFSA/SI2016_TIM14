@@ -86,10 +86,42 @@ public class dbActionsGrupe {
                          Integer id = resultSet.getInt("id");
                          Grupa grupa = new Grupa();
                          grupa.setName(name);
+                         grupa.setId(id);
                          grupa.setDescription(description);
                          grupa.setId(id);
                          grupe.add(grupa);
                          
+                 }
+                 return grupe;
+         } catch (Exception e) {
+                 throw e;
+         }
+ }
+     
+     public List<Grupa> myGroups(String idUser) throws Exception {
+         try {
+                 statement = connect.createStatement();
+                 PreparedStatement statement = connect.prepareStatement("select * from " + database + ".userchatgroup WHERE korisnikId=?");
+              	statement.setString(1, idUser);
+
+              	resultSet = statement.executeQuery();
+                 List<Grupa> grupe = new ArrayList<Grupa>();
+                 while (resultSet.next()) {
+                         String idGroup = resultSet.getString("groupId");
+                         statement = connect.prepareStatement("select * from " + database + ".chatgroup WHERE id=?");
+                         statement.setString(1, idGroup);
+                         ResultSet groupResultSet = statement.executeQuery();
+                         while(groupResultSet.next())
+                         {
+                        	 String name = groupResultSet.getString("name");
+                             String description = groupResultSet.getString("description");
+                             Integer id = groupResultSet.getInt("id");
+                             Grupa grupa = new Grupa();
+                             grupa.setName(name);
+                             grupa.setId(id);
+                             grupa.setDescription(description);
+                             grupe.add(grupa);
+                         }
                  }
                  return grupe;
          } catch (Exception e) {
@@ -141,7 +173,82 @@ public class dbActionsGrupe {
       
       }
      
+     public void joinGroup(String data) throws Exception {
+         try {
+        	 JSONObject jsonObject=new JSONObject();
+
+         	try
+             {
+                 String query=data;
+                 String queryArray[]=query.split("&");
+                 String idofUser[]=queryArray[0].split("=");
+                 String idOfGroup[]=queryArray[1].split("=");
+                 jsonObject.put(idofUser[0],idofUser[1]);
+                 jsonObject.put(idOfGroup[0],idOfGroup[1]);
+
+             }
+             catch (JSONException e)
+             {
+                 e.printStackTrace();
+             }
+         		String idofUser = (String) jsonObject.get("idOfUser");
+         		String idOfGroup = (String) jsonObject.get("idOfGroup");
+         		
+             statement = connect.createStatement();
+
+         	PreparedStatement statement = connect.prepareStatement("SELECT * FROM " + database + ".userchatgroup WHERE korisnikId=? AND groupId=?");
+         	statement.setString(1, idofUser);
+         	statement.setString(2, idOfGroup);
+         	
+             resultSet = statement.executeQuery();
+             String flag = null;
+             while (resultSet.next()) {
+             	flag = "Test";
+             }
+             if(flag == null) {
+            	 statement = connect.prepareStatement("INSERT INTO " + database + ".userchatgroup ( korisnikId, groupId ) VALUES ( ?, ? )");
+            		statement.setString(1, idofUser);
+                 	statement.setString(2, idOfGroup);
+                    statement.execute();
+
+             }
+                 
+         } catch (Exception e) {
+                 throw e;
+         }
+ }
      
+     public void leaveGroup(String data) throws Exception {
+         try {
+        	 JSONObject jsonObject=new JSONObject();
+
+         	try
+             {
+                 String query=data;
+                 String queryArray[]=query.split("&");
+                 String idofUser[]=queryArray[0].split("=");
+                 String idOfGroup[]=queryArray[1].split("=");
+                 jsonObject.put(idofUser[0],idofUser[1]);
+                 jsonObject.put(idOfGroup[0],idOfGroup[1]);
+
+             }
+             catch (JSONException e)
+             {
+                 e.printStackTrace();
+             }
+         		String idofUser = (String) jsonObject.get("idOfUser");
+         		String idOfGroup = (String) jsonObject.get("idOfGroup");
+             statement = connect.createStatement();
+
+         	PreparedStatement statement = connect.prepareStatement("DELETE FROM " + database + ".userchatgroup WHERE korisnikId=? AND groupId=?");
+         	statement.setString(1, idofUser);
+         	statement.setString(2, idOfGroup);
+            statement.execute();
+                 
+         } catch (Exception e) {
+                 throw e;
+         }
+     }
      
      
      public void close() {
@@ -173,9 +280,10 @@ public class dbActionsGrupe {
                  while (resultSet.next()) {
                          String name = resultSet.getString("name");
                          String desc = resultSet.getString("description");
-                         System.out.println(name);
+                         Integer id = resultSet.getInt("id");
                          Grupa grupa = new Grupa();
                          grupa.setName(name);
+                         grupa.setId(id);
                          grupa.setDescription(desc);
                          groups.add(grupa);
                  }

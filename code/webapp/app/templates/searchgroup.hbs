@@ -23,7 +23,7 @@
               <tr>
               <td>{{grupa.name}}</td>
               <td>{{grupa.description }}</td>
-              <td><button class="btn">invite</button></td>
+              <td><button class="btn" {{ action 'joinGroup' grupa.id }} >Join</button></td>
               </tr>
             {{/each}}
          </tbody>
