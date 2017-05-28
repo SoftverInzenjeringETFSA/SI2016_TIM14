@@ -12,8 +12,8 @@
                             <div class="col-sm-6">
                                 <div class="user-search">
                                     <span class="glyphicon glyphicon-search"></span>
-                                    {{input placeholder = "Search User" value=model.search}}
-                                    <button class="btn">Search </button>
+                                    {{input placeholder = "Search User" value=search}}
+                                    {{#link-to 'searchuser' search}}<button class="btn" >Search </button>{{/link-to}}
                                 </div>
                             </div>
                         </div>
