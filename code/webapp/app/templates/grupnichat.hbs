@@ -7,12 +7,9 @@
                     <div class="gornjiButton">
                         <div class="row">
                             <div class="col-sm-6">
-                                {{#link-to 'invites'}}<button class="btn">All chat requests </button> {{/link-to}}
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="user-search">
+                                <div class="group-search">
                                     <span class="glyphicon glyphicon-search"></span>
-                                    {{input placeholder = "Search User" value=model.search}}
+                                    {{input placeholder = "Search group" value=model.search}}
                                     <button class="btn">Search </button>
                                 </div>
                             </div>
@@ -22,21 +19,25 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Username </th>
+                                    <th>Group name </th>
+                                    <th>Leave group </th>
                                     <th>Full chat</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="redChat">
-                                    <td>Arif </td>
+                                    <td> ETF </td>
+                                    <td> <button class="btn">Leave</button> </td>
                                     <td> <button class="btn">Look</button> </td>
                                 </tr>
                                 <tr class="redChat">
-                                    <td>Edita </td>
+                                    <td> RI 2</td>
+                                    <td> <button class="btn">Leave</button> </td>
                                     <td> <button class="btn">Look</button> </td>
                                 </tr>
                                 <tr class="redChat">
-                                    <td>Andrej </td>
+                                    <td>RI 3 </td>
+                                    <td> <button class="btn">Leave</button> </td>
                                     <td> <button class="btn">Look</button> </td>
                                 </tr>
                             </tbody>
