@@ -60,7 +60,6 @@ public class GrupaController {
 	try {
 	   dbActionsGrupe db = new dbActionsGrupe();
        db.connectToDB();
-       System.out.println(podatak);
        db.kreirajGrupuDB(podatak);
        db.close();
 	   }
@@ -89,6 +88,24 @@ public class GrupaController {
 
     }
     
+	@RequestMapping(value = "/myGroups")
+    public @ResponseBody List<Grupa> myGroups(@RequestParam("idUser") String idUser)
+    {
+		try {
+			dbActionsGrupe db = new dbActionsGrupe();
+	        db.connectToDB();
+       	 System.out.println(idUser);
+	        grupeToReturn = db.myGroups(idUser);
+	        db.close();
+		}
+		catch (Exception e) {
+			return GrupaRepository.findAll();
+		}
+			 
+	        return grupeToReturn;
+
+    }
+	
     @RequestMapping(value = "/searchGroups")
     public @ResponseBody List<Grupa> searchGroups(@RequestParam("searchTerm") String searchTerm)
     {
@@ -122,8 +139,21 @@ public class GrupaController {
 		 {
 			// return GrupaRepository.findAll();
 		 }
+    }
 		 
 
+    @RequestMapping(value = "/joinGroup", method = RequestMethod.POST)
+    public ResponseEntity joinGroup(@RequestBody String data)
+    {
+    	return ResponseEntity.status(HttpStatus.OK).body(UserService.joinGroup(data));
+	
+    }
+    
+    @RequestMapping(value = "/leaveGroup", method = RequestMethod.POST)
+    public ResponseEntity leaveGroup(@RequestBody String data)
+    {
+    	return ResponseEntity.status(HttpStatus.OK).body(UserService.leaveGroup(data));
+	
     }
 	
 
