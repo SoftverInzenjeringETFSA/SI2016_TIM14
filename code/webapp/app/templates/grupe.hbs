@@ -19,9 +19,9 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Group name </th>
-                                    <th>Leave group </th>
-                                    <th>Full chat</th>
+                                    <th>Group Name </th>
+                                    <th>Leave Group </th>
+                                    <th>All Messages</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>{{grupa.name}}</td>
                                     <td> <button class="btn" {{ action 'leaveGroup' grupa.id }} > Leave</button></td>
-                                    <td><button class="btn">Look</button></td>
+                                    <td><button class="btn">View</button></td>
                                 </tr>
                                 {{/each}}
                             </tbody>
