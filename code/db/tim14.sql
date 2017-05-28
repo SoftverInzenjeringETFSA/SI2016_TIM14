@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2017 at 04:39 PM
+-- Generation Time: May 28, 2017 at 11:14 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -72,7 +72,10 @@ CREATE TABLE `chatgroup` (
 
 INSERT INTO `chatgroup` (`id`, `name`, `description`) VALUES
 (6, 'Sport', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C but also the leap into electronic typesetting%2C remaining essentially unchanged. '),
-(7, 'Muzika', 'Lorem ipsum dolor sit amet%2C consectetur adipiscing elit. Suspendisse porta enim non volutpat interdum. Morbi scelerisque ultricies tincidunt. Proin ullamcorper odio ac ullamcorper consequat. Sed quam diam%2C scelerisque in elit ut%2C consectetur fermentum dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis fringilla porttitor mi nec tincidunt. Sed aliquam justo et convallis efficitur. Phasellus eget venenatis ipsum%2C vel iaculis justo. Maecenas ante justo%2C consectetur nec hendrerit sit amet%2C varius sit amet est. Ut tempor dolor purus%2C in cursus nulla consequat nec. Duis bibendum mi nec elit ');
+(7, 'Muzika', 'Lorem ipsum dolor sit amet%2C consectetur adipiscing elit. Suspendisse porta enim non volutpat interdum. Morbi scelerisque ultricies tincidunt. Proin ullamcorper odio ac ullamcorper consequat. Sed quam diam%2C scelerisque in elit ut%2C consectetur fermentum dolor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis fringilla porttitor mi nec tincidunt. Sed aliquam justo et convallis efficitur. Phasellus eget venenatis ipsum%2C vel iaculis justo. Maecenas ante justo%2C consectetur nec hendrerit sit amet%2C varius sit amet est. Ut tempor dolor purus%2C in cursus nulla consequat nec. Duis bibendum mi nec elit '),
+(10, 'Dinosaurusi', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+(11, 'Ples', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'),
+(12, 'Igrice', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.');
 
 -- --------------------------------------------------------
 
@@ -93,7 +96,8 @@ CREATE TABLE `invites` (
 
 INSERT INTO `invites` (`idOfInvitee`, `usernameOfInvitee`, `idOfInviter`, `usernameOfInviter`) VALUES
 ('5', 'nekaosoba', 17, 'Andrej'),
-('4', 'haris', 17, 'Andrej');
+('4', 'haris', 17, 'Andrej'),
+('2', 'neko', 4, 'haris');
 
 -- --------------------------------------------------------
 
@@ -117,8 +121,7 @@ CREATE TABLE `poruka` (
 CREATE TABLE `privatechat` (
   `id` int(11) NOT NULL,
   `sourceId` int(11) NOT NULL,
-  `targetId` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `targetId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
 
 -- --------------------------------------------------------
@@ -148,22 +151,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `firstName`, `lastName`, `email`, `gender`, `dateOfBirth`, `location`, `omeni`, `isAdmin`, `zanimanje`, `interesovanja`) VALUES
-(2, 'neko', 'password', ' Dino', 'merlinko', 'asdasd', NULL, NULL, 'dubai', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,    but also the leap into electronic typesetting,    remaining essentially unchanged. It was popularised in the 1960s with the release', b'0', 'igrac', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,    but also the leap into electronic typesetting,    remaining essentially unchanged. It was popularised in the 1960s with the release'),
-(3, 'korisnik', 'ovojekorisnik', NULL, NULL, 'korisnik@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(4, 'haris', 'sifrica1A', NULL, NULL, 'haris@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(5, 'nekaosobaA', 'njenpassword2A', 'Hilmija', ' ', 'mail', NULL, NULL, 'Sarajevo', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C ', b'0', ' ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C '),
-(7, 'nekaosoba1', 'nekaosoba1A', NULL, NULL, 'nekaosoba1@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(8, 'osobica', 'ovojelozinka2A', NULL, NULL, 'email@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(9, 'jasamberina', 'password58A', NULL, NULL, 'mojmail@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(11, 'nekobeze', 'nekobeze22A', NULL, NULL, 'nekobeze@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(12, 'noviuser1A', 'noviuser1A', NULL, NULL, 'noviuser1A@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(13, 'ovojeuser25S', 'ovojeuser25S', NULL, NULL, 'ovojeuser25S@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(14, 'ovojeuser23S', 'ovojeuser25S', NULL, NULL, 'ovojeuser23S@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(15, 'username5', 'username5A', NULL, NULL, 'username5@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(16, 'username88', 'username88A', NULL, NULL, 'username88@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(17, 'Andrej', '1DvaTri!', NULL, NULL, 'andrej@si.ba', NULL, NULL, NULL, NULL, b'0', '', ''),
-(18, 'andrej88', 'Ivona88', NULL, NULL, 'andrejoapsod@jdshfuko.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(19, 'Blavblabljkdba', 'RayBan88', NULL, NULL, 'asnjklsdn@djasnd.com', NULL, NULL, NULL, NULL, b'0', '', '');
+(2, 'neko', 'password', ' Dino', 'Merlin', 'dino@gmail.com', NULL, NULL, 'Dubai', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,     when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,     but also the leap into electronic typesetting,     remaining essentially unchanged. It was popularised in the 1960s with the release', b'1', 'Pjevac', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,     when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,     but also the leap into electronic typesetting,     remaining essentially unchanged. It was popularised in the 1960s with the release'),
+(20, 'mikimaus', 'mikimaus3A', ' Miki', ' Maus', 'mikimaus@gmail.com', NULL, NULL, ' Sarajevo', ' Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,  when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,  but also the leap into electronic typesetting,  remaining essentially unchanged.', b'0', 'Veterinar', ' '),
+(21, 'username2', 'username25A', NULL, NULL, 'username2@gmail.com', NULL, NULL, NULL, NULL, b'0', NULL, NULL),
+(22, 'korisnik', 'korisnik123A', NULL, NULL, 'korisnik@gmail.com', NULL, NULL, NULL, NULL, b'0', NULL, NULL),
+(23, 'lolek', 'lolek147A', NULL, NULL, 'lolek@gmail.com', NULL, NULL, NULL, NULL, b'0', NULL, NULL),
+(24, 'jennifer', 'jennifer1K', NULL, NULL, 'jennifer@gmail.com', NULL, NULL, NULL, NULL, b'0', NULL, NULL),
+(25, 'aplikacija', 'aplikacija1A', NULL, NULL, 'aplikacija@gmail.com', NULL, NULL, NULL, NULL, b'0', NULL, NULL),
+(27, 'dino2', 'dino2A23', NULL, NULL, 'dino2@gmail.com', NULL, NULL, NULL, NULL, b'0', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -182,12 +177,10 @@ CREATE TABLE `userchatgroup` (
 --
 
 INSERT INTO `userchatgroup` (`korisnikId`, `groupId`, `id`) VALUES
-(4, 7, 7),
-(5, 6, 6),
-(9, 7, 5),
-(11, 7, 11),
-(12, 7, 12),
-(14, 7, 13);
+(20, 7, 14),
+(21, 11, 15),
+(23, 12, 16),
+(27, 11, 17);
 
 -- --------------------------------------------------------
 
@@ -277,7 +270,7 @@ ALTER TABLE `userreview`
 -- AUTO_INCREMENT for table `adminbanrequest`
 --
 ALTER TABLE `adminbanrequest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `blockeduser`
 --
@@ -287,7 +280,7 @@ ALTER TABLE `blockeduser`
 -- AUTO_INCREMENT for table `chatgroup`
 --
 ALTER TABLE `chatgroup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `poruka`
 --
@@ -297,17 +290,17 @@ ALTER TABLE `poruka`
 -- AUTO_INCREMENT for table `privatechat`
 --
 ALTER TABLE `privatechat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `userchatgroup`
 --
 ALTER TABLE `userchatgroup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `userreview`
 --
@@ -323,13 +316,6 @@ ALTER TABLE `userreview`
 ALTER TABLE `blockeduser`
   ADD CONSTRAINT `blockeduser_ibfk_1` FOREIGN KEY (`sourceId`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `blockeduser_ibfk_2` FOREIGN KEY (`targetId`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `privatechat`
---
-ALTER TABLE `privatechat`
-  ADD CONSTRAINT `privatechat_ibfk_1` FOREIGN KEY (`sourceId`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `privatechat_ibfk_2` FOREIGN KEY (`targetId`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `userreview`
