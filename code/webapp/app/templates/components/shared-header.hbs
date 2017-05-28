@@ -7,16 +7,16 @@
         {{#if session.isAuthenticated}}
             Logged in as  @ {{ session.data.authenticated.korisnik.username }}
         <div class="login-button-wrapper">
-                <button {{action "logout"}}>LOG OUT</button>
+                <button class= "logout" {{action "logout"}}>LOG OUT</button>
         </div>
         {{else}}
             <div class="shared-header-inner-login">
                 <div class="login-data-wrapper">
-                    {{input placeholder="username" value=model.username}}
-                    {{input type="password" placeholder="password" value=model.password}}
+                    {{input placeholder="Username" value=model.username}}
+                    {{input type="password" placeholder="Password" value=model.password}}
                 </div>
                 <div class="login-button-wrapper">
-                    <button disabled={{ isToSAccepted }} {{action "login"}}>LOG IN</button>
+                    <button class="dugmic "disabled={{ isToSAccepted }} {{action "login"}}>LOG IN</button>
                     <h4 style="color:red">{{errorMessage}}</h4>
                 </div>
             </div>
