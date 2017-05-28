@@ -12,6 +12,8 @@ export default Ember.Controller.extend({
       grupa.name= this.get('name');
       grupa.description = this.get('description');
       this.get('groupService').createGroup(grupa);
+      this.set('name', '');
+      this.set('description', '');
     }
   }
 

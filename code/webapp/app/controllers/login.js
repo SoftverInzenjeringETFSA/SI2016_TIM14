@@ -76,6 +76,7 @@ export default Ember.Controller.extend({
                 this.set('model.confirmedPassword', '');
                 this.set('model.email', '');
                 Ember.set(this, 'registracijamsg', 'USPJEŠNA REGISTRACIJA. RADI POTVRDE PRIJAVITE SE!');
+                window.location.reload(true); 
                 //this.transitionToRoute('profil');
 	        	
             }

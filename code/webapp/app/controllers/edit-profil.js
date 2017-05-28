@@ -11,23 +11,25 @@ export default Ember.Controller.extend({
          spasiPromjeneKorisnika() {
          let editKorisnika = this.getProperties('email','firstName','lastName', 'omeni', 'interesovanja', 'zanimanje', 'location');
  
-          console.log(this.get('session.data.authenticated.korisnik.firstName'));
+          console.log('ime' + this.get('session.data.authenticated.korisnik.firstName'));
  
-          if(this.get('session.data.authenticated.korisnik.firstName') === '')
+          if(this.get('session.data.authenticated.korisnik.firstName') === '' || this.get('session.data.authenticated.korisnik.firstName') === null)
                   {
                      editKorisnika.firstName = ' ';
                   }
                   else
          editKorisnika.firstName= this.get('session.data.authenticated.korisnik.firstName');
- 
-         if(this.get('session.data.authenticated.korisnik.lastName') === '')
+          
+          console.log('prezime' + this.get('session.data.authenticated.korisnik.lastName'));
+
+         if(this.get('session.data.authenticated.korisnik.lastName') === '' || this.get('session.data.authenticated.korisnik.lastName') === null)
                  {
                     editKorisnika.lastName = ' ';
                  }
                  else
          editKorisnika.lastName =this.get('session.data.authenticated.korisnik.lastName');
  
-         if(this.get('session.data.authenticated.korisnik.zanimanje') === '')
+         if(this.get('session.data.authenticated.korisnik.zanimanje') === '' || this.get('session.data.authenticated.korisnik.zanimanje') === null)
                  {
                     editKorisnika.zanimanje = ' ';
                  }
@@ -35,13 +37,13 @@ export default Ember.Controller.extend({
  
          editKorisnika.zanimanje = this.get('session.data.authenticated.korisnik.zanimanje');
  
-         if(this.get('session.data.authenticated.korisnik.location') === '')
+         if(this.get('session.data.authenticated.korisnik.location') === '' || this.get('session.data.authenticated.korisnik.location') === null)
                  {
                     editKorisnika.location = ' ';
                  }
                  else
          editKorisnika.location = this.get('session.data.authenticated.korisnik.location');
-         if(this.get('session.data.authenticated.korisnik.email') === '')
+         if(this.get('session.data.authenticated.korisnik.email') === '' || this.get('session.data.authenticated.korisnik.email') === null)
                  {
                     editKorisnika.email = ' ';
                  }
@@ -49,21 +51,20 @@ export default Ember.Controller.extend({
  
          editKorisnika.email = this.get('session.data.authenticated.korisnik.email');
  
-         if(this.get('session.data.authenticated.korisnik.interesovanja') === '')
+         if(this.get('session.data.authenticated.korisnik.interesovanja') === '' || this.get('session.data.authenticated.korisnik.interesovanja') === null)
                  {
                     editKorisnika.interesovanja = ' ';
                  }
                  else
          editKorisnika.interesovanja = this.get('session.data.authenticated.korisnik.interesovanja');
-         if(this.get('session.data.authenticated.korisnik.omeni') === '')
+         if(this.get('session.data.authenticated.korisnik.omeni') === '' || this.get('session.data.authenticated.korisnik.omeni') === null)
                  {
                     editKorisnika.omeni= ' ';
                  }
                  else
- 
          editKorisnika.omeni = this.get('session.data.authenticated.korisnik.omeni');
  
- 
+ console.log('nesto' + this.get('session.data.authenticated.korisnik.omeni'));
          this.get('userService').editKorisnik(editKorisnika, this.get('session.data.authenticated.korisnik.username'));
  
   },
