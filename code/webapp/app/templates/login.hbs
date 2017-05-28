@@ -12,14 +12,14 @@
         <form {{action "registerUser" this on="submit"}}>
             <div class="register-fields">
 			{{errorUsername}}
-            {{input placeholder="username" value=model.username}} 
+            {{input placeholder="Username" value=model.username}}
 			{{errorEmail}}
-            {{input placeholder="email address" value=model.email}} 
+            {{input placeholder="Email address" value=model.email}}
 			{{errorPassword}}
-            {{input type="password" placeholder="password" value=model.password}} 
+            {{input type="password" placeholder="Password" value=model.password}}
 			{{errorConfirmedPassword}}
-            {{input type="password" placeholder="confirm password" value=model.confirmedPassword}}
-            
+            {{input type="password" placeholder="Confirm password" value=model.confirmedPassword}}
+
             <div class="terms-of-conditions">
                 {{ input type="checkbox" checked=isToSCheckboxChecked class=(if isToSCheckboxChecked 'new' 'old') }}
                 <span>
@@ -28,7 +28,7 @@
             </div>
             </div>
             <div class="register-button">
-                <button disabled={{ isToSAccepted }} {{ action 'registerUser' }} >SIGN UP</button>
+                <button class= "dugmic "disabled={{ isToSAccepted }} {{ action 'registerUser' }} >SIGN UP</button>
             </div>
         </form>
         {{/if}}
