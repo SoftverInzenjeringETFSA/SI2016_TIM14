@@ -29,7 +29,7 @@
                                         <label for="datumRodjenja">Name:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                     {{input type="text" class="form-control" rows="1"  valueBinding="name"}}
+                                     {{input  class="form-control" rows="1"   value=session.data.authenticated.korisnik.firstName }}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -37,7 +37,7 @@
                                         <label for="Spol">Surname:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                       {{input type="text" class="form-control" rows="1" valueBinding="prezime"}}
+                                    {{input  class="form-control" rows="1"   value=session.data.authenticated.korisnik.lastName }}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -45,7 +45,7 @@
                                         <label for="zanimanje">Work:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                      {{input type="text" class="form-control" rows="1" valueBinding="zanimanje"}}
+                                    {{input  class="form-control" rows="1"   value=session.data.authenticated.korisnik.zanimanje}}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -53,7 +53,7 @@
                                         <label for="grad">City:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        {{input type="text" class="form-control" rows="1"  valueBinding="grad"}}
+                                          {{input  class="form-control" rows="1"   value=session.data.authenticated.korisnik.location}}
                                     </div>
                                 </div>
                                 <div class="row">
@@ -61,26 +61,26 @@
                                         <label for="jezici">Email:</label>
                                     </div>
                                     <div class="col-sm-10">
-                                        {{input  type="text" class="form-control" rows="1"  valueBinding="email"}}
+                                      {{input  class="form-control" rows="1"   value=session.data.authenticated.korisnik.email}}
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+ 
                     </div>
                     <div class="ovodole">
                         <div class="about-me-form">
                             <label for="about-me"><SMALL> O MENI </SMALL></label>
-                           {{textarea value=omeni class="form-control" rows="5"}}
+                           {{textarea class="form-control" rows="5" value=session.data.authenticated.korisnik.omeni}}
                         </div>
                         <br>
                         <div class="interests-form">
                             <label for="interests"><SMALL> MOJA INTERESOVANJA </SMALL></label>
-                            {{textarea value=interesi class="form-control" rows="5"}}
+                             {{textarea class="form-control" rows="5" value=session.data.authenticated.korisnik.interesovanja}}
                         </div>
                     </div>
                         <button class="dugmic" {{ action 'spasiPromjeneKorisnika'}}> Spasi promjene </button>
-                       {{#link-to 'profil'}} <button class="dugmic" {{ action 'azurirajPodatke'}}> Nazad na profil </button>  {{/link-to}}
+                       {{#link-to 'profil'}} <button class="dugmic" {{ action 'azurirajPromjene'}}> Nazad na profil </button>  {{/link-to}}
                 </div>
             </div>
         </div>

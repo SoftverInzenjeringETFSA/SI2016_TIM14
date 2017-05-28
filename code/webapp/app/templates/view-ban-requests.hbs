@@ -4,6 +4,8 @@
 {{side-navigation}}
     <div class="col-sm-9">
       <h4><small>VIEW ALL BAN REQUESTS</small></h4>
+      <h4 style="color:green">{{Message}}</h4>
+      <h4 style="color:green">{{Message2}}</h4>
       <table class="table table-striped">
          <thead>
             <tr>
@@ -36,15 +38,19 @@
            {{/each}}
            </td>
            <td>
-              <td><button>Accept</button></td>
-               <td><button>Deny</button></td>
+           {{#each model as |ban|}}
+              <tr>
+              <td><button {{ action 'banujKorisnika' ban.targetId ban.chatGroupId ban.id }}>Accept</button></td>
+               <td><button {{ action 'odbijbanKorisnika' ban.id }} >Deny</button></td>
+              </tr>
+            {{/each}}
            </td>
         </tr>
          <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
             {{#each model as |osoba|}}
               <tr>
               <td>{{osoba.username}}</td>
-     			<td >{{osoba.email }}</td>
+          <td >{{osoba.email }}</td>
               <td><button {{ action 'inviteUser' osoba.username }}>View</button></td>
               </tr>
             {{/each}}

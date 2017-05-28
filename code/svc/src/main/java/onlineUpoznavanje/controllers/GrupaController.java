@@ -107,6 +107,24 @@ public class GrupaController {
 
     }
 	
+    
+    @RequestMapping(value = "/obrisigrupu", method = RequestMethod.POST)
+    public void obrisiGrupu(@RequestBody String podatak)
+    {
+		 try {
+		dbActionsGrupe db = new dbActionsGrupe();
+        db.connectToDB();
+        System.out.println(podatak);
+        db.obrisiGrupuDB(podatak);
+        db.close();
+		 }
+		 catch (Exception e)
+		 {
+			// return GrupaRepository.findAll();
+		 }
+		 
+
+    }
 	
 
 }

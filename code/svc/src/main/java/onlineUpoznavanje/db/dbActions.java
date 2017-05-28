@@ -53,9 +53,12 @@ import onlineUpoznavanje.models.Grupa;
                                     String email = resultSet.getString("email");
                                     String firstName=resultSet.getString("firstName");
                                     String lastName=resultSet.getString("lastName");
+                                    Integer id = resultSet.getInt("id"); 
                                     User user = new User();
                                     user.setUsername(username);
                                     user.setEmail(email);
+                                    user.setId(id);
+                                    
                                    if(firstName==null) 
                                    {  
                                     user.setFirstName("  /");
@@ -74,6 +77,7 @@ import onlineUpoznavanje.models.Grupa;
                              users.add(user);
                                     
                             }
+                            System.out.println(users.size());
                             return users;
                     } catch (Exception e) {
                             throw e;
@@ -365,7 +369,9 @@ public void editKorisnikDB(String data) throws Exception {
                 		String _interesovanje = (String) jsonObject.get("interesovanje");
                 		String _omeni = (String) jsonObject.get("omeni");
                 		String _username = (String) jsonObject.get("username");
+                		
                 		System.out.println("1 " + _ime);
+                		
                 		String _ime_ = _ime.replace("%20"," ");
                 		String _prezime_ = _prezime.replace("%20"," ");
                 		String _zanimanje_ = _zanimanje.replace("%20"," ");
@@ -373,6 +379,10 @@ public void editKorisnikDB(String data) throws Exception {
                 		String _email_ = _email.replace("%40","@");
                 		String _interesovanje_ = _interesovanje.replace("%20"," ");
                 		String _omeni_ = _omeni.replace("%20"," ");
+                		
+                		String _omeni_2 = _omeni_.replace("%2C",", ");
+                		String _interesovanje_2 = _interesovanje_.replace("%2C",", ");
+                		
                 		String _username_ = _username.replace("%20"," ");
                 		System.out.println("2 " +_email_);
                 		
@@ -384,9 +394,9 @@ public void editKorisnikDB(String data) throws Exception {
                     	statement.setString(2,_prezime_);
                     	statement.setString(3,_email_);
                     	statement.setString(4,_grad_);
-                    	statement.setString(5,_omeni_);
+                    	statement.setString(5,_omeni_2);
                     	statement.setString(6,_zanimanje_);
-                    	statement.setString(7,_interesovanje_);
+                    	statement.setString(7,_interesovanje_2);
                     	statement.setString(8,_username_);
                     	statement.execute();
                       }
@@ -394,6 +404,48 @@ public void editKorisnikDB(String data) throws Exception {
                         throw e;
                      }
                   }
+public void deleteKorisnikDB(String data) throws Exception{
+	
+	JSONObject jsonObject=new JSONObject();
+  	try {
+  	System.out.println("okej!");
+		String query=data;
+        String queryArray[]=query.split("&");
+        String idKorisnik[]=queryArray[0].split("=");
+        jsonObject.put(idKorisnik[0],idKorisnik[1]); 
+        System.out.println("okej! 2");
+	      }
+	catch (JSONException e)
+    {
+        e.printStackTrace();
+    }
+	     
+
+	   String _idKorisnik = (String) jsonObject.get("iduser");
+	   Integer korisnikId = Integer.valueOf(_idKorisnik);
+	   System.out.println("user: " + korisnikId); 
+	   statement = connect.createStatement();
+   //dodati jos za poruke
+	 PreparedStatement statement = connect.prepareStatement("DELETE FROM " + database + ".userchatgroup WHERE korisnikId=?");
+ statement.setInt(1,korisnikId);
+   statement.execute(); 
+ 
+	  statement = connect.prepareStatement("DELETE FROM " + database + ".adminbanrequest WHERE requestedId=?");
+ statement.setInt(1,korisnikId);
+ statement.execute();
+ statement = connect.prepareStatement("DELETE FROM " + database + ".adminbanrequest WHERE targetId=?");
+ statement.setInt(1,korisnikId);
+ statement.execute();
+ 
+ 
+	   statement = connect.prepareStatement("DELETE FROM " + database + ".user WHERE id=?");
+   statement.setInt(1,korisnikId);
+	   statement.execute();
+
+
+}
+
+
 
                 // You need to close the resultSet
                 public void close() {

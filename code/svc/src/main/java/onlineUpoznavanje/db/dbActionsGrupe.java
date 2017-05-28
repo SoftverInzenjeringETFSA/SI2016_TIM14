@@ -83,9 +83,11 @@ public class dbActionsGrupe {
                  while (resultSet.next()) {
                          String name = resultSet.getString("name");
                          String description = resultSet.getString("description");
+                         Integer id = resultSet.getInt("id");
                          Grupa grupa = new Grupa();
                          grupa.setName(name);
                          grupa.setDescription(description);
+                         grupa.setId(id);
                          grupe.add(grupa);
                          
                  }
@@ -95,6 +97,49 @@ public class dbActionsGrupe {
          }
  }
      
+     
+     public void obrisiGrupuDB(String data) throws Exception {
+         try {
+      	   
+      	   JSONObject jsonObject=new JSONObject();
+          	try {
+          	System.out.println("uslo 25");
+        		String query=data;
+                String queryArray[]=query.split("&");
+                String idGrupa[]=queryArray[0].split("=");
+                jsonObject.put(idGrupa[0],idGrupa[1]); 
+                System.out.println("uslo 3");
+        	      }
+        	catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+      	     
+
+      	   String _idGrupa = (String) jsonObject.get("idgrupa");
+      	   Integer grupaId = Integer.valueOf(_idGrupa);
+      	   System.out.println("grupa: " + grupaId); 
+      	   statement = connect.createStatement();
+           //doadti jos i za poruke
+      	 PreparedStatement statement = connect.prepareStatement("DELETE FROM " + database + ".userchatgroup WHERE groupId=?");
+         statement.setInt(1,grupaId);
+  	   statement.execute(); 
+  	   
+      	  statement = connect.prepareStatement("DELETE FROM " + database + ".adminbanrequest WHERE chatGroupId=?");
+         statement.setInt(1,grupaId);
+  	   statement.execute();
+  	   
+      	   statement = connect.prepareStatement("DELETE FROM " + database + ".chatgroup WHERE id=?");
+           statement.setInt(1,grupaId);
+      	   statement.execute(); 
+      	   
+          	
+          } catch (Exception e) {
+          	
+                  throw e;
+          }
+      
+      }
      
      
      

@@ -13,6 +13,7 @@
 
 </tr>
 </thead>
+<tr>
 <td>
 <tr>
   <td>
@@ -36,16 +37,16 @@
   <td>
   {{#each model as |grupa|}}
       <tr>
-      <button> Uredi </button>
-
+      <button {{ action 'obrišiGrupu' grupa.id }}> Obriši grupu </button>
     </tr>
     {{/each}}
   </td>
+  </tr>
          <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
             {{#each model as |osoba|}}
               <tr>
               <td>{{osoba.username}}</td>
-     			<td >{{osoba.email }}</td>
+          <td >{{osoba.email }}</td>
               <td><button {{ action 'inviteUser' osoba.username }}>View</button></td>
               </tr>
             {{/each}}

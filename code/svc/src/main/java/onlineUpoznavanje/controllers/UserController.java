@@ -169,6 +169,25 @@ public class UserController {
 
     }
 	
+	@RequestMapping(value = "/obrisikorisnika", method = RequestMethod.POST)
+    public void deleteUser(@RequestBody String podatak)
+    {
+
+	try {
+
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println(podatak);
+       db.deleteKorisnikDB(podatak);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
+
+    }
+	
 
 
 }

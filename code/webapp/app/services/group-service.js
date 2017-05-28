@@ -3,26 +3,31 @@ import BaseService from './base-service';
 import Group from '../models/group';
 
 export default BaseService.extend({
-  session: Ember.inject.service(),
   all: function() {
       var grupe = [];
       this.ajax({ url: `grupe/all`, type: "GET"}).then(function(data) {
           data.forEach(function(group) {
-              grupe.addObject(Group.create(group));
+              users.addObject(User.create(group));
           });
 
       });
       return grupe;
 
   },
-
-  searchGroups: function(searchTerm){
-      var groups = [];
-      this.ajax({ url: `grupe/searchGroups?searchTerm=${searchTerm}`, type: "GET"}).then(function(data) {
-          data.forEach(function(group) {
-              groups.addObject(Group.create(group));
-          });
+  createGroup: function(grupa) {
+      var grupe = [];
+      var ime = grupa.name;
+      var opis = grupa.description;
+      this.ajax({ url: `grupe/kreirajgrupu`, type: "POST", data: {ime:ime, opis:opis}}).then(function(data) {
       });
-      return groups;
+
+      return true;
+  },
+
+  deleteGroup: function(idgrupa){
+
+    this.ajax({ url: `grupe/obrisigrupu`, type: "POST", data: {idgrupa:idgrupa}}).then(function(data) {
+        });
+        return true;
   }
 });

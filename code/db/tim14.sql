@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2017 at 11:51 PM
+-- Generation Time: May 28, 2017 at 04:39 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -39,7 +39,7 @@ CREATE TABLE `adminbanrequest` (
 --
 
 INSERT INTO `adminbanrequest` (`reason`, `requestedId`, `targetId`, `chatGroupId`, `id`) VALUES
-('neprimjerene rijeci', '5', '7', '6', 1);
+('prekrsio Hipokratovu zakletvu', '11', '12', '7', 5);
 
 -- --------------------------------------------------------
 
@@ -124,19 +124,6 @@ CREATE TABLE `privatechat` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `privatechatarchive`
---
-
-CREATE TABLE `privatechatarchive` (
-  `id` int(11) NOT NULL,
-  `privateChatId` int(11) NOT NULL,
-  `sourceId` int(11) NOT NULL,
-  `message` varchar(255) COLLATE utf8_slovenian_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `user`
 --
 
@@ -161,8 +148,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `firstName`, `lastName`, `email`, `gender`, `dateOfBirth`, `location`, `omeni`, `isAdmin`, `zanimanje`, `interesovanja`) VALUES
-(1, 'berina', 'ovojesifra1Anova', 'Berina', 'Muhovic', 'berina@gmail.com', NULL, NULL, 'SARAJEVO', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C but also the leap into', b'0', 'Posao', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C but also the leap into'),
-(2, 'neko', 'password', 'dino', 'merlinko', 'asdasd', NULL, NULL, 'dubai', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C but also the leap into electronic typesetting%2C remai', b'0', 'igrac', ' '),
+(2, 'neko', 'password', ' Dino', 'merlinko', 'asdasd', NULL, NULL, 'dubai', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,    but also the leap into electronic typesetting,    remaining essentially unchanged. It was popularised in the 1960s with the release', b'0', 'igrac', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,    but also the leap into electronic typesetting,    remaining essentially unchanged. It was popularised in the 1960s with the release'),
 (3, 'korisnik', 'ovojekorisnik', NULL, NULL, 'korisnik@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
 (4, 'haris', 'sifrica1A', NULL, NULL, 'haris@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
 (5, 'nekaosobaA', 'njenpassword2A', 'Hilmija', ' ', 'mail', NULL, NULL, 'Sarajevo', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C ', b'0', ' ', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s%2C when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries%2C '),
@@ -177,8 +163,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `firstName`, `lastName`, `emai
 (16, 'username88', 'username88A', NULL, NULL, 'username88@gmail.com', NULL, NULL, NULL, NULL, b'0', '', ''),
 (17, 'Andrej', '1DvaTri!', NULL, NULL, 'andrej@si.ba', NULL, NULL, NULL, NULL, b'0', '', ''),
 (18, 'andrej88', 'Ivona88', NULL, NULL, 'andrejoapsod@jdshfuko.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(19, 'Blavblabljkdba', 'RayBan88', NULL, NULL, 'asnjklsdn@djasnd.com', NULL, NULL, NULL, NULL, b'0', '', ''),
-(20, 'person', 'password123A', 'Proba', ' ', '%20', NULL, NULL, ' ', ' ', b'0', ' ', ' ');
+(19, 'Blavblabljkdba', 'RayBan88', NULL, NULL, 'asnjklsdn@djasnd.com', NULL, NULL, NULL, NULL, b'0', '', '');
 
 -- --------------------------------------------------------
 
@@ -191,6 +176,18 @@ CREATE TABLE `userchatgroup` (
   `groupId` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+--
+-- Dumping data for table `userchatgroup`
+--
+
+INSERT INTO `userchatgroup` (`korisnikId`, `groupId`, `id`) VALUES
+(4, 7, 7),
+(5, 6, 6),
+(9, 7, 5),
+(11, 7, 11),
+(12, 7, 12),
+(14, 7, 13);
 
 -- --------------------------------------------------------
 
@@ -248,15 +245,6 @@ ALTER TABLE `privatechat`
   ADD KEY `privatechat_ibfk_2` (`targetId`);
 
 --
--- Indexes for table `privatechatarchive`
---
-ALTER TABLE `privatechatarchive`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `privateChatId` (`privateChatId`,`sourceId`),
-  ADD KEY `privatechatarchive_ibfk_2` (`sourceId`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -289,7 +277,7 @@ ALTER TABLE `userreview`
 -- AUTO_INCREMENT for table `adminbanrequest`
 --
 ALTER TABLE `adminbanrequest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `blockeduser`
 --
@@ -299,7 +287,7 @@ ALTER TABLE `blockeduser`
 -- AUTO_INCREMENT for table `chatgroup`
 --
 ALTER TABLE `chatgroup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `poruka`
 --
@@ -311,11 +299,6 @@ ALTER TABLE `poruka`
 ALTER TABLE `privatechat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `privatechatarchive`
---
-ALTER TABLE `privatechatarchive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
@@ -324,7 +307,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `userchatgroup`
 --
 ALTER TABLE `userchatgroup`
-  MODIFY `korisnikId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `userreview`
 --
@@ -347,20 +330,6 @@ ALTER TABLE `blockeduser`
 ALTER TABLE `privatechat`
   ADD CONSTRAINT `privatechat_ibfk_1` FOREIGN KEY (`sourceId`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `privatechat_ibfk_2` FOREIGN KEY (`targetId`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `privatechatarchive`
---
-ALTER TABLE `privatechatarchive`
-  ADD CONSTRAINT `privatechatarchive_ibfk_1` FOREIGN KEY (`privateChatId`) REFERENCES `privatechat` (`id`),
-  ADD CONSTRAINT `privatechatarchive_ibfk_2` FOREIGN KEY (`sourceId`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `userchatgroup`
---
-ALTER TABLE `userchatgroup`
-  ADD CONSTRAINT `userchatgroup_ibfk_1` FOREIGN KEY (`korisnikId`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `userchatgroup_ibfk_2` FOREIGN KEY (`groupId`) REFERENCES `chatgroup` (`id`);
 
 --
 -- Constraints for table `userreview`

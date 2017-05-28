@@ -4,6 +4,7 @@
 {{side-navigation}}
     <div class="col-sm-9">
       <h4><small>VIEW ALL USERS</small></h4>
+      <h4 style="color:green">{{Message}}</h4>
       <table class="table table-striped">
          <thead>
             <tr>
@@ -14,8 +15,8 @@
               <th>Option </th>
             </tr>
            </thead>
-           <tr>
-             <td>
+  <tr>
+      <td>
              {{#each model as |osoba|}}
                <tr> <td>{{osoba.firstName}}</td></tr>
              {{/each}}
@@ -35,15 +36,20 @@
              <tr> <td>{{osoba.email}}</td> </tr>
            {{/each}}
            </td>
-
-
+           <td>
+  {{#each model as |osoba|}}
+      <tr>
+         <td><button {{ action 'obrisiUsera' osoba.id }}> Obriši korisnika </button></td>
     </tr>
+    {{/each}}
+  </td>
+</tr>
 
          <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
             {{#each model as |osoba|}}
               <tr>
               <td>{{osoba.username}}</td>
-     			<td >{{osoba.email }}</td>
+          <td >{{osoba.email }}</td>
               <td><button {{ action 'inviteUser' osoba.username }}>View</button></td>
               </tr>
             {{/each}}

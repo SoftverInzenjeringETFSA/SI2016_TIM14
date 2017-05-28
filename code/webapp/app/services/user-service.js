@@ -4,7 +4,7 @@ import User from '../models/user';
 
 export default BaseService.extend({
     session: Ember.inject.service(),
-	all: function() {
+    all: function() {
         var users = [];
         this.ajax({ url: `korisnici/all`, type: "GET"}).then(function(data) {
             data.forEach(function(user) {
@@ -24,11 +24,11 @@ export default BaseService.extend({
         return true;
     },
 
-	changePassword: function(password, username){
-		this.ajax({ url: `korisnici/promijenipassword`, type: "POST", data: {username:username, password:password}}).then(function(data) {
-		});
-		return true;
-	},
+    changePassword: function(password, username){
+        this.ajax({ url: `korisnici/promijenipassword`, type: "POST", data: {username:username, password:password}}).then(function(data) {
+        });
+        return true;
+    },
 
     searchUsers: function(searchTerm){
         var users = [];
@@ -67,6 +67,16 @@ export default BaseService.extend({
 
         });
         return true;
+    },
+
+    deleteUser: function(iduser)
+    {
+   
+           this.ajax({ url: `korisnici/obrisikorisnika`, type: "POST", data: {iduser:iduser}}).then(function(data) {
+        });
+        return true;
+
+
     }
 
 
