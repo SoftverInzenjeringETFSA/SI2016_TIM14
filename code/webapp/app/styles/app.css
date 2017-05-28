@@ -1,211 +1,65 @@
-.col-sm-1 {width: 8.33%;}
-.col-sm-2 {width: 16.66%;}
-.col-sm-3 {width: 25%;}
-.col-sm-4 {width: 33.33%;}
-.col-sm-5 {width: 41.66%;}
-.col-sm-6 {width: 50%;}
-.col-sm-7 {width: 58.33%;}
-.col-sm-8 {width: 66.66%;}
-.col-sm-9 {width: 75%;}
-.col-sm-10 {width: 83.33%;}
-.col-sm-11 {width: 91.66%;}
-.col-sm-12 {width: 100%;}
-.col-sm-13{ width: 20%;}
-body {
-    padding: 0;
-    margin: 0;
-}
-
-/*Profil*/
-.col-sm-9 .img-responsive {
-   padding: 5%;
-   -webkit-border-radius: 10px;
-       -moz-border-radius: 10px;
-            border-radius: 10px;
-    border: 5px solid #330011;
-    display:inline-block;
-    margin:10px;
-
-}
-.image-all {
-  padding-left: 22%;
-  padding-top: 5%;
-}
-.col-sm-9 .rating {
-  padding-left: 23%;
-}
-
-
-.about-me-form  {
-  padding-left: 6%;
-  padding-right: 20%;
-
-}
-.about-me-form .form-control
-{
-    border:3px solid;
-    border-color: #330011;
-}
-.interests-form  {
-  padding-left: 6%;
-  padding-right: 20%;
-}
-
-.interests-form .form-control {
-  border:3px solid;
-  border-color: #330011;
-}
-
-.ovodole {
-  padding-top: 20%;
-  padding-left: 1%;
-}
-
-.profileTopForm {
-  padding-top: 2%;
-  padding-right: 26%;
-}
-
-.profileTopForm label {
-  padding-top: 7%;
-  padding-left: 15%;
-}
-.profileTopForm textarea {
-  padding-top: 0%;
-}
-
-textarea {
-  resize:none;
-}
-.form-group .form-control {
-  border:1px solid;
-  border-color: #330011;
-}
-
-
-.dugmic {
-  margin-left: 7%;
-  margin-top: 1%;
-  color: black;
-}
-
-/*privatnichat*/
-
-.zaChat {
-    padding-left: 10%;
-    padding-top: 5%;
-}
-
-.tabelaZaChat {
-    border-collapse:separate;
-    border-spacing:15px;
-    border: solid;
+.route-login {
+    background: url('images/Background.jpg');
+    position: absolute;
     width: 100%;
-
+    height: 100%;
+    z-index: 0;
+    background-size: cover;
+    background-position-y: -90px;
 }
 
-.redChat {
-    padding-top: 10%;
-}
+    .route-login .register-headers h1 {
+        padding-top: 50px;
+        font-size: 20px;
+        color: #f5f5f0;
+        font-family: sans-serif;
 
-.gornjiButton {
-  margin-bottom: 2%;
-  color:#555555;
-}
+    }
 
-.btn {
-    background-color: #e7e7e7;
-    color:#555555;
-}
-
-/*Admin panel*/
-.group-admin {
-  padding-top: 5%;
-  padding-left: 5%;
-  padding-bottom: 5%;
-}
-.group-admin .dugmic {
-  margin-left: auto;
-  padding-left: 1%;
-  padding-right: 1%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background-color: #e7e7e7;
-  color:#555555;
-}
-.user-admin {
-  padding-top: 5%;
-  padding-left: 5%;
-}
-.user-admin .dugmic {
-  margin-left: auto;
-  padding-left: 1%;
-  padding-right: 1%;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background-color: #e7e7e7;
-  color:#555555;
-}
- /*Add-new-group*/
- .image-all-group {
-   margin-left: auto;
- }
- .group-info label {
-   padding-top: 1%;
- }
- .group-description .dugmic {
-   margin-left: auto;
-   padding-left: 1%;
-   padding-right: 1%;
-   background-color: #e7e7e7;
-   color:#555555;
- }
- /* View All Groups */
- .col-sm-9 .back {
-   margin-left: auto;
-   background-color: #e7e7e7;
-   color:#555555;
- }
-/*rating*/
-.stars {
-
-display: inline-block;
-}
-
-.rating {
-
-}
+    .route-login .register-headers h2 {
+        color: #f5f5f0;
+        font-size: 15px;
+        padding-bottom: 20px;
+        margin-top: 0;
+        font-family: serif;
+    }
 
 
+    .route-login .register-fields {
+        display: flex;
+        flex-direction: column;
 
-input.star { display: none; }
-label.star {
- float: right;
- padding-right: 3px;
- font-size: 15px;
- color: #444;
- transition: all .2s;
-}
+    }
 
+    .route-login .register-fields input {
+            margin-bottom: 3%;
+            padding-left: 2%;
+            padding-top: 1%;
+            padding-bottom: 1%;
+        }
 
-
-input.star:checked ~ label.star:before {
- content: '\f005';
- color: black;
- transition: all .25s;
-}
-
-
-
-input.star-5:checked ~ label.star:before {
- color: #ffd633;
-
-}
+    .route-login .terms-of-conditions {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      color: #f5f5f0;
+    }
 
 
-label.star:hover { transform: rotate(-15deg) scale(1.3); }
+    .new {
+        background-color: red;
+    }
 
-label.star:before {
- content: '\f006';
- font-family: FontAwesome;
+    .old {
+        background-color: blue;
+    }
+.register-button .dugmic {
+background-color:  #956673;
+border: none;
+color: white;
+padding-left: 5%;
+padding-right: 5%;
+padding-top: 2%;
+padding-bottom: 2%;
+margin-left: auto;
+
 }
