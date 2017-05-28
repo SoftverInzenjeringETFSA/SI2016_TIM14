@@ -77,6 +77,14 @@ export default BaseService.extend({
         return true;
 
 
+    },
+
+    prihvatiZahtjevPM(iduser, idPrihvatioZahtjev){
+
+         this.ajax({ url: `korisnici/prihvatizahtjev`, type: "POST", data: {iduser:iduser, idPrihvatioZahtjev:idPrihvatioZahtjev}}).then(function(data) {
+        });
+        return true;
+
     }
 
 

@@ -17,10 +17,12 @@ export default Ember.Controller.extend({
     actions: {
         declineInvite(params) {          
             this.refreshInvite(params);
-        }
-         
-
-      
-        
+        },
+        prihvatiZahtjev(iduser) {
+           var idPrihvatioZahtjev = this.get('session.data.authenticated.korisnik.id');
+           this.get('userService').prihvatiZahtjevPM(iduser, idPrihvatioZahtjev);
+          // Ember.set(this, 'Message', 'Uspješno obrisan korisnik!');
+          window.location.reload(true); 
+       }
     }
 });

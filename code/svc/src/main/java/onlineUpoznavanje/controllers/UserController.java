@@ -25,6 +25,7 @@ import onlineUpoznavanje.services.izuzetak.ServiceException;
 import onlineUpoznavanje.db.dbActions;
 import onlineUpoznavanje.dto.LoginDataRequest;
 import onlineUpoznavanje.models.Invite;
+import onlineUpoznavanje.models.PrivateMessage;
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.repositories.UserRepository;
 
@@ -42,7 +43,7 @@ public class UserController {
 	private static UserRepository UserRepository;
 	
 	private static List<Invite> invitesToReturn = new ArrayList<Invite>();
-
+	private static List<PrivateMessage> privatnikontakti = new ArrayList<PrivateMessage>();
 	
 	private static List<User> usersToReturn = new ArrayList<User>();
 	private static User _user = new User();
@@ -187,6 +188,44 @@ public class UserController {
 			// return UserRepository.findAll();
 	}
 
+    }
+	
+	@RequestMapping(value = "/prihvatizahtjev", method = RequestMethod.POST)
+    public void prihvatiZahtjev(@RequestBody String podatak)
+    {
+
+	try {
+
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println(podatak);
+       db.prihvatiZahtjevDB(podatak);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
+
+    }
+	
+	@RequestMapping(value = "/allprivatemessages", method = RequestMethod.GET)
+    public List<PrivateMessage> vratiPrivatneKontakte(@RequestParam("id") int id)
+    {
+
+	try {
+
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println(id);
+       //privatnikontakti = db.vratiPrivatneKontakteDB(podatak);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
+	return privatnikontakti;
     }
 	
 

@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.models.Invite;
+import onlineUpoznavanje.models.PrivateMessage;
 import onlineUpoznavanje.models.Grupa;
 
         public class dbActions {
@@ -468,6 +469,102 @@ public void deleteKorisnikDB(String data) throws Exception{
    statement.setInt(1,korisnikId);
 	   statement.execute();
 
+
+}
+
+public void prihvatiZahtjevDB(String data) throws Exception{
+	
+	JSONObject jsonObject=new JSONObject();
+  	try {
+  	System.out.println("okej!");
+		String query=data;
+        String queryArray[]=query.split("&");
+        String idSourceKorisnik[]=queryArray[0].split("=");
+        String idTargetKorisnik[]=queryArray[1].split("=");
+        jsonObject.put(idSourceKorisnik[0],idSourceKorisnik[1]);
+        jsonObject.put(idTargetKorisnik[0],idTargetKorisnik[1]);
+        
+        System.out.println("okej! 2");
+	      }
+	catch (JSONException e)
+    {
+        e.printStackTrace();
+    }
+	     
+
+	   String _idSourceKorisnik = (String) jsonObject.get("iduser");
+	   Integer SourceKorisnik  = Integer.valueOf(_idSourceKorisnik);
+	   
+	   String _idTargetKorisnik = (String) jsonObject.get("idPrihvatioZahtjev");
+	   Integer TargetKorisnik  = Integer.valueOf(_idTargetKorisnik);
+	   System.out.println("user: " + TargetKorisnik ); 
+	   statement = connect.createStatement();
+
+     	PreparedStatement statement = connect.prepareStatement("INSERT INTO " + database + ".privatechat ( sourceId, targetId ) VALUES ( ?, ? )");
+     	statement.setInt(1,SourceKorisnik);
+     	statement.setInt(2,TargetKorisnik);
+     	System.out.println("user: " + SourceKorisnik ); 
+	   statement.execute();
+	   
+	   statement = connect.prepareStatement("DELETE FROM " + database + ".invites WHERE idOfInvitee=? AND idOfInviter=?");
+    	statement.setInt(1,TargetKorisnik);
+    	statement.setInt(2,SourceKorisnik);
+    	System.out.println("user: " + SourceKorisnik ); 
+	   statement.execute();
+
+}
+
+public List<PrivateMessage> vratiPrivatneKontakteDB(String data) throws Exception{
+	
+	JSONObject jsonObject=new JSONObject();
+  	try {
+  	System.out.println("okej!");
+		String query=data;
+        String queryArray[]=query.split("&");
+        String idKorisnik[]=queryArray[0].split("=");
+        jsonObject.put(idKorisnik[0],idKorisnik[1]);
+        
+        System.out.println("okej! 2");
+	      }
+	catch (JSONException e)
+    {
+        e.printStackTrace();
+    }
+	     
+
+	   String _idKorisnik = (String) jsonObject.get("id");
+	   Integer idKorisnik = Integer.valueOf(_idKorisnik);
+	   
+	  
+	   System.out.println("user: " + idKorisnik ); 
+	   PreparedStatement statement = connect.prepareStatement("select * from " + database + ".privatechat WHERE targetId=?");
+	   statement.setInt(1,idKorisnik);
+       resultSet = statement.executeQuery();
+       List<PrivateMessage> privatemessages = new ArrayList<PrivateMessage>();
+       while (resultSet.next()) {
+               Integer sourceId = resultSet.getInt("sourceId");
+               Integer targetId = resultSet.getInt("targetId");
+               
+               PrivateMessage pm = new PrivateMessage(); 
+               pm.setSourceId(sourceId);
+               pm.setTargetId(targetId);
+
+               
+               resultSet = null;
+               statement = null;
+               
+               statement = connect.prepareStatement("select * from " + database + ".user WHERE id=?");
+               statement.setInt(1, sourceId);
+               ResultSet resultSet2 = statement.executeQuery();
+              
+               while (resultSet2.next()) {
+               	String sourceusername=resultSet2.getString("username");
+               	 pm.setSourceusername(sourceusername);
+               }
+          
+          privatemessages.add(pm);      
+       }
+       return privatemessages;
 
 }
 
