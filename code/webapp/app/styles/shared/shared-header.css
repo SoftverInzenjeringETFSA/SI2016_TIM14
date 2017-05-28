@@ -1,12 +1,25 @@
 .shared-header {
     background-color: #2B2C30;
     display: flex;
-    color: #555;
+    color: white;
     height: 14vh;
     justify-content: space-between;
     min-height: 60px;
-}
+    border: none;
 
+
+}
+.shared-header ::-webkit-input-placeholder {
+  color:gray;
+}
+.shared-header .login-button-wrapper {
+  padding-top: 40px;
+  padding-right: 50px;
+
+}
+.shared-header .login-data-wrapper > input {
+margin-top: auto;
+}
 .shared-header .logo-wrapper img {
     height: 100%;
     min-height: 50px;
@@ -21,25 +34,47 @@
     align-items: center;
     padding-right: 5%
 }
-
-    .shared-header .shared-header-inner .shared-header-inner-login {
+.shared-header .shared-header-inner .shared-header-inner-login {
         display: flex;
         justify-content: space-between;
         width: 350px;
+
     }
 
-        .shared-header .shared-header-inner .shared-header-inner-login .login-data-wrapper input {
+.shared-header .shared-header-inner .shared-header-inner-login .login-data-wrapper input {
             display: block;
+            padding-left: 2%;
+            color: white;
+            background-color: white;
+            border: none;
         }
-
-        .shared-header .shared-header-inner .shared-header-inner-login .login-data-wrapper input:first-child {
+.shared-header .shared-header-inner .shared-header-inner-login .login-data-wrapper input:first-child {
             margin-bottom: 8%;
-        }
 
-        .shared-header .shared-header-inner .shared-header-inner-login .login-button-wrapper {
+        }
+.shared-header .shared-header-inner .shared-header-inner-login .login-button-wrapper {
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
+.login-button-wrapper{
+  padding-bottom: 1%;
+  }
+.login-button-wrapper .dugmic {
+  background-color:  #956673;
+  border: none;
+  color: white;
+  margin-left: auto;
+}
+.shared-header-inner-login .login-data-wrapper {
+  padding-top: 1.5%;
+  padding-right: 0;
+}
+.logout {
+  background-color:  #956673;
+  border: none;
+  color: white;
+  margin-left: auto;
+}
