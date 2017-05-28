@@ -5,16 +5,18 @@
       <form {{action "promijeniSifru" this on="submit"}}>
           <div class="register-fields">
     {{errorOldPassword}}
-           {{input type="password" placeholder="old password" value=oldpassword}}
+           {{input type="password" placeholder="Type Old Password" value=oldpassword}}
+           <br><br>
     {{errorNewPassword}}
-          {{input type="password" placeholder="new password" value=newpassword}}
+          {{input type="password" placeholder="Type New Password" value=newpassword}}
+          <br><br>
     {{errorConfirmedPassword}}
-          {{input type="password" placeholder="confirm password" value=newconfirmedPassword}}
+          {{input type="password" placeholder="Confirm Password" value=newconfirmedPassword}}
 
           </div>
           <div class="register-button">
             <h4 style="color:red">{{errorMessage}}</h4>
-              <button>Potvrdi</button>
+              <button class="dugmic">Confirm</button>
           </div>
       </form>
     </div>
