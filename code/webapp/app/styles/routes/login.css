@@ -9,25 +9,33 @@
 }
 
     .route-login .register-headers h1 {
-        padding-top: 10px;
+        padding-top: 50px;
         font-size: 20px;
         color: #f5f5f0;
+        font-family: sans-serif;
+
     }
 
     .route-login .register-headers h2 {
         color: #f5f5f0;
-        font-size: 20px;
+        font-size: 15px;
         padding-bottom: 20px;
+        margin-top: 0;
+        font-family: serif;
     }
 
 
     .route-login .register-fields {
         display: flex;
         flex-direction: column;
+
     }
 
     .route-login .register-fields input {
             margin-bottom: 3%;
+            padding-left: 2%;
+            padding-top: 1%;
+            padding-bottom: 1%;
         }
 
     .route-login .terms-of-conditions {
@@ -44,3 +52,14 @@
     .old {
         background-color: blue;
     }
+.register-button .dugmic {
+background-color:  #956673;
+border: none;
+color: white;
+padding-left: 5%;
+padding-right: 5%;
+padding-top: 2%;
+padding-bottom: 2%;
+margin-left: auto;
+
+}
