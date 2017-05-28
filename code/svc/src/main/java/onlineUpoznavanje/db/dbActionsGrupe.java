@@ -116,6 +116,30 @@ public class dbActionsGrupe {
          }
      }
      
+     public List<Grupa> searchGroups(String searchTerm) throws Exception {
+         try {
+             statement = connect.createStatement();
+
+         	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".chatgroup");
+         	//statement.setString(1, "%" + searchTerm + "%");
+             resultSet = statement.executeQuery();
+                 List<Grupa> groups = new ArrayList<Grupa>();
+                 while (resultSet.next()) {
+                         String name = resultSet.getString("name");
+                         String desc = resultSet.getString("description");
+                         System.out.println(name);
+                         Grupa grupa = new Grupa();
+                         grupa.setName(name);
+                         grupa.setDescription(desc);
+                         groups.add(grupa);
+                 }
+                 return groups;
+         } catch (Exception e) {
+                 throw e;
+         }
+ }
+
+     
      
      
 }

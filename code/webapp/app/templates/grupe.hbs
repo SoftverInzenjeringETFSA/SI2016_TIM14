@@ -9,8 +9,8 @@
                             <div class="col-sm-6">
                                 <div class="group-search">
                                     <span class="glyphicon glyphicon-search"></span>
-                                    {{input placeholder = "Search group" value=model.search}}
-                                    <button class="btn">Search </button>
+                                    {{input placeholder = "Search group" value=search}}
+                                    {{#link-to 'searchgroup' search }}<button class="btn" >Search </button>{{/link-to}}
                                 </div>
                             </div>
                         </div>

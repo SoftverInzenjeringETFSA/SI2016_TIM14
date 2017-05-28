@@ -23,6 +23,11 @@ Router.map(function() {
   this.route('invites');
   this.route('searchuser', {
         path: "/searchuser/:searchuserTerm"});
+  this.route('searchgroup', {
+        path: "/searchgroup/:searchgroupTerm"});
+
+
+
 });
 
 export default Router;

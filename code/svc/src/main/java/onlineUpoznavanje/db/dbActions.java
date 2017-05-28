@@ -14,6 +14,7 @@ import org.json.simple.parser.JSONParser;
 
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.models.Invite;
+import onlineUpoznavanje.models.Grupa;
 
         public class dbActions {
 
@@ -149,6 +150,8 @@ import onlineUpoznavanje.models.Invite;
                             throw e;
                     }
             }
+                
+                
                 
                 public void storeUser(String username, String password, String email) throws Exception {
                     try {
@@ -410,7 +413,31 @@ public void editKorisnikDB(String data) throws Exception {
 
                         }
                 }
+                
+                public List<Grupa> searchGroups(String searchTerm) throws Exception {
+                    try {
+                        statement = connect.createStatement();
 
+                    	PreparedStatement statement = connect.prepareStatement("select * from " + database + ".chatgroup");
+                    	//statement.setString(1, "%" + searchTerm + "%");
+                        resultSet = statement.executeQuery();
+                            List<Grupa> groups = new ArrayList<Grupa>();
+                            while (resultSet.next()) {
+                                    String name = resultSet.getString("name");
+                                    String desc = resultSet.getString("description");
+                                    /*System.out.println(name);
+                                    System.out.println(desc);*/
+                                    Grupa grupa = new Grupa();
+                                    grupa.setName(name);
+                                    grupa.setDescription(desc);
+                                    groups.add(grupa);
+                            }
+                            System.out.println(groups);
+                            return groups;
+                    } catch (Exception e) {
+                            throw e;
+                    }
+            }
         }
 
 
