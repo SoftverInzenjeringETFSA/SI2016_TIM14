@@ -44,7 +44,7 @@ margin-top: auto;
 .shared-header .shared-header-inner .shared-header-inner-login .login-data-wrapper input {
             display: block;
             padding-left: 2%;
-            color: white;
+            color: black;
             background-color: white;
             border: none;
         }
