@@ -28,9 +28,11 @@ export default BaseService.extend({
         var systemMessages = [];
         this.ajax({ url: `korisnici/findSystemMessages?id=${id}`, type: "GET"}).then(function(data) {
             data.forEach(function(systemMessage) {
+                console.log(systemMessage);
                 systemMessages.addObject(Notifications.create(systemMessage));
             });
         });
+        console.log(systemMessages);
         return systemMessages;
     },
     allExceptMe: function(id){

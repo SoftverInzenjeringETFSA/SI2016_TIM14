@@ -22,6 +22,8 @@ public class SystemMessage {
 	
 	private String usernameOfInvitee;
 	
+	private String date;
+	
 
 	public String getMessage() {
 		return message;
@@ -62,7 +64,14 @@ public class SystemMessage {
 	public void setUsernameOfInvitee(String usernameOfInvitee) {
 		this.usernameOfInvitee = usernameOfInvitee;
 	}
+	
+	public String getDate() {
+		return date;
+	}
 
+	public void setDate(String date) {
+		this.date = date;
+	}
 	
 	
 	

@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import BaseModel from './base-model';
 
-var _modelProperties = ['idOfInvitee','usernameofInvitee','idOfInviter','usernameOfInviter', 'message'];
+var _modelProperties = ['idOfInvitee','usernameofInvitee','idOfInviter','usernameOfInviter', 'message','date'];
 
 export default BaseModel.extend({
      modelProperties: _modelProperties,

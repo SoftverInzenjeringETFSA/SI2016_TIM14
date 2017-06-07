@@ -6,6 +6,8 @@ package onlineUpoznavanje.db;
         import java.sql.ResultSet;
         import java.sql.SQLException;
         import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -170,12 +172,17 @@ import onlineUpoznavanje.models.SystemMessage;
                                     String usernameOfInviter = resultSet.getString("usernameOfInviter");
                                     String idOfInviter = resultSet.getString("idOfInviter");
                                     String message = resultSet.getString("message");
+                                    Timestamp ts = resultSet.getTimestamp("date");
+                                    Date date = new Date();
+                                    date.setTime(ts.getTime());
+                                    String formattedDate = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss").format(date);
                                     SystemMessage systemMessage = new SystemMessage();
                                     systemMessage.setIdOfInvitee(idOfInvitee);
                                     systemMessage.setIdOfInviter(idOfInviter);
                                     systemMessage.setUsernameOfInviter(usernameOfInviter);
                                     systemMessage.setUsernameOfInvitee(usernameOfInvitee);
                                     systemMessage.setMessage(message);
+                                    systemMessage.setDate(formattedDate);
                                     systemMessages.add(systemMessage);
                                     
                             }

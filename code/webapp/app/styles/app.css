@@ -314,3 +314,6 @@ margin-left: auto;
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
 }
+.dateTimeNotification{
+  text-align: right;
+}

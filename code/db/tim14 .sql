@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2017 at 03:24 PM
+-- Generation Time: Jun 07, 2017 at 04:10 PM
 -- Server version: 5.7.18-log
 -- PHP Version: 5.6.25
 
@@ -136,17 +136,19 @@ CREATE TABLE `servermessage` (
   `usernameOfInvitee` varchar(45) NOT NULL,
   `idOfInviter` varchar(45) NOT NULL,
   `usernameOfInviter` varchar(45) NOT NULL,
-  `message` varchar(100) NOT NULL
+  `message` varchar(100) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `servermessage`
 --
 
-INSERT INTO `servermessage` (`id`, `idOfInvitee`, `usernameOfInvitee`, `idOfInviter`, `usernameOfInviter`, `message`) VALUES
-(6, '25', 'aplikacija', '20', 'mikimaus', 'User aplikacijadeclined an invite from the user mikimaus'),
-(7, '20', 'mikimaus', '2', 'neko', 'User mikimausdeclined an invite from the user neko'),
-(8, '20', 'mikimaus', '25', 'aplikacija', 'User mikimausdeclined an invite from the user aplikacija');
+INSERT INTO `servermessage` (`id`, `idOfInvitee`, `usernameOfInvitee`, `idOfInviter`, `usernameOfInviter`, `message`, `date`) VALUES
+(6, '25', 'aplikacija', '20', 'mikimaus', 'User aplikacijadeclined an invite from the user mikimaus', '2017-06-07 15:47:13'),
+(7, '20', 'mikimaus', '2', 'neko', 'User mikimausdeclined an invite from the user neko', '2017-06-07 15:47:13'),
+(8, '20', 'mikimaus', '25', 'aplikacija', 'User mikimausdeclined an invite from the user aplikacija', '2017-06-07 15:47:13'),
+(9, '25', 'aplikacija', '20', 'mikimaus', 'User aplikacija accepted an invite from the user mikimaus', '2017-06-07 15:47:13');
 
 -- --------------------------------------------------------
 
@@ -325,7 +327,7 @@ ALTER TABLE `privatechat`
 -- AUTO_INCREMENT for table `servermessage`
 --
 ALTER TABLE `servermessage`
-  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `user`
 --

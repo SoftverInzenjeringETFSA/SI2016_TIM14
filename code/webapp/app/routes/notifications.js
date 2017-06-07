@@ -11,6 +11,7 @@ export default Ember.Route.extend({
         if(Ember.isNone(id)){
             this.transitionTo('login');
         }
+        console.log(systemMessages);
         return Ember.RSVP.hash({
             mySystemMessages: systemMessages,
         });
