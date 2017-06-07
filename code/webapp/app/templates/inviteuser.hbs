@@ -14,8 +14,8 @@
          <tbody>
             {{#each model.usersToInvite as |osoba|}}
               <tr>
-              <td>{{osoba.username}}</td>
-     			<td >{{osoba.email }}</td>
+              <td>{{#link-to 'pregledprofila' osoba.id }}{{osoba.username}}{{/link-to}}</td>
+     			    <td>{{osoba.email }}</td>
               <td><button {{ action 'inviteUser' osoba.username }}>invite</button></td>
               </tr>
             {{/each}}
