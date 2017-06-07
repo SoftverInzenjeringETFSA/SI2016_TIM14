@@ -8,7 +8,9 @@ export default Ember.Route.extend({
     model() {
         let id = this.get('session.data.authenticated.korisnik.id');
         let invites = this.get('inviteUserService').findInvites(id);
-        console.log(invites);
+        if(Ember.isNone(id)){
+            this.transitionTo('login');
+        }
         return Ember.RSVP.hash({
             myInvites: invites,
         });

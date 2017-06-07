@@ -6,10 +6,13 @@ export default Ember.Route.extend({
 	inviteUserService: Ember.inject.service('inviteuser-service'),
     model() {
     	let id = this.get('session.data.authenticated.korisnik.id');
-    	console.log(id);
+    	if(Ember.isNone(id)){
+            this.transitionTo('login');
+        } 
         let users = this.get('inviteUserService').allExceptMe(id);
         return Ember.RSVP.hash({
             usersToInvite: users,
         });
     }
+    
 });

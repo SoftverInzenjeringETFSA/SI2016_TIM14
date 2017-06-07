@@ -5,6 +5,10 @@ export default Ember.Route.extend({
 	session: Ember.inject.service(),
 
     model() {
+         let id = this.get('session.data.authenticated.korisnik.id');
+        if(Ember.isNone(id)){
+            this.transitionTo('login');
+        } 
     	 let korisnik = this.getProperties('username','password');
          korisnik.username = this.get('session.data.authenticated.korisnik.username');
          korisnik.password = this.get('session.data.authenticated.korisnik.password');
@@ -21,4 +25,5 @@ export default Ember.Route.extend({
     	//console.log(this.get('session.data.authenticated.korisnik.username'));
     	//return this.get('ajax').request('http://localhost:8080/korisnici/getprofile', { method: 'POST', data: this.get('session.data.authenticated.korisnik.username')});
     }
+    
 });
