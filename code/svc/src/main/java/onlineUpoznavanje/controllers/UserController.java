@@ -230,6 +230,27 @@ public class UserController {
 
     }
 	
+	@RequestMapping(value = "/getprofile")
+    public @ResponseBody User getProfile(@RequestParam("term") int id)
+    {
+
+	try {
+
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println("ovoo" + id);
+       _user = db.getProfileDB(id);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
+	System.out.println(_user.getEmail() + "  " +  _user.getFirstName());
+      return _user;
+    }
+
+	
 	@RequestMapping(value = "/allprivatemessages", method = RequestMethod.GET)
     public List<PrivateMessage> vratiPrivatneKontakte(@RequestParam("id") int id)
     {

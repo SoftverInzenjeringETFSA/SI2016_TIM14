@@ -641,7 +641,47 @@ public List<PrivateMessage> vratiPrivatneKontakteDB(String data) throws Exceptio
 
 }
 
+public User getProfileDB(int idKorisnik) throws Exception{
+	
+	
+	   System.out.println("user: " + idKorisnik ); 
+	   PreparedStatement statement = connect.prepareStatement("select * from " + database + ".user WHERE id=?");
+	   statement.setInt(1,idKorisnik);
+    resultSet = statement.executeQuery();
+    String _username = null;
+    String _firstName = null;
+    String _lastName = null;
+    String _email = null;
+    String _zanimanje = null;
+    String _omeni = null;
+    String _interesovanja = null;
+    String _lokacija = null;
+    User user = new User();
+    while (resultSet.next()) {
+ 	   
+	       	   _username = resultSet.getString("username");
+	         	_firstName = resultSet.getString("firstName");
+	           _lastName = resultSet.getString("lastName");
+	           _email = resultSet.getString("email");
+	           _zanimanje = resultSet.getString("zanimanje");
+	           _omeni = resultSet.getString("omeni");
+	           _interesovanja = resultSet.getString("interesovanja");
+	           _lokacija = resultSet.getString("location");    	   
+                 
+    }
+    
+    user.setUsername(_username);
+    user.setFirstName(_firstName);
+    user.setLastName(_lastName);
+    user.setEmail(_email);
+    user.setZanimanje(_zanimanje);
+    user.setOmeni(_omeni);
+    user.setInteresovanja(_interesovanja);
+    user.setLocation(_lokacija);
+    
+    return user;
 
+}
 
                 // You need to close the resultSet
                 public void close() {

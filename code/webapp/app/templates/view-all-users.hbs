@@ -13,49 +13,24 @@
               <th>Username </th>
               <th>Email </th>
               <th>Option </th>
+              <th>Option </th>
             </tr>
            </thead>
-  <tr>
-      <td>
-             {{#each model.usersToDelete as |osoba|}}
-               <tr> <td>{{osoba.firstName}}</td></tr>
-             {{/each}}
-           </td>
-           <td>
-           {{#each model.usersToDelete as |osoba|}}
-             <tr> <td>{{osoba.lastName}}</td> </tr>
-           {{/each}}
-           </td>
-           <td>
-           {{#each model.usersToDelete as |osoba|}}
-             <tr> <td>{{osoba.username}}</td> </tr>
-           {{/each}}
-           </td>
-           <td>
-           {{#each model.usersToDelete as |osoba|}}
-             <tr> <td>{{osoba.email}}</td> </tr>
-           {{/each}}
-           </td>
-           <td>
-  {{#each model.usersToDelete as |osoba|}}
-      <tr>
-         <td><button {{ action 'obrisiUsera' osoba.id }}> Delete User </button></td>
-    </tr>
-    {{/each}}
-  </td>
+           <tbody>
+ {{#each model.usersToDelete as |osoba|}}
+  <tr id = "visina_reda">
+      <td> {{osoba.firstName}} </td>
+      <td> {{osoba.lastName}}  </td>
+      <td> {{#link-to 'pregledprofila' osoba.id }} {{osoba.username}} {{/link-to}}</td>
+      <td> {{osoba.email}}   </td>
+      <td><button {{ action 'obrisiUsera' osoba.id }} class="btn"> Delete User </button></td>
+      <td>{{#link-to 'pregledprofila' osoba.id }} <button class="btn"> View profile </button> {{/link-to}}</td>
 </tr>
+ {{/each}}
 
-         <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
-            {{#each model as |osoba|}}
-              <tr>
-              <td>{{osoba.username}}</td>
-          <td >{{osoba.email }}</td>
-              <td><button {{ action 'inviteUser' osoba.username }}>View</button></td>
-              </tr>
-            {{/each}}
-         </tbody>-->
+         </tbody>
       </table>
-      {{#link-to 'adminpanel'}} <button class="back" > Back </button>  {{/link-to}}
+      {{#link-to 'adminpanel' }}<button class="back" > Back </button>  {{/link-to}}
     </div>
 
   </div>
