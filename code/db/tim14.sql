@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2017 at 11:14 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Jun 07, 2017 at 03:24 PM
+-- Server version: 5.7.18-log
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -97,7 +97,7 @@ CREATE TABLE `invites` (
 INSERT INTO `invites` (`idOfInvitee`, `usernameOfInvitee`, `idOfInviter`, `usernameOfInviter`) VALUES
 ('5', 'nekaosoba', 17, 'Andrej'),
 ('4', 'haris', 17, 'Andrej'),
-('2', 'neko', 4, 'haris');
+('27', 'dino2', 20, 'mikimaus');
 
 -- --------------------------------------------------------
 
@@ -123,6 +123,30 @@ CREATE TABLE `privatechat` (
   `sourceId` int(11) NOT NULL,
   `targetId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_slovenian_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `servermessage`
+--
+
+CREATE TABLE `servermessage` (
+  `id` int(45) NOT NULL,
+  `idOfInvitee` varchar(45) NOT NULL,
+  `usernameOfInvitee` varchar(45) NOT NULL,
+  `idOfInviter` varchar(45) NOT NULL,
+  `usernameOfInviter` varchar(45) NOT NULL,
+  `message` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `servermessage`
+--
+
+INSERT INTO `servermessage` (`id`, `idOfInvitee`, `usernameOfInvitee`, `idOfInviter`, `usernameOfInviter`, `message`) VALUES
+(6, '25', 'aplikacija', '20', 'mikimaus', 'User aplikacijadeclined an invite from the user mikimaus'),
+(7, '20', 'mikimaus', '2', 'neko', 'User mikimausdeclined an invite from the user neko'),
+(8, '20', 'mikimaus', '25', 'aplikacija', 'User mikimausdeclined an invite from the user aplikacija');
 
 -- --------------------------------------------------------
 
@@ -238,6 +262,12 @@ ALTER TABLE `privatechat`
   ADD KEY `privatechat_ibfk_2` (`targetId`);
 
 --
+-- Indexes for table `servermessage`
+--
+ALTER TABLE `servermessage`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -290,7 +320,12 @@ ALTER TABLE `poruka`
 -- AUTO_INCREMENT for table `privatechat`
 --
 ALTER TABLE `privatechat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `servermessage`
+--
+ALTER TABLE `servermessage`
+  MODIFY `id` int(45) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `user`
 --
