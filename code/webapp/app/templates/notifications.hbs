@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row content">
+{{side-navigation}}
+    <div class="col-sm-9">
+      <h4><small> System Messages </small></h4>
+      
+    {{#each model.mySystemMessages as |notification|}}
+      <div class="talk-bubble tri-right left-top">
+        <div class="talktext">
+          <p>{{notification.message}}</p>
+        </div>
+      </div>
+    {{/each}}
+    </div>
+
+  </div>
+</div>

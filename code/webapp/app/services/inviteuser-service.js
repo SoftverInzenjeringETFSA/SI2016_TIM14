@@ -2,6 +2,7 @@ import Ember from 'ember';
 import BaseService from './base-service';
 import User from '../models/user';
 import Invite from '../models/invite';
+import Notifications from '../models/notifications';
 
 export default BaseService.extend({
 
@@ -22,6 +23,15 @@ export default BaseService.extend({
             });
         });
         return invites;
+    },
+    findSystemMessages: function(id){
+        var systemMessages = [];
+        this.ajax({ url: `korisnici/findSystemMessages?id=${id}`, type: "GET"}).then(function(data) {
+            data.forEach(function(systemMessage) {
+                systemMessages.addObject(Notifications.create(systemMessage));
+            });
+        });
+        return systemMessages;
     },
     allExceptMe: function(id){
         var users = [];

@@ -26,6 +26,7 @@ import onlineUpoznavanje.db.dbActions;
 import onlineUpoznavanje.dto.LoginDataRequest;
 import onlineUpoznavanje.models.Invite;
 import onlineUpoznavanje.models.PrivateMessage;
+import onlineUpoznavanje.models.SystemMessage;
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.repositories.UserRepository;
 
@@ -43,6 +44,7 @@ public class UserController {
 	private static UserRepository UserRepository;
 	
 	private static List<Invite> invitesToReturn = new ArrayList<Invite>();
+	private static List<SystemMessage> systemMessagesToReturn = new ArrayList<SystemMessage>();
 	private static List<PrivateMessage> privatnikontakti = new ArrayList<PrivateMessage>();
 	
 	private static List<User> usersToReturn = new ArrayList<User>();
@@ -133,6 +135,25 @@ public class UserController {
 		 }
 		 
         return invitesToReturn;
+
+
+    }
+	
+	@RequestMapping(value = "/findSystemMessages")
+    public @ResponseBody List<SystemMessage> findSystemMessages(@RequestParam("id") int id)
+    {
+		 try {
+		dbActions db = new dbActions();
+        db.connectToDB();
+        systemMessagesToReturn = db.findSystemMessages(id);
+        db.close();
+		 }
+		 catch (Exception e)
+		 {
+			 return (List<SystemMessage>) e;
+		 }
+		 
+        return systemMessagesToReturn;
 
 
     }

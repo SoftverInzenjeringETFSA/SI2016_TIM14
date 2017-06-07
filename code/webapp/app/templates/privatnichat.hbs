@@ -6,10 +6,13 @@
                 <div class="row content">
                     <div class="gornjiButton">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-2">
                                 {{#link-to 'invites'}}<button class="btn">All Chat Requests </button> {{/link-to}}
                             </div>
                             <div class="col-sm-6">
+                                {{#link-to 'notifications'}}<button class="btn">Notifications </button> {{/link-to}}
+                            </div>
+                            <div class="col-sm-4">
                                 <div class="user-search">
                                     <span class="glyphicon glyphicon-search"></span>
                                     {{input placeholder = "Search User" value=search}}

@@ -16,6 +16,7 @@ import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.models.Invite;
 import onlineUpoznavanje.models.PrivateMessage;
 import onlineUpoznavanje.models.Grupa;
+import onlineUpoznavanje.models.SystemMessage;
 
         public class dbActions {
 
@@ -153,6 +154,38 @@ import onlineUpoznavanje.models.Grupa;
                             throw e;
                     }
                 	}
+                
+                public List<SystemMessage> findSystemMessages(int data) throws Exception {
+                    try {
+                    	
+                            statement = connect.createStatement();
+                            PreparedStatement statement = connect.prepareStatement("select * from " + database + ".ServerMessage WHERE idOfInvitee=? OR idOfInviter=?");
+                            statement.setInt(1, data);
+                            statement.setInt(2, data);
+                            resultSet = statement.executeQuery();
+                            List<SystemMessage> systemMessages = new ArrayList<SystemMessage>();
+                            while (resultSet.next()) {
+                            		String usernameOfInvitee = resultSet.getString("usernameOfInvitee");
+                                    String idOfInvitee = resultSet.getString("idOfInvitee");
+                                    String usernameOfInviter = resultSet.getString("usernameOfInviter");
+                                    String idOfInviter = resultSet.getString("idOfInviter");
+                                    String message = resultSet.getString("message");
+                                    SystemMessage systemMessage = new SystemMessage();
+                                    systemMessage.setIdOfInvitee(idOfInvitee);
+                                    systemMessage.setIdOfInviter(idOfInviter);
+                                    systemMessage.setUsernameOfInviter(usernameOfInviter);
+                                    systemMessage.setUsernameOfInvitee(usernameOfInvitee);
+                                    systemMessage.setMessage(message);
+                                    systemMessages.add(systemMessage);
+                                    
+                            }
+                            return systemMessages;
+                    } catch (Exception e) {
+                            throw e;
+                    }
+                	}
+                
+                
                 public void declineInvite(String data) throws Exception {
                     try {
                    	 JSONObject jsonObject=new JSONObject();
@@ -173,13 +206,33 @@ import onlineUpoznavanje.models.Grupa;
                         }
                     		String idOfInviter = (String) jsonObject.get("idOfInviter");
                     		String idOfInvitee = (String) jsonObject.get("idOfInvitee");
+                    		String usernameOfInviter = "";
+                    		String usernameOfInvitee = "";
+                    		
                         statement = connect.createStatement();
-
-                    	PreparedStatement statement = connect.prepareStatement("DELETE FROM " + database + ".invites WHERE idOfInvitee=? AND idOfInviter=?");
+                        PreparedStatement statement = connect.prepareStatement("select * from " + database + ".invites WHERE idOfInvitee=? AND idOfInviter=?");
+                        statement.setString(1, idOfInvitee);
+                    	statement.setString(2, idOfInviter);
+                        resultSet = statement.executeQuery();
+                        while (resultSet.next()) {
+                        		usernameOfInvitee = resultSet.getString("usernameOfInvitee");
+                                usernameOfInviter = resultSet.getString("usernameOfInviter");
+                                
+                        }
+                        if(usernameOfInvitee != "") {
+                    	statement = connect.prepareStatement("DELETE FROM " + database + ".invites WHERE idOfInvitee=? AND idOfInviter=?");
                     	statement.setString(1, idOfInvitee);
                     	statement.setString(2, idOfInviter);
-                       statement.execute();
-                            
+                    	statement.execute();
+                    	String message = ("User " + usernameOfInvitee + " declined an invite from the user " + usernameOfInviter);
+                       	statement = connect.prepareStatement("INSERT INTO " + database + ".ServerMessage (idOfInvitee, usernameOfInvitee, idOfInviter, usernameOfInviter, message) VALUES (?, ?, ?, ?, ?)");
+                       	statement.setString(1, idOfInvitee);
+                   		statement.setString(2, usernameOfInvitee);
+                   		statement.setString(3, idOfInviter);
+                    	statement.setString(4, usernameOfInviter);
+                    	statement.setString(5, message);
+                    	statement.execute();
+                        }
                     } catch (Exception e) {
                             throw e;
                     }
