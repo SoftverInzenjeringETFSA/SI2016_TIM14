@@ -15,7 +15,7 @@
             {{#each model.myInvites as |osoba|}}
               <tr>
               <td>{{osoba.usernameOfInviter}}</td>
-              <td><button{{ action 'prihvatiZahtjev' osoba.idOfInviter }}>Accept</button></td>
+              <td><button{{ action 'acceptInvite' osoba.idOfInviter }}>Accept</button></td>
               <td><button {{ action 'declineInvite' osoba.idOfInviter }}>Decline</button></td>
               </tr>
             {{/each}}

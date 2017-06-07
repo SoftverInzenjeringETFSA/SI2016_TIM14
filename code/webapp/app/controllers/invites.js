@@ -14,15 +14,19 @@ export default Ember.Controller.extend({
         let myInvites = this.get('inviteUserService').findInvites(idOfUser);
         this.set("model.myInvites", myInvites);
     },
+    refreshAcceptedInvite: function(params){
+         var idOfUser = this.get('session.data.authenticated.korisnik.id');
+           this.get('inviteUserService').acceptInvite(params, idOfUser);
+          // Ember.set(this, 'Message', 'Uspješno obrisan korisnik!');
+          let myInvites = this.get('inviteUserService').findInvites(idOfUser);
+        this.set("model.myInvites", myInvites);
+    },
     actions: {
         declineInvite(params) {          
             this.refreshInvite(params);
         },
-        prihvatiZahtjev(iduser) {
-           var idPrihvatioZahtjev = this.get('session.data.authenticated.korisnik.id');
-           this.get('userService').prihvatiZahtjevPM(iduser, idPrihvatioZahtjev);
-          // Ember.set(this, 'Message', 'Uspješno obrisan korisnik!');
-          window.location.reload(true); 
+        acceptInvite(params) {
+          this.refreshAcceptedInvite(params);
        }
     }
 });

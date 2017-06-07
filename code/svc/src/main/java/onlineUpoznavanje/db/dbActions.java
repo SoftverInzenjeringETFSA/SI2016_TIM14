@@ -237,6 +237,59 @@ import onlineUpoznavanje.models.SystemMessage;
                             throw e;
                     }
                 }
+                
+                public void acceptInvite(String data) throws Exception {
+                    try {
+                   	 JSONObject jsonObject=new JSONObject();
+
+                    	try
+                        {
+                            String query=data;
+                            String queryArray[]=query.split("&");
+                            String idOfInviter[]=queryArray[0].split("=");
+                            String idOfInvitee[]=queryArray[1].split("=");
+                            jsonObject.put(idOfInviter[0],idOfInviter[1]);
+                            jsonObject.put(idOfInvitee[0],idOfInvitee[1]);
+
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    		String idOfInviter = (String) jsonObject.get("idOfInviter");
+                    		String idOfInvitee = (String) jsonObject.get("idOfInvitee");
+                    		String usernameOfInviter = "";
+                    		String usernameOfInvitee = "";
+                    		
+                        statement = connect.createStatement();
+                        PreparedStatement statement = connect.prepareStatement("select * from " + database + ".invites WHERE idOfInvitee=? AND idOfInviter=?");
+                        statement.setString(1, idOfInvitee);
+                    	statement.setString(2, idOfInviter);
+                        resultSet = statement.executeQuery();
+                        while (resultSet.next()) {
+                        		usernameOfInvitee = resultSet.getString("usernameOfInvitee");
+                                usernameOfInviter = resultSet.getString("usernameOfInviter");
+                                
+                        }
+                        if(usernameOfInvitee != "") {
+                    	statement = connect.prepareStatement("DELETE FROM " + database + ".invites WHERE idOfInvitee=? AND idOfInviter=?");
+                    	statement.setString(1, idOfInvitee);
+                    	statement.setString(2, idOfInviter);
+                    	statement.execute();
+                    	String message = ("User " + usernameOfInvitee + " accepted an invite from the user " + usernameOfInviter);
+                       	statement = connect.prepareStatement("INSERT INTO " + database + ".ServerMessage (idOfInvitee, usernameOfInvitee, idOfInviter, usernameOfInviter, message) VALUES (?, ?, ?, ?, ?)");
+                       	statement.setString(1, idOfInvitee);
+                   		statement.setString(2, usernameOfInvitee);
+                   		statement.setString(3, idOfInviter);
+                    	statement.setString(4, usernameOfInviter);
+                    	statement.setString(5, message);
+                    	statement.execute();
+                        }
+                    } catch (Exception e) {
+                            throw e;
+                    }
+                }
+                
                 public List<User> searchUsers(String searchTerm) throws Exception {
                     try {
                         statement = connect.createStatement();

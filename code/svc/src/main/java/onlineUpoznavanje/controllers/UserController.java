@@ -66,6 +66,11 @@ public class UserController {
     {
 		return ResponseEntity.status(HttpStatus.OK).body(UserService.declineInvite(data));
     }
+    @RequestMapping(value = "/acceptInvite", method = RequestMethod.POST)
+    public ResponseEntity acceptInvite(@RequestBody String data)
+    {
+		return ResponseEntity.status(HttpStatus.OK).body(UserService.acceptInvite(data));
+    }
 	@RequestMapping(value = "/searchUsers")
     public @ResponseBody List<User> searchUsers(@RequestParam("searchTerm") String searchTerm)
     {

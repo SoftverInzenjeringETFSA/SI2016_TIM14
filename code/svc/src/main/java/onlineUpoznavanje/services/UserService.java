@@ -114,6 +114,23 @@ public class UserService implements UserDetailsService {
 		
     	return true;
     }
+    
+    public static boolean acceptInvite(String data){
+		dbActions db = new dbActions();
+	        try {
+				db.connectToDB();
+				db.acceptInvite(data);
+		        db.close();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+			 
+		
+    	return true;
+    }
+    
     public static boolean joinGroup(String data){
 		dbActionsGrupe db = new dbActionsGrupe();
 	        try {

@@ -51,5 +51,11 @@ export default BaseService.extend({
     
         return true;
     },
+    acceptInvite: function(idOfInviter, idOfInvitee) {
+        this.ajax({ url: `korisnici/acceptInvite`, type: "POST", data: {idOfInviter: idOfInviter, idOfInvitee: idOfInvitee},}).then(function(data) {
+        });
+    
+        return true;
+    },
 
 });
