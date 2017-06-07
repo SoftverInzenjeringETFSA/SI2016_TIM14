@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="row content">
+        {{side-navigation}}
+        <div class="col-sm-9">
+           <div class="container">
+                <div class="col-md-5  toppad  pull-right col-md-offset-3 ">
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="image-all">
+                            <div class="row">
+                                <img class="img-responsive" src="http://queenaration.com/wp-content/uploads/2016/07/QueenAvatar-128x128.jpg" alt="Quenn">
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="profileTopForm">
+                            <div class="form-group">
+                            <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="datumRodjenja">USERNAME: </label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        {{input readonly=true class="form-control" rows="1" id="comment" value=model.username}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="datumRodjenja">NAME: </label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        {{input readonly=true class="form-control" rows="1" id="comment" value=model.firstName}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="Spol">SURNAME:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        {{input readonly=true class="form-control" rows="1" id="comment" value=model.lastName}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="zanimanje">WORK:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        {{input readonly=true class="form-control" rows="1" id="comment" value=model.zanimanje }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="grad">CITY:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        {{input readonly=true class="form-control" rows="1" id="comment" value=model.location }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label for="jezici">EMAIL:</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        {{input readonly=true class="form-control" rows="1" id="comment" value=model.email }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ovodole">
+                        <div class="about-me-form">
+                            <label for="about-me"><SMALL> ABOUT ME </SMALL></label>
+                            <textarea readonly class="form-control" rows="5" id="about-me">{{model.omeni}}</textarea>
+                        </div>
+                        <br>
+                        <div class="interests-form">
+                            <label for="interests"><SMALL> I'M INTERESTED IN... </SMALL></label>
+                            <textarea readonly class="form-control" rows="5" id="interests">{{model.interesovanja}}</textarea>
+                        </div>
+                    </div>           
+                {{#link-to 'view-all-users'}} <button class="dugmic2"> BACK </button> {{/link-to}}
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

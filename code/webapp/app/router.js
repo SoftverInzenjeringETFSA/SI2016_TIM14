@@ -29,6 +29,8 @@ Router.map(function() {
 
 
 
+ this.route('pregledprofila', {
+        path: "/pregledprofila/:term"});
 });
 
 export default Router;

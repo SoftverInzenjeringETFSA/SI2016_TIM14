@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
 	userService: Ember.inject.service('user-service'),
 	session: Ember.inject.service(),
 	Message: '',
+	self : this,
 
 	actions: {
 		 obrisiUsera(iduser) {
