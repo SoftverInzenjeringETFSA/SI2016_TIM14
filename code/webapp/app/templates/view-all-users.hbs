@@ -17,27 +17,27 @@
            </thead>
   <tr>
       <td>
-             {{#each model as |osoba|}}
+             {{#each model.usersToDelete as |osoba|}}
                <tr> <td>{{osoba.firstName}}</td></tr>
              {{/each}}
            </td>
            <td>
-           {{#each model as |osoba|}}
+           {{#each model.usersToDelete as |osoba|}}
              <tr> <td>{{osoba.lastName}}</td> </tr>
            {{/each}}
            </td>
            <td>
-           {{#each model as |osoba|}}
+           {{#each model.usersToDelete as |osoba|}}
              <tr> <td>{{osoba.username}}</td> </tr>
            {{/each}}
            </td>
            <td>
-           {{#each model as |osoba|}}
+           {{#each model.usersToDelete as |osoba|}}
              <tr> <td>{{osoba.email}}</td> </tr>
            {{/each}}
            </td>
            <td>
-  {{#each model as |osoba|}}
+  {{#each model.usersToDelete as |osoba|}}
       <tr>
          <td><button {{ action 'obrisiUsera' osoba.id }}> Delete User </button></td>
     </tr>

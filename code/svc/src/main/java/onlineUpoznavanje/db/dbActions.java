@@ -93,12 +93,32 @@ import onlineUpoznavanje.models.Grupa;
                          resultSet = statement.executeQuery();
                          List<User> users = new ArrayList<User>();
                          while (resultSet.next()) {
-                             String username = resultSet.getString("username");
+                        	 String username = resultSet.getString("username");
                              String email = resultSet.getString("email");
+                             String firstName=resultSet.getString("firstName");
+                             String lastName=resultSet.getString("lastName");
+                             Integer id = resultSet.getInt("id"); 
                              User user = new User();
                              user.setUsername(username);
                              user.setEmail(email);
-                             users.add(user);
+                             user.setId(id);
+                             
+                            if(firstName==null) 
+                            {  
+                             user.setFirstName("  /");
+                             }
+                            else
+                            {
+                         	user.setFirstName(firstName);}
+                            
+                            if(lastName==null) 
+                            {   
+                             user.setLastName("  /");
+                             }
+                            else
+                            {user.setLastName(lastName); }
+                             
+                      users.add(user);
                                     
                          }
                          return users;
