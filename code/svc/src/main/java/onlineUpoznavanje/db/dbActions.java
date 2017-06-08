@@ -17,6 +17,7 @@ import org.json.simple.parser.JSONParser;
 import onlineUpoznavanje.models.User;
 import onlineUpoznavanje.models.Invite;
 import onlineUpoznavanje.models.PrivateMessage;
+import onlineUpoznavanje.models.BlockedUser;
 import onlineUpoznavanje.models.Grupa;
 import onlineUpoznavanje.models.SystemMessage;
 
@@ -95,6 +96,7 @@ import onlineUpoznavanje.models.SystemMessage;
                          statement.setInt(1, data);
                          resultSet = statement.executeQuery();
                          List<User> users = new ArrayList<User>();
+                         
                          while (resultSet.next()) {
                         	 String username = resultSet.getString("username");
                              String email = resultSet.getString("email");
@@ -105,6 +107,7 @@ import onlineUpoznavanje.models.SystemMessage;
                              user.setUsername(username);
                              user.setEmail(email);
                              user.setId(id);
+                             
                              
                             if(firstName==null) 
                             {  
@@ -124,7 +127,59 @@ import onlineUpoznavanje.models.SystemMessage;
                       users.add(user);
                                     
                          }
-                         return users;
+                         
+                         statement = connect.prepareStatement("select * from " + database + ".user WHERE id=?");
+                         statement.setInt(1, data);
+                         ResultSet rS = statement.executeQuery();
+                         String _username = null;
+                         while (rS.next()) {
+                        	 _username = rS.getString("username");
+                         }
+                         
+                         statement = connect.prepareStatement("select * from " + database + ".blockeduser WHERE sourceUsername=? OR targetUsername=?");
+                         statement.setString(1, _username); 
+                         statement.setString(2, _username); 
+                         ResultSet resultSet2 = statement.executeQuery();
+                             List<BlockedUser> usersB = new ArrayList<BlockedUser>();
+                             while (resultSet2.next()) {
+                            	 String s_username = resultSet2.getString("sourceUsername");
+                            	 String t_username = resultSet2.getString("targetUsername");
+                                 BlockedUser b_user = new BlockedUser();
+                                 b_user.setSourceUsername(s_username);
+                                 b_user.setTargetUsername(t_username);
+                                 usersB.add(b_user);
+                             }
+                             
+                             System.out.println("size: " + usersB.size());
+                             System.out.println("size: " + users.size());
+                             
+                             List<User> normalusers = new ArrayList<User>();
+                             int jest = 0;
+                             for(int i = 0; i < users.size(); i++){
+                            	 jest = 0;
+                            	 for (int j = 0; j < usersB.size(); j++){
+                            		 
+                            		 //System.out.println(users.get(6).getUsername());
+                                    if((users.get(i).getUsername().equals(usersB.get(j).getTargetUsername())) || (users.get(i).getUsername().equals(usersB.get(j).getSourceUsername())))
+                                	 { 
+                                    	jest = 1;
+                                    	break;
+                                                       
+                                	 }
+                                    else
+                                    	jest = 0;
+                                 }
+                            	 
+                            	 if(jest == 0)
+                            	 normalusers.add(users.get(i)); 
+	
+                             }
+                             
+                             
+                             System.out.println("size: users" + users.size()); 
+                             System.out.println("size: usersB" + usersB.size());
+                             System.out.println("size: normalusers" + normalusers.size());
+                         return normalusers;
                     } catch (Exception e) {
                             throw e;
                     }
@@ -605,6 +660,55 @@ public void deleteKorisnikDB(String data) throws Exception{
 
 }
 
+
+public void blockUserDB(String data) throws Exception{
+	
+	JSONObject jsonObject=new JSONObject();
+  	try {
+  	System.out.println("okej!");
+		String query=data;
+        String queryArray[]=query.split("&");
+        String usernameFrom[]=queryArray[0].split("=");
+        String usernameTo[]=queryArray[1].split("=");
+        jsonObject.put(usernameFrom[0],usernameFrom[1]); 
+        jsonObject.put(usernameTo[0],usernameTo[1]); 
+        System.out.println("okej! 2");
+	      }
+	catch (JSONException e)
+    {
+        e.printStackTrace();
+    }
+	     
+
+	   String _usernameFrom = (String) jsonObject.get("usernameFrom");
+	   String _usernameTo = (String) jsonObject.get("usernameTo");
+	   statement = connect.createStatement();
+
+	 PreparedStatement statement = connect.prepareStatement("INSERT INTO " + database + ".blockeduser ( sourceUsername, targetUsername ) VALUES ( ?, ? )");
+      statement.setString(1,_usernameFrom);
+      statement.setString(2,_usernameTo);
+      statement.execute(); 
+
+}
+
+public List<BlockedUser> allBlockedUsersDB(String username) throws Exception{
+	
+	 PreparedStatement statement = connect.prepareStatement("select * from " + database + ".blockeduser WHERE sourceUsername=?");
+	 statement.setString(1,username);
+     resultSet = statement.executeQuery();
+     List<BlockedUser> blockedusers = new ArrayList<BlockedUser>();
+         while (resultSet.next()) {
+                 String sourceusername = resultSet.getString("sourceUsername");
+                 String targetusername = resultSet.getString("targetUsername");
+                 BlockedUser buser = new BlockedUser();
+                 buser.setSourceUsername(sourceusername);
+                 buser.setTargetUsername(targetusername);
+  
+                 blockedusers.add(buser);
+         }
+         System.out.println(blockedusers.size());
+         return blockedusers;
+}
 public void prihvatiZahtjevDB(String data) throws Exception{
 	
 	JSONObject jsonObject=new JSONObject();

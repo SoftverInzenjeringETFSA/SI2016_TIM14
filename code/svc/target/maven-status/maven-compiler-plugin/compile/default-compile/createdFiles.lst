@@ -23,6 +23,7 @@ onlineUpoznavanje\services\izuzetak\ServiceException.class
 onlineUpoznavanje\db\dbActionsUserChatGroup.class
 onlineUpoznavanje\models\BanRequest.class
 onlineUpoznavanje\models\Invite.class
+onlineUpoznavanje\models\SystemMessage.class
 onlineUpoznavanje\db\dbActionPoruke.class
 onlineUpoznavanje\services\BanRequestService.class
 onlineUpoznavanje\repositories\GrupaRepository.class

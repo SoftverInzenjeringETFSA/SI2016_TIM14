@@ -24,6 +24,7 @@ import onlineUpoznavanje.services.UserService;
 import onlineUpoznavanje.services.izuzetak.ServiceException;
 import onlineUpoznavanje.db.dbActions;
 import onlineUpoznavanje.dto.LoginDataRequest;
+import onlineUpoznavanje.models.BlockedUser;
 import onlineUpoznavanje.models.Invite;
 import onlineUpoznavanje.models.PrivateMessage;
 import onlineUpoznavanje.models.SystemMessage;
@@ -48,6 +49,7 @@ public class UserController {
 	private static List<PrivateMessage> privatnikontakti = new ArrayList<PrivateMessage>();
 	
 	private static List<User> usersToReturn = new ArrayList<User>();
+	private static List<BlockedUser> usersToReturnBU = new ArrayList<BlockedUser>();
 	private static User _user = new User();
 	//registracija korisnika
 	@RequestMapping(value = "/store", method = RequestMethod.POST)
@@ -215,6 +217,45 @@ public class UserController {
 	}
 
     }
+	
+	@RequestMapping(value = "/blockuser", method = RequestMethod.POST)
+    public void blockUser(@RequestBody String podatak)
+    {
+
+	try {
+
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println(podatak);
+       db.blockUserDB(podatak);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
+
+    }
+	
+	@RequestMapping(value = "/allblockedusers")
+    public @ResponseBody List<BlockedUser> allBlockedUsers(@RequestParam("un") String un)
+    {
+
+	try {
+
+	   dbActions db = new dbActions();
+       db.connectToDB();
+       System.out.println("ovoo");
+       usersToReturnBU = db.allBlockedUsersDB(un);
+       db.close();
+	   }
+	catch (Exception e)
+	{
+			// return UserRepository.findAll();
+	}
+	return usersToReturnBU;
+    }
+	
 	
 	@RequestMapping(value = "/prihvatizahtjev", method = RequestMethod.POST)
     public void prihvatiZahtjev(@RequestBody String podatak)

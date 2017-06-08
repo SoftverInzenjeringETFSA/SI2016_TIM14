@@ -9,6 +9,7 @@
               <th>Username</th>
               <th>Email</th>
               <th>Invite</th>
+              <th>Block</th>
             </tr>
          </thead>
          <tbody>
@@ -16,7 +17,24 @@
               <tr>
               <td>{{#link-to 'pregledprofila' osoba.id }}{{osoba.username}}{{/link-to}}</td>
      			    <td>{{osoba.email }}</td>
-              <td><button {{ action 'inviteUser' osoba.username }}>invite</button></td>
+              <td><button {{ action 'inviteUser' osoba.username }} class = "btn"> INVITE </button></td>
+               <td><button class = "btn" {{ action 'blockUser' osoba.username }}> BLOCK USER </button></td>
+              </tr>
+            {{/each}}
+         </tbody>
+      </table>
+
+      <h4><small>Blocked Users</small></h4>
+      <table class="table table-striped">
+         <thead>
+            <tr>
+              <th>Username</th>
+            </tr>
+         </thead>
+         <tbody>
+            {{#each model.blockedUsers as |osoba|}}
+              <tr>
+              <td>{{osoba.targetUsername}}</td>
               </tr>
             {{/each}}
          </tbody>
