@@ -2,19 +2,29 @@
   <div class="row content">
 {{side-navigation}}
     <div class="col-sm-9">
+     <br>
       <div class ="group-admin">
-        <p> <small> GROUP ADMINISTRATION </small> </p>
+        <p id="adminpanelopis"> <small> GROUP ADMINISTRATION </small> </p>
         <hr>
-        {{#link-to 'add-new-group'}} <button class="dugmic" > Add New Group </button> {{/link-to}}
         <br>
-        {{#link-to 'view-all-groups'}} <button class="dugmic" > View All Groups </button> {{/link-to}}
+        <br>
+        {{#link-to 'add-new-group'}} <button class="btn" id="adminpanelbtn"> Add New Group </button> {{/link-to}}
+        <br>
+        <br>
+        {{#link-to 'view-all-groups'}} <button class="btn" id="adminpanelbtn"> View All Groups </button> {{/link-to}}
       </div>
-      <div class="user-admin">
-        <p> <small> USER ADMINISTRATION </small> </p>
-        <hr>
-        {{#link-to 'view-all-users'}} <button class="dugmic" > View All Users </button> {{/link-to}}
+      <br>
+      <br>
         <br>
-        {{#link-to 'view-ban-requests'}} <button class="dugmic" > View Ban Requests </button> {{/link-to}}
+      <div class="user-admin">
+        <p id="adminpanelopis"> <small> USER ADMINISTRATION </small> </p>
+        <hr>
+        <br>
+        <br>
+        {{#link-to 'view-all-users'}} <button class="btn" id="adminpanelbtn" > View All Users </button> {{/link-to}}
+        <br>
+        <br>
+        {{#link-to 'view-ban-requests'}} <button class="btn" id="adminpanelbtn" > View Ban Requests </button> {{/link-to}}
       </div>
     </div>
   </div>

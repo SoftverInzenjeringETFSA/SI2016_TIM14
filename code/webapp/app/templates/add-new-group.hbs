@@ -7,8 +7,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-3">
-                        <div class="image-all-group">
-                            <img class="img-responsive" src="http://queenaration.com/wp-content/uploads/2016/07/QueenAvatar-128x128.jpg" alt="Quenn">
+                        <div class="image-all-group" >
+                            <img class="img-responsive"  src="http://queenaration.com/wp-content/uploads/2016/07/QueenAvatar-128x128.jpg" alt="Quenn">
                             </div>
                         </div>
                     </div>
@@ -31,9 +31,13 @@
                       <div class="group-description">
                             <label for="group-description"><SMALL> GROUP DESCRIPTION </SMALL></label>
                             {{textarea value=description class="form-control" rows="5" id="about-me"}}
-                            {{#link-to 'adminpanel'}} <button class="dugmic" {{ action 'kreirajGrupu'}}> Create </button> {{/link-to}}
+                            <br>
+                            {{#link-to 'adminpanel'}} <button class="btn" id="create" {{ action 'kreirajGrupu'}}> Create </button> {{/link-to}}
+                            <br>
+                            <br>
+                            {{#link-to 'adminpanel'}} <button class="btn" id="create"> Back </button>  {{/link-to}}
                       </div>
-                      {{#link-to 'adminpanel'}} <button class="back" > Back </button>  {{/link-to}}
+                      <br>
                     </div>
                 </div>
             </div>

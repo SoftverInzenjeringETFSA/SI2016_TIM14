@@ -4,56 +4,25 @@
 {{side-navigation}}
     <div class="col-sm-9">
       <h4><small>VIEW ALL GROUPS</small></h4>
-      <table class="table table-striped">
+      <table class="table table-striped" id="grupe">
          <thead>
-            <tr>
-              <th>Group Name </th>
-              <th>Description  </th>
-              <th>View </th>
-
-</tr>
-</thead>
-<tr>
-<td>
-<tr>
-  <td>
+            <tr id="red">
+              <th>Group Name</th>
+              <th>Description</th>
+              <th> Option </th>
+            </tr>
+        </thead>
+       <tbody>
 {{#each model as |grupa|}}
   <tr>
   <td>{{grupa.name}}</td>
+  <td>{{grupa.description}}</td>
+  <td><button {{ action 'obrišiGrupu' grupa.id }} class="btn"> Delete Group </button></td>
   </tr>
-    {{/each}}
-  </td>
-</tr>
-</td>
-
-  <td>
-{{#each model as |grupa|}}
-      <tr>
-      <td>{{grupa.description}}</td>
-
-    </tr>
-    {{/each}}
-  </td>
-  <td>
-  {{#each model as |grupa|}}
-      <tr>
-      <button {{ action 'obrišiGrupu' grupa.id }}> Delete Group </button>
-    </tr>
-    {{/each}}
-  </td>
-  </tr>
-         <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
-            {{#each model as |osoba|}}
-              <tr>
-              <td>{{osoba.username}}</td>
-          <td >{{osoba.email }}</td>
-              <td><button {{ action 'inviteUser' osoba.username }}>View</button></td>
-              </tr>
-            {{/each}}
-         </tbody>-->
+  {{/each}}
+</tbody>
       </table>
-      {{#link-to 'adminpanel'}} <button class="back" > Back </button>  {{/link-to}}
+      {{#link-to 'adminpanel'}} <button class="btn" id="back"> Back </button>  {{/link-to}}
     </div>
-
   </div>
 </div>

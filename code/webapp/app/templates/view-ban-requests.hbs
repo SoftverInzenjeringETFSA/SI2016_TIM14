@@ -13,50 +13,24 @@
               <th>To</th>
               <th>Reason</th>
               <th>ChatGroup</th>
-              <th>Accept/Deny</th>
+              <th>Accept</th>
+              <th>Deny</th>
             </tr>
          </thead>
-         <tr>
-          <td>
+         <tbody>
              {{#each model as |ban|}}
-               <tr> <td>{{ban.sourceusername}}</td></tr>
-             {{/each}}
-           </td>
-           <td>
-           {{#each model as |ban|}}
-             <tr> <td>{{ban.targetusername}}</td> </tr>
-           {{/each}}
-           </td>
-           <td>
-           {{#each model as |ban|}}
-             <tr> <td>{{ban.reason}}</td> </tr>
-           {{/each}}
-           </td>
-           <td>
-           {{#each model as |ban|}}
-             <tr> <td>{{ban.groupname}}</td> </tr>
-           {{/each}}
-           </td>
-           <td>
-           {{#each model as |ban|}}
-              <tr>
-              <td><button {{ action 'banujKorisnika' ban.targetId ban.chatGroupId ban.id }}>Accept</button></td>
-               <td><button {{ action 'odbijbanKorisnika' ban.id }} >Deny</button></td>
-              </tr>
-            {{/each}}
-           </td>
+               <tr> 
+               <td>{{ban.sourceusername}}</td>
+            <td>{{ban.targetusername}}</td>
+            <td>{{ban.reason}}</td>
+            <td>{{ban.groupname}}</td>
+          <td><button {{ action 'banujKorisnika' ban.targetId ban.chatGroupId ban.id }} class ="btn">Accept</button></td>
+            <td><button {{ action 'odbijbanKorisnika' ban.id }} class ="btn">Deny</button></td>
         </tr>
-         <!--<tbody> - SPECIFICIRAJTE SAMO ŠTA VAM SE KUPI IZ BAZE U KOLONAMA ISPOD
-            {{#each model as |osoba|}}
-              <tr>
-              <td>{{osoba.username}}</td>
-          <td >{{osoba.email }}</td>
-              <td><button {{ action 'inviteUser' osoba.username }}>View</button></td>
-              </tr>
-            {{/each}}
-         </tbody>-->
+        {{/each}}
+         </tbody>
       </table>
-      {{#link-to 'adminpanel'}} <button class="back" > Back </button>  {{/link-to}}
+      {{#link-to 'adminpanel'}} <button class="btn" id="back"> Back </button>  {{/link-to}}
     </div>
 
   </div>

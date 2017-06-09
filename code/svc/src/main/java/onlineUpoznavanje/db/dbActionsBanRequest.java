@@ -52,39 +52,39 @@ public class dbActionsBanRequest {
                         Integer requestedId = resultSet.getInt("requestedId");
                         Integer targetId = resultSet.getInt("targetId");
                         Integer chatGroupId=resultSet.getInt("chatGroupId");
+                        Integer id = resultSet.getInt("id");
                         String reason=resultSet.getString("reason");
                         
-                        BanRequest ban = new BanRequest(); 
+                        BanRequest ban = new BanRequest();
+                        ban.setId(id);
                         ban.setRequestedId(requestedId);
                         ban.setTargetId(targetId);
                         ban.setChatGroupId(chatGroupId);
                         ban.setReason(reason);
                         
-                        resultSet = null;
-                        statement = null;
                         
                         statement = connect.prepareStatement("select * from " + database + ".user WHERE id=?");
                         statement.setInt(1, requestedId);
-                        resultSet = statement.executeQuery();
+                        ResultSet resultSet2 = statement.executeQuery();
                        
-                        while (resultSet.next()) {
-                        	String sourceusername=resultSet.getString("username");
+                        while (resultSet2.next()) {
+                        	String sourceusername=resultSet2.getString("username");
                         	 ban.setSourceusername(sourceusername);
                         }
                         
                         statement = connect.prepareStatement("select * from " + database + ".user WHERE id=?");
                         statement.setInt(1, targetId);
-                        resultSet = statement.executeQuery();
-                        while (resultSet.next()) {
-                        	String targetusername=resultSet.getString("username");
+                        ResultSet resultSet3 = statement.executeQuery();
+                        while (resultSet3.next()) {
+                        	String targetusername=resultSet3.getString("username");
                         	 ban.setTargetusername(targetusername);
                         }
                         
                         statement = connect.prepareStatement("select * from " + database + ".chatgroup WHERE id=?");
                         statement.setInt(1, chatGroupId);
-                        resultSet = statement.executeQuery();
-                        while (resultSet.next()) {
-                        	String nazivgrupe =resultSet.getString("name");
+                       ResultSet resultSet4 = statement.executeQuery();
+                        while (resultSet4.next()) {
+                        	String nazivgrupe =resultSet4.getString("name");
                         	 ban.setGroupname(nazivgrupe);
                         }
                         
