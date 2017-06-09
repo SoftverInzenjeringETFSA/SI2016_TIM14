@@ -29,8 +29,9 @@ Router.map(function() {
 
 
 
- this.route('pregledprofila', {
-        path: "/pregledprofila/:term"});
+  this.route('pregledprofila', {
+         path: "/pregledprofila/:term"});
+  this.route('faq');
 });
 
 export default Router;

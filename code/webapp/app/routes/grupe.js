@@ -7,7 +7,7 @@ export default Ember.Route.extend({
 		var idOfUser = this.get('session.data.authenticated.korisnik.id');
 		if(Ember.isNone(idOfUser)){
     		this.transitionTo('login');
-    	} 
+    	}
 	    let groups = this.get('groupService').myGroups(idOfUser);
 	    return Ember.RSVP.hash({
 	        searchedGroups: groups

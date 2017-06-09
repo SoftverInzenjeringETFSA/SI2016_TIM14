@@ -6,6 +6,6 @@ export default Ember.Route.extend({
         let id = this.get('session.data.authenticated.korisnik.id');
         if(Ember.isNone(id)){
             this.transitionTo('login');
-        } 
+        }
     }
 });

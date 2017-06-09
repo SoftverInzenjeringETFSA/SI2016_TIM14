@@ -7,8 +7,8 @@ export default Ember.Route.extend({
     	let id = this.get('session.data.authenticated.korisnik.id');
         if(Ember.isNone(id)){
             this.transitionTo('login');
-        } 
+        }
     	return this.get('ajax').request('http://localhost:8080/grupe/all', { method: 'GET' });
     }
-   
+
 });

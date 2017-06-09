@@ -1,25 +1,25 @@
 import Ember from 'ember';
 import user from '../models/user';
- 
-export default Ember.Controller.extend({
-    userService: Ember.inject.service('userService'),
+
+ export default Ember.Controller.extend({
+   userService: Ember.inject.service('userService'),
     session: Ember.inject.service(),
- 
- 
- 
+
+
+
     actions: {
          spasiPromjeneKorisnika() {
          let editKorisnika = this.getProperties('email','firstName','lastName', 'omeni', 'interesovanja', 'zanimanje', 'location');
- 
+
           console.log('ime' + this.get('session.data.authenticated.korisnik.firstName'));
- 
+
           if(this.get('session.data.authenticated.korisnik.firstName') === '' || this.get('session.data.authenticated.korisnik.firstName') === null)
                   {
                      editKorisnika.firstName = ' ';
                   }
                   else
          editKorisnika.firstName= this.get('session.data.authenticated.korisnik.firstName');
-          
+
           console.log('prezime' + this.get('session.data.authenticated.korisnik.lastName'));
 
          if(this.get('session.data.authenticated.korisnik.lastName') === '' || this.get('session.data.authenticated.korisnik.lastName') === null)
@@ -28,15 +28,15 @@ export default Ember.Controller.extend({
                  }
                  else
          editKorisnika.lastName =this.get('session.data.authenticated.korisnik.lastName');
- 
+
          if(this.get('session.data.authenticated.korisnik.zanimanje') === '' || this.get('session.data.authenticated.korisnik.zanimanje') === null)
                  {
                     editKorisnika.zanimanje = ' ';
                  }
                  else
- 
+
          editKorisnika.zanimanje = this.get('session.data.authenticated.korisnik.zanimanje');
- 
+
          if(this.get('session.data.authenticated.korisnik.location') === '' || this.get('session.data.authenticated.korisnik.location') === null)
                  {
                     editKorisnika.location = ' ';
@@ -48,9 +48,9 @@ export default Ember.Controller.extend({
                     editKorisnika.email = ' ';
                  }
                  else
- 
+
          editKorisnika.email = this.get('session.data.authenticated.korisnik.email');
- 
+
          if(this.get('session.data.authenticated.korisnik.interesovanja') === '' || this.get('session.data.authenticated.korisnik.interesovanja') === null)
                  {
                     editKorisnika.interesovanja = ' ';
@@ -63,18 +63,18 @@ export default Ember.Controller.extend({
                  }
                  else
          editKorisnika.omeni = this.get('session.data.authenticated.korisnik.omeni');
- 
+
  console.log('nesto' + this.get('session.data.authenticated.korisnik.omeni'));
          this.get('userService').editKorisnik(editKorisnika, this.get('session.data.authenticated.korisnik.username'));
- 
+
   },
- 
+
     azurirajPromjene()
     {
               let korisnik = this.getProperties('username','password');
               korisnik.username = this.get('session.data.authenticated.korisnik.username');
                korisnik.password = this.get('session.data.authenticated.korisnik.password');
- 
+
                      this.get('session').authenticate('authenticator:application', korisnik, (data) => {
                              console.log(data);
                      })
@@ -84,4 +84,5 @@ export default Ember.Controller.extend({
                      });
     }
   }
+
 });
