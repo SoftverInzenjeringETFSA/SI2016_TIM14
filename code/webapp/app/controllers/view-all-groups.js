@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
 
            this.get('groupService').deleteGroup(idgrupa);
            Ember.set(this, 'Message', 'Uspješno obrisana grupa!');
-          // window.location.reload(true); 
+           window.location.reload(true); 
 	}
 
 	}

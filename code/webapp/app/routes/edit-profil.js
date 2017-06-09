@@ -8,6 +8,7 @@ session: Ember.inject.service(),
     	if(Ember.isNone(id)){
     		this.transitionTo('login');
     	}
+
     }
 
 });

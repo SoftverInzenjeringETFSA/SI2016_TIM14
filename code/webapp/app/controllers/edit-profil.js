@@ -1,58 +1,80 @@
 import Ember from 'ember';
 import user from '../models/user';
-
- export default Ember.Controller.extend({
-   userService: Ember.inject.service('userService'),
+ 
+export default Ember.Controller.extend({
+    userService: Ember.inject.service('userService'),
     session: Ember.inject.service(),
-
-
-
+    msgedit: ' ',
+ 
+ 
     actions: {
          spasiPromjeneKorisnika() {
          let editKorisnika = this.getProperties('email','firstName','lastName', 'omeni', 'interesovanja', 'zanimanje', 'location');
-         var name = /^[a-zA-Z0-9]+$/;
-
-          console.log('ime' + this.get('session.data.authenticated.korisnik.firstName'));
-
-          if(this.get('session.data.authenticated.korisnik.firstName') === '' || this.get('session.data.authenticated.korisnik.firstName') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
+         var ime = /^[a-z ,.'-]+$/i;
+         var waserror = false;
+         
+ 
+          if(this.get('session.data.authenticated.korisnik.firstName') === '' || this.get('session.data.authenticated.korisnik.firstName') === null)
                   {
                      editKorisnika.firstName = ' ';
                   }
                   else
          editKorisnika.firstName= this.get('session.data.authenticated.korisnik.firstName');
 
+          
           console.log('prezime' + this.get('session.data.authenticated.korisnik.lastName'));
 
-         if(this.get('session.data.authenticated.korisnik.lastName') === '' || this.get('session.data.authenticated.korisnik.lastName') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
+         if(this.get('session.data.authenticated.korisnik.lastName') === '' || this.get('session.data.authenticated.korisnik.lastName') === null)
                  {
                     editKorisnika.lastName = ' ';
                  }
                  else
          editKorisnika.lastName =this.get('session.data.authenticated.korisnik.lastName');
 
-         if(this.get('session.data.authenticated.korisnik.zanimanje') === '' || this.get('session.data.authenticated.korisnik.zanimanje') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
+     if(!this.get('session.data.authenticated.korisnik.firstName').match(ime))
+     {
+        waserror = true;
+        this.set('errorFirstName','Name can contain only letters!');
+     }
+     else
+     {
+        this.set('errorFirstName','');
+
+     }
+
+     if(!this.get('session.data.authenticated.korisnik.lastName').match(ime))
+     {
+         waserror = true;
+        this.set('errorLastName','Last name can contain only letters!');
+     }
+     else
+     {
+         this.set('errorLastName','');
+
+     }
+ 
+         if(this.get('session.data.authenticated.korisnik.zanimanje') === '' || this.get('session.data.authenticated.korisnik.zanimanje') === null)
                  {
                     editKorisnika.zanimanje = ' ';
                  }
                  else
-
+ 
          editKorisnika.zanimanje = this.get('session.data.authenticated.korisnik.zanimanje');
-
-         if(this.get('session.data.authenticated.korisnik.location') === '' || this.get('session.data.authenticated.korisnik.location') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
+ 
+         if(this.get('session.data.authenticated.korisnik.location') === '' || this.get('session.data.authenticated.korisnik.location') === null)
                  {
                     editKorisnika.location = ' ';
                  }
                  else
          editKorisnika.location = this.get('session.data.authenticated.korisnik.location');
-           var email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-         if(this.get('session.data.authenticated.korisnik.email') === '' || this.get('session.data.authenticated.korisnik.email') === null || !this.get('session.data.authenticated.korisnik.firstName').match(email))
+         if(this.get('session.data.authenticated.korisnik.email') === '' || this.get('session.data.authenticated.korisnik.email') === null)
                  {
                     editKorisnika.email = ' ';
                  }
                  else
-
+ 
          editKorisnika.email = this.get('session.data.authenticated.korisnik.email');
-
+ 
          if(this.get('session.data.authenticated.korisnik.interesovanja') === '' || this.get('session.data.authenticated.korisnik.interesovanja') === null)
                  {
                     editKorisnika.interesovanja = ' ';
@@ -65,18 +87,22 @@ import user from '../models/user';
                  }
                  else
          editKorisnika.omeni = this.get('session.data.authenticated.korisnik.omeni');
-
- console.log('nesto' + this.get('session.data.authenticated.korisnik.omeni'));
+ 
+      if(waserror === false){
          this.get('userService').editKorisnik(editKorisnika, this.get('session.data.authenticated.korisnik.username'));
-
+         this.set('msgedit','Promjene su uspjesno sacuvane!');
+      }
+    
+    
+ 
   },
-
+ 
     azurirajPromjene()
     {
               let korisnik = this.getProperties('username','password');
               korisnik.username = this.get('session.data.authenticated.korisnik.username');
                korisnik.password = this.get('session.data.authenticated.korisnik.password');
-
+ 
                      this.get('session').authenticate('authenticator:application', korisnik, (data) => {
                              console.log(data);
                      })
@@ -84,7 +110,8 @@ import user from '../models/user';
                              //Ember.set(this, 'errorMessage', JSON.parse(reason.responseText).errorMessage);
                              this.set('authenticationError', this.errorMessage || reason);
                      });
+
+                      this.set('msgedit','');
     }
   }
-
 });
