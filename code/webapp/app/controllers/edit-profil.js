@@ -10,10 +10,11 @@ import user from '../models/user';
     actions: {
          spasiPromjeneKorisnika() {
          let editKorisnika = this.getProperties('email','firstName','lastName', 'omeni', 'interesovanja', 'zanimanje', 'location');
+         var name = /^[a-zA-Z0-9]+$/;
 
           console.log('ime' + this.get('session.data.authenticated.korisnik.firstName'));
 
-          if(this.get('session.data.authenticated.korisnik.firstName') === '' || this.get('session.data.authenticated.korisnik.firstName') === null)
+          if(this.get('session.data.authenticated.korisnik.firstName') === '' || this.get('session.data.authenticated.korisnik.firstName') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
                   {
                      editKorisnika.firstName = ' ';
                   }
@@ -22,14 +23,14 @@ import user from '../models/user';
 
           console.log('prezime' + this.get('session.data.authenticated.korisnik.lastName'));
 
-         if(this.get('session.data.authenticated.korisnik.lastName') === '' || this.get('session.data.authenticated.korisnik.lastName') === null)
+         if(this.get('session.data.authenticated.korisnik.lastName') === '' || this.get('session.data.authenticated.korisnik.lastName') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
                  {
                     editKorisnika.lastName = ' ';
                  }
                  else
          editKorisnika.lastName =this.get('session.data.authenticated.korisnik.lastName');
 
-         if(this.get('session.data.authenticated.korisnik.zanimanje') === '' || this.get('session.data.authenticated.korisnik.zanimanje') === null)
+         if(this.get('session.data.authenticated.korisnik.zanimanje') === '' || this.get('session.data.authenticated.korisnik.zanimanje') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
                  {
                     editKorisnika.zanimanje = ' ';
                  }
@@ -37,13 +38,14 @@ import user from '../models/user';
 
          editKorisnika.zanimanje = this.get('session.data.authenticated.korisnik.zanimanje');
 
-         if(this.get('session.data.authenticated.korisnik.location') === '' || this.get('session.data.authenticated.korisnik.location') === null)
+         if(this.get('session.data.authenticated.korisnik.location') === '' || this.get('session.data.authenticated.korisnik.location') === null || !this.get('session.data.authenticated.korisnik.firstName').match(name))
                  {
                     editKorisnika.location = ' ';
                  }
                  else
          editKorisnika.location = this.get('session.data.authenticated.korisnik.location');
-         if(this.get('session.data.authenticated.korisnik.email') === '' || this.get('session.data.authenticated.korisnik.email') === null)
+           var email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+         if(this.get('session.data.authenticated.korisnik.email') === '' || this.get('session.data.authenticated.korisnik.email') === null || !this.get('session.data.authenticated.korisnik.firstName').match(email))
                  {
                     editKorisnika.email = ' ';
                  }
